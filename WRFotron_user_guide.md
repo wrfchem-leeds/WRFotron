@@ -43,8 +43,8 @@ ___
 - WRF workshops, in person, UK [here](https://www.ncas.ac.uk/index.php/en/wrf-tutorials).  
 - Past WRF-Chem presentation [here](http://www2.mmm.ucar.edu/wrf/users/workshops/).  
 - WRF-Chem tutorials [here](https://ruc.noaa.gov/wrf/wrf-chem/tutorialexercises.htm).  
-- Fire INventory from NCAR (FINN) emission preparation [here](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/FINN_Emiss_prep_MOZART.pdf).  
-- Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme [here](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf). 
+- Fire INventory from NCAR (FINN) emission preparation [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/FINN_Emiss_prep_MOZART.pdf).  
+- Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf). 
 - Key papers:  
     - Grell, G.A., Peckham, S.E., Schmitz, R., McKeen, S.A., Frost, G., Skamarock, W.C., Eder, B., 2005. Fully coupled “online” chemistry within the WRF model. Atmos. Environ. 39, 6957–6975. [DOI](https://doi:10.1016/j.atmosenv.2005.04.027).  
     - Fast, J. D., Gustafson, W. I., Easter, R. C., Zaveri, R. A., Barnard, J. C., Chapman, E. G., et al. (2006). Evolution of ozone, particulates, and aerosol direct radiative forcing in the vicinity of Houston using a fully coupled meteorology-chemistry-aerosol model. Journal of Geophysical Research: Atmospheres, 111(21), 1–29. [DOI](https://doi.org/10.1029/2005JD006721).  
@@ -63,7 +63,7 @@ ___
 #### a. Steps <a name="steps"/>
 - Log into your HPC (e.g. ARC3/4).  
 `ssh –Y username@arc4.leeds.ac.uk`  
-- Copy [WRF-Chem version 4.0.3](https://github.com/wrf-model/WRF) and [WRFotron version 2.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron2.0) to your nobackup.  
+- Copy [WRF-Chem version 4.0.3](https://github.com/wrf-model/WRF) and [WRFotron version 2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0) to your nobackup.  
     - Copy from LC's (earlacoa) ARC3/4 account. If complete this step, then skip next section.   
 `cd nobackup`  
 `mkdir username`  
@@ -79,7 +79,7 @@ ___
             - WRF Pre-Processing System (WPS) version 4.0.3.  
             - WRF with meteorology only version 4.0.3.  
             - WRF-Chem version 4.0.3.  
-            - [WRFotron version 2.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron2.0).  
+            - [WRFotron version 2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0).  
                 - This is called the "chain" directory, and contains only program code and configuration file blueprints. Data and run directories will reside elsewhere.   
             - [WRF_UoM_EMIT](https://github.com/douglowe/WRF_UoM_EMIT).  
                 - An NCL based pre-processing script, for generating anthropogenic emissions files for use with WRF-Chem. Created by Doug Lowe.  
@@ -104,7 +104,7 @@ ___
                 - One without chemistry.  
         - Download [WPS](https://github.com/wrf-model/WPS).  
         - Download [WPS Geography files](https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html).  
-        - Download [WRFotron version 2.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron2.0).   
+        - Download [WRFotron version 2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0).   
         - Download flex (tool for generating scanners: programs which recognize lexical patterns in text).  
         - Download and compile (in serial) preprocessors from [here](https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community):  
             - anthro_emis (anthropogenic emissions preprocessor).  
@@ -453,7 +453,7 @@ ___
     - Vtable.ECMWF/GFS.  
         - Variable table for the intial and boundary meteorological conditions.  
     - preprocessor input files (emis_edgarhtap2_mozmos.inp, exo_coldens.inp, fire_emis.mozm.inp, mozbc.inp, megan_bio_emiss.inp, mozbc.inp.blueprint_201_mz4, mozbc.inp.blueprint_202_mz4).     
-    - For files which depend on the aerosol / chemistry schemes (mozbc.inp, namelist.chem, and namelist.wrf), there are blueprints of each of these files for both the mozart_mosaic_4bin (chem_opt=201) and the mozart_mosaic_4bin_aq (chem_opt=202). See [document](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf).  
+    - For files which depend on the aerosol / chemistry schemes (mozbc.inp, namelist.chem, and namelist.wrf), there are blueprints of each of these files for both the mozart_mosaic_4bin (chem_opt=201) and the mozart_mosaic_4bin_aq (chem_opt=202). See [document](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf).  
         - Replace the contents of the namelist with the blueprint_201 / 202 version.  
 - Crontab script.  
     - Not normally allowed, check with HPC staff first.  
@@ -565,7 +565,7 @@ ___
 ___
 ### 7. Versions <a name="versions"/>
 Setup configurations for key components of WRFotron releases.
-#### [WRFotron0.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron0.0)
+#### [WRFotron0.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron0.0)
 - WRF-Chem version 3.7.1.  
 - Single domain.  
 - Continuous nudged meteorology each timestep (with target fields on a 3-hour update freq) with chemical restarts.  
@@ -587,7 +587,7 @@ Setup configurations for key components of WRFotron releases.
     - Fire from FINN.  
     - Biogenic from MEGAN.  
     - Dust from GOCART with AFWA.  
-#### [WRFotron1.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron1.0)
+#### [WRFotron1.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron1.0)
 - Changes relative to version 0.0:  
     - MOZART-MOSAIC 4 bin, with aqueous chemistry and VBS SOA (chem_opt = 202).  
     - Without aqueous chemistry in stratocumulus clouds (cldchem_onoff = 0).  
@@ -596,7 +596,7 @@ Setup configurations for key components of WRFotron releases.
     - 38 meteoroglogical levels.  
     - 3 meteorological soil levels for WRFChem4.0.3 and 4 for WRFChem3.7.1.  
     - Consistent timestep for chemistry and biogenics with meteorology.  
-#### [WRFotron2.0](https://github.com/lukeconibear/wrf-analysis/tree/master/WRFotron/WRFotron2.0)
+#### [WRFotron2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0)
 - Changes relative to version 1.0:
 - WRF-Chem version 4.0.3.  
 - With aqueous chemistry in stratocumulus clouds (cldchem_onoff = 1).  
@@ -606,7 +606,7 @@ Setup configurations for key components of WRFotron releases.
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
 - Updated TUV scheme for photolysis (phot_opt = 4).  
-- Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 (see [here](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/CESM-WRFchem_aerosols_plusgas.pdf)).  
+- Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 (see [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/CESM-WRFchem_aerosols_plusgas.pdf)).  
 - Fixed the bug where nudging would stop after 312 hours (i.e. after day 13 of a simulation) i.e. changed gfdda_end_h to 10,000.  
 - Nudge above the boundary layer. To do this, go into namelist.wrf.blueprint, and within the FDDA section change:  
     - if_no_pbl_nudging_uv = 1.  
@@ -686,7 +686,7 @@ ___
 
 #### e. To run with a nest <a name="nest"/>
 - Offline nests
-    - See step-by-step guide to run with a nest document from Carly Reddington [here](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/Guide_to_offline_nesting_CR.pdf).  
+    - See step-by-step guide to run with a nest document from Carly Reddington [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_offline_nesting_CR.pdf).  
     - Uses ndown.exe for one-way nesting
     - Feedback=0
     - Parent and nest domain may drift apart
@@ -787,4 +787,4 @@ ___
 `python plot_wrfchemi.py`
 
 #### i. To run with NAEI emissions <a name="naei-emissions"/>
-- Follow the guide created by Ailish Graham [here](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/additional_docs/Guide_to_NAEI_emissions_AG.pdf).  
+- Follow the guide created by Ailish Graham [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_NAEI_emissions_AG.pdf).  
