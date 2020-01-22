@@ -8,4 +8,4 @@ WRFotron created by Christoph Knote (christoph.knote@lmu.de)
 - 1.0 01/06/2018 LC  
 - 2.0 01/02/2019 LC  
 #### License  
-Free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship.
+This code is currently licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship and referencing the DOI code provided; (Conibear and Knote). DOI can be added
