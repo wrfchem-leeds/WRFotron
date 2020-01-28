@@ -3,8 +3,8 @@
 # WRFOTRON
 # ------------------------------------------------------------------------------
 
-source activate ncl_nco_python3
-module load netcdf
+#source activate ncl_nco_python3
+#module load netcdf
 
 ncksBin=$(which ncks)
 ncattedBin=$(which ncatted)

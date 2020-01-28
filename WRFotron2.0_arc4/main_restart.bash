@@ -5,7 +5,7 @@
 #$ -cwd -V
 #$ -l h_rt=04:00:00
 #$ -pe ib 32
-#$ -l node_type=24core-128G
+#$ -l node_type=40core-192G
 #$ -l h_vmem=8G
 
 . config.bash
@@ -59,7 +59,7 @@ done
 msg "chem"
 
 # do the chem run
-${mpiCommandMain} ./wrf.exe
+${mpiCommandMain} wrf.exe
 
 mkdir chem_out
 mv rsl* chem_out
