@@ -37,5 +37,5 @@
  have_bcs_chem                       = .true., .false., .false.,  ! gets lateral boundary data from wrfbdy (.true.) or idealized profile (.false.)
  have_bcs_upper                      = .false., .false., .false., ! upper boundary bounary condition for chemical species
  aer_op_opt                          = 2, 2, 2,                   ! aerosol optical properties, 1 = volume, 2 = approximate Maxwell-Garnet, 3 = complex volume-mixing, 4 = complex Maxwell-Garnet, 5 = complex core-shell
- bbinjectscheme                      = 1, 1, 1,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level (recommended), 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
+ bbinjectscheme                      = 2, 2, 2,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level, 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
  /
