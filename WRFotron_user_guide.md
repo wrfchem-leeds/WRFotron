@@ -250,9 +250,11 @@ cd /nobackup/username/WRFChem4.0.3_WRFotron2.0_clean/WRF4.0.3_code/WRFMeteo4.0.3
     - Or you can use the WRF-Chem module on ARC4 created by Helen Burns from CEMAC, which automates this for you.  
         - This in the adapted [WRFortron2.0 code](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0_arc4) to work with pre-built CEMAC executables on ARC4. Everything required (including WRF, WRF-Chem, python, NCL, NCO, preprocessors, ncview) is loaded the following command which is at the top of `config.bash`:  
 `module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.8.1 wrfchemconda/2.7`
-- To use the CEMAC WRF-Chem module on ARC4, first run this script to load the CEMAC modules:  
+- First, copy the code to your nobackup:
+`cp -rp /nobackup/WRFChem/WRFotron2.0_WRF3.7.1_ARC4 /nobackup/$USER/`  
+- Then, run this script to load the CEMAC modules:  
 `. /nobackup/cemac/cemac.sh`  
-- Then run the test case:
+- Then, run the test case:
 ```bash
 cd /nobackup/$USER/WRFotron2.0_WRFChem3.7.1
 . master.bash 2014 01 12 00 24 06
