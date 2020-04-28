@@ -36,7 +36,8 @@ ___
     f. [To run with cumulus parameterisation off](#cumpar)  
     g. [Changes for WRF-Chem version 4](#wrfchem4)  
     h. [To run with a diurnal cycle](#diurnal)  
-    i. [To run with NAEI emissions](#naei-emissions)
+    i. [To run with NAEI emissions](#naei-emissions)  
+    j. [To add (or remove) variables to wrfout files](#addvar)  
 ___
 ### 1. Background and further information <a name="background"/>
 - National Center for Atmospheric Research (NCAR) Weather Research and Forecasting (WRF) Model Users [website](http://www2.mmm.ucar.edu/wrf/users/).  
@@ -833,3 +834,16 @@ ___
 
 #### i. To run with NAEI emissions <a name="naei-emissions"/>
 - Follow the guide created by Ailish Graham [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_NAEI_emissions_AG.pdf).  
+
+#### j. To add (or remove) variables to wrfout files <a name="addvar"/>  
+- With help from Doug Lowe:
+    - In namelist.wrf.blueprint (in the &time_control section) add this line:
+`iofields_filename                   = 'add_remove_var.txt','add_remove_var.txt','add_remove_var.txt', `  
+    - There is one file per domain, and these can be different.  
+    - Inside your add_remove_var.txt file, you’ll have lines of text such as:  
+`+:h:0:ccn1,ccn2,ccn3,ccn4,ccn5,ccn6`  
+    - The + (to add) or – (to remove) a variable.
+    - The h is for the history stream. Can have history, restarts, or both.
+    - The 0 is for the stream number. Generally, stream numbers of 10-24 are okay, and avoid 22-23.
+    - Then list the variables.
+    - Additional information on pages 19-20 [here](https://www.climatescience.org.au/sites/default/files/WRF_gill_registry.pdf).  
