@@ -840,6 +840,7 @@ ___
     - In namelist.wrf.blueprint (in the &time_control section) add this line:
 `iofields_filename                   = 'add_remove_var.txt','add_remove_var.txt','add_remove_var.txt', `  
     - There is one file per domain, and these can be different.  
+    - The file `add_remove_var.txt` needs to be copied into the run folder to be read in.   
     - Inside your add_remove_var.txt file, you’ll have lines of text such as:  
 `+:h:0:ccn1,ccn2,ccn3,ccn4,ccn5,ccn6`  
     - The + (to add) or – (to remove) a variable.
