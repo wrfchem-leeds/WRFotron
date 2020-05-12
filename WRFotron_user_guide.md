@@ -647,8 +647,8 @@ Setup configurations for key components of WRFotron releases.
 - WRF-Chem version 4.0.3.  
 - With aqueous chemistry in stratocumulus clouds (cldchem_onoff = 1).  
 - Biomass burning plume rise throughout the boundary layer (bbinjectscheme = 2).  
-- The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
-- The new option 2 has all BB emissions evenly distributed throughout the BL.  
+    - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
+    - The new option 2 has all BB emissions evenly distributed throughout the BL.  
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
 - Updated TUV scheme for photolysis (phot_opt = 4).  
