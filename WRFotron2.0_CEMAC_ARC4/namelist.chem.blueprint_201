@@ -1,7 +1,7 @@
 
  &chem                                                          ! chemistry
  kemit                               = 1,                         ! number of vertical levels in the emissions input data file
- chem_opt                            = 202, 202, 202,             ! chemistry option, 201 = MOZART-MOSAIC (4 bins + simplified SOA + no aqeuous chemistry), 202 = MOZART-MOSAIC (4 bins + VBS SOA + aqeuous chemistry).
+ chem_opt                            = 201, 201, 201,             ! chemistry option, 201 = MOZART-MOSAIC (4 bins + simplified SOA + no aqeuous chemistry), 202 = MOZART-MOSAIC (4 bins + VBS SOA + aqeuous chemistry).
  bioemdt                             = 3.0, 3.0, 3.0,             ! timestep, biogenic, minutes
  photdt                              = 30., 10., 10.,             ! timestep, photolysis, minutes
  chemdt                              = 3.0, 3.0, 3.0,             ! timestep, chemistry, minutes
@@ -20,11 +20,11 @@
  gaschem_onoff                       = 1, 1, 1,                   ! gas phase chemistry, 1 = on
  aerchem_onoff                       = 1, 1, 1,                   ! aerosol chemistry, 1 = on
  wetscav_onoff                       = 1, 1, 1,                   ! wet scavenging in stratocumulus clouds, 1 = on
- cldchem_onoff                       = 1, 1, 1,                   ! aqueous chemistry in stratocumulus clouds, 1 = on
+ cldchem_onoff                       = 0, 0, 0,                   ! aqueous chemistry in stratocumulus clouds, 1 = on
  vertmix_onoff                       = 1, 1, 1,                   ! vertical turbulent mixing, 1 = on
  chem_conv_tr                        = 1, 0, 0,                   ! subgrid convective transport, 1 = on
  conv_tr_wetscav                     = 1, 0, 0,                   ! wet scavenging in cumulus clouds, subgrid, 1 = on
- conv_tr_aqchem                      = 1, 0, 0,                   ! aqueous chemistry in cumulus clouds, subgrid, 1 = on
+ conv_tr_aqchem                      = 0, 0, 0,                   ! aqueous chemistry in cumulus clouds, subgrid, 1 = on
  seas_opt                            = 2,                         ! sea salt emissions, 2 = MOSAIC or MADE/SORGAM sea salt emissions
  dust_opt                            = 3,                         ! dust emissions, 3 = GOCART dust emissions with AFWA modifications
  dmsemis_opt                         = 1,                         ! include GOCART dms emissions from sea surface
@@ -37,5 +37,5 @@
  have_bcs_chem                       = .true., .false., .false.,  ! gets lateral boundary data from wrfbdy (.true.) or idealized profile (.false.)
  have_bcs_upper                      = .false., .false., .false., ! upper boundary bounary condition for chemical species
  aer_op_opt                          = 2, 2, 2,                   ! aerosol optical properties, 1 = volume, 2 = approximate Maxwell-Garnet, 3 = complex volume-mixing, 4 = complex Maxwell-Garnet, 5 = complex core-shell
- bbinjectscheme                      = 2, 2, 2,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level, 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
+ bbinjectscheme                      = 1, 1, 1,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level (recommended), 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
  /

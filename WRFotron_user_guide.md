@@ -17,11 +17,16 @@ ___
     a. [Steps](#steps)  
     b. [Conda](#conda)  
 4. [Compilation](#compile)  
+    a. [Any HPC](#any)  
+    b. [ARC4 using CEMAC module](#arc4)  
 5. [Manual simulation](#manual)  
 6. [Automatic simulation (i.e. WRFotron)](#auto)  
     a. [How it works](#auto-how)  
     b. [Running](#auto-running)  
 7. [Versions](#versions)  
+    a. [WRFotron0.0](#WRFotron0.0)  
+    b. [WRFotron1.0](#WRFotron1.0)  
+    c. [WRFotron2.0](#WRFotron2.0)  
 8. [Miscellaneous](#misc)  
     a. [Recommendations](#recom)  
     b. [Output process](#output)  
@@ -31,7 +36,8 @@ ___
     f. [To run with cumulus parameterisation off](#cumpar)  
     g. [Changes for WRF-Chem version 4](#wrfchem4)  
     h. [To run with a diurnal cycle](#diurnal)  
-    i. [To run with NAEI emissions](#naei-emissions)
+    i. [To run with NAEI emissions](#naei-emissions)  
+    j. [To add (or remove) variables to wrfout files](#addvar)  
 ___
 ### 1. Background and further information <a name="background"/>
 - National Center for Atmospheric Research (NCAR) Weather Research and Forecasting (WRF) Model Users [website](http://www2.mmm.ucar.edu/wrf/users/).  
@@ -142,7 +148,8 @@ ___
 `conda create -n ncview -c eumetsat -c conda-forge ncview libpng`  
 ___
 ### 4. Compilation <a name="compile"/>
-```
+#### a. Any HPC <a name="any"/>
+```bash
 #!/bin/bash
 # example compilation script for WRF-Chem version 4.0.3
 
@@ -236,6 +243,42 @@ cd /nobackup/username/WRFChem4.0.3_WRFotron2.0_clean/WRF4.0.3_code/WRFMeteo4.0.3
 #./configure --prefix=$(pwd)/../flex
 #export FLEX_LIB_DIR='/nobackup/username/WRFChem4.0.3_WRFotron2.0_clean/WRF4.0.3_code/flex/lib'
 ```
+#### b. ARC4 using CEMAC module <a name="arc4"/>
+- For running on ARC4:
+    - You can compile using the above steps:
+        - Adding `export I_MPI_HYDRA_TOPOLIB=ipl` as ARC4 is not optimised for IntelMPI.
+        - Within `pre.bash`, `main.bash`, `main_restart.bash`, and `post.bash` you'll need to change the node type from `24core-128G` to `40core-192G`.
+    - Or you can use the WRF-Chem module on ARC4 created by Helen Burns from CEMAC, which automates this for you.  
+        - This in the adapted [WRFortron2.0 code](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0_arc4) to work with pre-built CEMAC executables on ARC4. Everything required (including WRF, WRF-Chem, python, NCL, NCO, preprocessors, ncview) is loaded the following command which is at the top of `config.bash`:  
+`module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.8.1 wrfchemconda/2.7`
+- First, copy the code to your nobackup:
+`cp -rp /nobackup/WRFChem/WRFotron2.0_WRF3.7.1_ARC4 /nobackup/$USER/`  
+- Then, run this script to load the CEMAC modules:  
+`. /nobackup/cemac/cemac.sh`  
+- Then, run the test case:
+```bash
+cd /nobackup/$USER/WRFotron2.0_WRFChem3.7.1
+. master.bash 2014 01 12 00 24 06
+```
+- To always be able to view and use all the software CEMAC has built when you run module avail, add the following lines to `.bashrc`:
+```bash
+if [ -r /nobackup/cemac/cemac.sh ] ; then
+  . /nobackup/cemac/cemac.sh
+fi
+```
+- WRFChem has been built with all compiler and mpi combinations on ARC4 listed in the directories:
+```bash
+/nobackup/cemac/software/build/WRFChem/3.7.1/1
+/nobackup/cemac/software/build/WRFChem/4.0.3/1
+```
+- Within these folders, `build.sh` can be used to build your own versions (e.g. real.exe, wrf.exe, etc.) by setting the environment variable CEMAC_DIR to your own directory.
+- The executables are found in these locations:
+```bash
+/nobackup/cemac/software/apps/WRFChem/3.7.1/1
+/nobackup/cemac/software/apps/WRFChem/4.0.3/1
+```
+- The recommended compiler and mpi combination is compiler = intel, and mpi = openmpi.
+- If you wish to change the preprocessors (e.g. anthro_emis, mozbc, etc.), then `fix_makefile.sh` will modify the makefiles for the preprosesors.
 ___
 ### 5. Manual simulation <a name="manual"/>
 Independently run a 24 hour simulation for India from 2016 10 05.
@@ -565,7 +608,8 @@ ___
 ___
 ### 7. Versions <a name="versions"/>
 Setup configurations for key components of WRFotron releases.
-#### [WRFotron0.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron0.0)
+#### a. WRFotron0.0 <a name="WRFotron0.0"/>
+- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron0.0)
 - WRF-Chem version 3.7.1.  
 - Single domain.  
 - Continuous nudged meteorology each timestep (with target fields on a 3-hour update freq) with chemical restarts.  
@@ -587,7 +631,8 @@ Setup configurations for key components of WRFotron releases.
     - Fire from FINN.  
     - Biogenic from MEGAN.  
     - Dust from GOCART with AFWA.  
-#### [WRFotron1.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron1.0)
+#### b. WRFotron1.0 <a name="WRFotron1.0"/>
+- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron1.0)
 - Changes relative to version 0.0:  
     - MOZART-MOSAIC 4 bin, with aqueous chemistry and VBS SOA (chem_opt = 202).  
     - Without aqueous chemistry in stratocumulus clouds (cldchem_onoff = 0).  
@@ -596,13 +641,14 @@ Setup configurations for key components of WRFotron releases.
     - 38 meteoroglogical levels.  
     - 3 meteorological soil levels for WRFChem4.0.3 and 4 for WRFChem3.7.1.  
     - Consistent timestep for chemistry and biogenics with meteorology.  
-#### [WRFotron2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0)
+#### c. WRFotron2.0 <a name="WRFotron2.0"/>
+- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0)
 - Changes relative to version 1.0:
 - WRF-Chem version 4.0.3.  
 - With aqueous chemistry in stratocumulus clouds (cldchem_onoff = 1).  
 - Biomass burning plume rise throughout the boundary layer (bbinjectscheme = 2).  
-- The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
-- The new option 2 has all BB emissions evenly distributed throughout the BL.  
+    - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
+    - The new option 2 has all BB emissions evenly distributed throughout the BL.  
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
 - Updated TUV scheme for photolysis (phot_opt = 4).  
@@ -788,3 +834,17 @@ ___
 
 #### i. To run with NAEI emissions <a name="naei-emissions"/>
 - Follow the guide created by Ailish Graham [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_NAEI_emissions_AG.pdf).  
+
+#### j. To add (or remove) variables to wrfout files <a name="addvar"/>  
+- With help from Doug Lowe:
+    - In namelist.wrf.blueprint (in the &time_control section) add this line:
+`iofields_filename                   = 'add_remove_var.txt','add_remove_var.txt','add_remove_var.txt', `  
+    - There is one file per domain, and these can be different.  
+    - The file `add_remove_var.txt` needs to be copied into the run folder to be read in.   
+    - Inside your add_remove_var.txt file, you’ll have lines of text such as:  
+`+:h:0:ccn1,ccn2,ccn3,ccn4,ccn5,ccn6`  
+    - The + (to add) or – (to remove) a variable.
+    - The h is for the history stream. Can have history, restarts, or both.
+    - The 0 is for the stream number. Generally, stream numbers of 10-24 are okay, and avoid 22-23.
+    - Then list the variables.
+    - Additional information on pages 19-20 [here](https://www.climatescience.org.au/sites/default/files/WRF_gill_registry.pdf).  
