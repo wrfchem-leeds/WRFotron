@@ -4,9 +4,9 @@
 # ------------------------------------------------------------------------------
 # code
 # ------------------------------------------------------------------------------
-module load intel/19.0.4 openmpi/3.1.4 WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7
+module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7 
 # WRFotron
-chainDir=/nobackup/$USER/WRFotron2.0_WRF3.7.1_ARC4
+chainDir=/nobackup/$USER/WRFotron2.0
 version=0.1
 projectTag=WRFChem3.7.1
 withChemistry=true

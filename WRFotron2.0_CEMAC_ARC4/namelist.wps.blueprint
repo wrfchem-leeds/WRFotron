@@ -14,7 +14,7 @@
  j_parent_start    =   1, 10,                           ! y coordinate of the lower-left corner
  e_we              =  140, 220,                         ! westeast dimension
  e_sn              =  140, 120,                         ! southnorth dimension
- geog_data_res     = 'default', 'default',              ! resolution, or list of resolutions separated by + symbols, of source data to be used when interpolating static terrestrial data to the nest’s grid
+ geog_data_res     = 'modis_30s+30s', 'modis_30s+30s',  ! resolution, or list of resolutions separated by + symbols, of source data to be used when interpolating static terrestrial data to the nest’s grid
  dx = 30000,                                            ! westeast resolution, in metres for 'polar', 'lambert', and 'mercator'
  dy = 30000,                                            ! westeast resolution, in metres for 'polar', 'lambert', and 'mercator'
  map_proj = 'lambert',                                  ! map projection

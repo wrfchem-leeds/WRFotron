@@ -59,7 +59,7 @@ done
 msg "chem"
 
 # do the chem run
-${mpiCommandMain} wrf.exe
+${mpiCommandMain} ./wrf.exe
 
 mkdir chem_out
 mv rsl* chem_out

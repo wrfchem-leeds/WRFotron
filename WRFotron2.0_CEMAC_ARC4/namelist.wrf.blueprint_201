@@ -16,7 +16,7 @@
  history_interval                    = 60, 60,                               ! history output file interval in minutes (integer only)
  frames_per_outfile                  = 1, 1,                                 ! number of output times bulked into each history file
  restart                             = __ISRESTART__,                        ! whether this run is a restart
- restart_interval                    = 1440,                                 ! restart output file interval in minutes
+ restart_interval                    = 360,                                 ! restart output file interval in minutes
  io_form_history                     = 2                                     ! NetCDF
  io_form_restart                     = 2                                     ! NetCDF
  io_form_input                       = 2                                     ! NetCDF

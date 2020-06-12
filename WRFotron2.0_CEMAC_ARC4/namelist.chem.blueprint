@@ -20,7 +20,7 @@
  gaschem_onoff                       = 1, 1, 1,                   ! gas phase chemistry, 1 = on
  aerchem_onoff                       = 1, 1, 1,                   ! aerosol chemistry, 1 = on
  wetscav_onoff                       = 1, 1, 1,                   ! wet scavenging in stratocumulus clouds, 1 = on
- cldchem_onoff                       = 1, 1, 1,                   ! aqueous chemistry in stratocumulus clouds, 1 = on
+ cldchem_onoff                       = 0, 1, 1,                   ! aqueous chemistry in stratocumulus clouds, 1 = on
  vertmix_onoff                       = 1, 1, 1,                   ! vertical turbulent mixing, 1 = on
  chem_conv_tr                        = 1, 0, 0,                   ! subgrid convective transport, 1 = on
  conv_tr_wetscav                     = 1, 0, 0,                   ! wet scavenging in cumulus clouds, subgrid, 1 = on
@@ -37,5 +37,5 @@
  have_bcs_chem                       = .true., .false., .false.,  ! gets lateral boundary data from wrfbdy (.true.) or idealized profile (.false.)
  have_bcs_upper                      = .false., .false., .false., ! upper boundary bounary condition for chemical species
  aer_op_opt                          = 2, 2, 2,                   ! aerosol optical properties, 1 = volume, 2 = approximate Maxwell-Garnet, 3 = complex volume-mixing, 4 = complex Maxwell-Garnet, 5 = complex core-shell
- bbinjectscheme                      = 2, 2, 2,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level, 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
+ bbinjectscheme                      = 1, 1, 1,                   ! 0 = plumerise (biomass_burn_opt), 1 = all ground level (recommended), 2 = flaming evenly in BL, 3 = flaming top BL, 4 = flaming injected at specific height
  /

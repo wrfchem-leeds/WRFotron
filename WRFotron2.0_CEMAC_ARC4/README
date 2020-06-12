@@ -1,0 +1,158 @@
+--------------------------------------------------------------------------------
+---------------------------- WRFotron scripts ----------------------------------
+--------------------------------------------------------------------------------
+
+Tools to automatize WRF-Chem runs with re-initialized meteorology
+
+Christoph Knote - christoph.knote@lmu.de, LMU Munich, Oktober 2015
+
+Version
+1.0 10/15/2015 CK - Initial release
+
+License:
+Free of charge for non-commercial use. If you intend to publish
+something based on WRF simulations made using the WRFotron scripts, and you
+think this contributed substantially to you research, please consider
+offering co-authorship.
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+What you will need:
+--------------------------------------------------------------------------------
+
+Shell
+! WRFotron needs a bash shell
+
+Software
+* WRF-Chem
+* WRF without -Chem
+* WPS
+* preprocessors:
+  mozbc, megan_bio_emiss, wesely, exo_coldens(, anthro_emiss)
+
+* nco (nco.sourceforge.net)
+* Unix/Linux tools:
+  grep, cut, sed, sort, awk, cat
+
+Data
+* Meteorological input (tools written for GFS on yellowstone, adaptation of
+                        pre.bash needed otherwise)
+* geog data for WPS
+* MOZART forecasts for chemical boundary conditions
+* emissions - scripts written to use anthro_emiss, but can use other prepared
+  datasets (wrfchemi_* files) as well
+* MEGAN input data
+* Wesely/exo_coldens input data
+
+Configuration
+* Working namelists for WRF and WPS
+* namelists for the additional preprocessors (mozbc..)
+
+--------------------------------------------------------------------------------
+How it works:
+--------------------------------------------------------------------------------
+
+WRFotron is used by calling the "master.bash" bash script. master.bash takes
+a starting date, a run time, a spinup time, and (optionally) a previous run's
+PID on the queuing system as arguments.
+
+WRFotron then prepares a run directory (typically on scratch) with all necessary
+data, and submits 3 jobs to the queue:
+- a preprocessing script (pre.bash), containing calls to ungrib.exe, metgrid.exe
+  real.exe and the preprocessor tools for chemistry
+- a main execution script (main.bash), which does the actual wrf.exe runs
+  (spinup and chemistry run)
+- a postprocessing script (post.bash), which can be extended to do any kind of
+  postprocessing on the wrfout* files of the WRF-Chem run.
+
+Calling master.bash and giving it the PID of another WRFotron main.bash process
+in the queue will tell the main.bash script to wait for this process to end
+before starting - thereby allowing you to submit several runs in a row at the
+same time, each of them restarting using the result of the previous run.
+
+The re-initialization of meteorology works as follows:
+After each successful WRFotron WRF-Chem run, wrfrst* restart files are saved in
+a common directory. When a new run is called using master.bash, a meteo-only
+spinup run is made first, and a restart file is created at its end - now
+containing only "fresh" meteorology variables. It is then checked whether a
+restart file (with chemistry) from a previous run exists in the common restart
+directory. If this is the case, only the chemistry variables are copied from
+the previous run's restart file to the meteo spinup restart file. Then, a
+WRF-Chem run is started using this combined restart file as initial conditions,
+thereby using "fresh" meteorology while carrying on chemistry variables across
+runs. In case no restart file is found, a "cold start" chemistry run is
+conducted, starting with MOZART global model forecast values as initial
+conditions.
+
+--------------------------------------------------------------------------------
+Setup
+--------------------------------------------------------------------------------
+
+* extract all the scripts into a directory where they are safe (e.g., your
+  home directory)
+  ! this is called the "chain" directory, and contains only program code
+    and configuration file blueprints. Data and run directories will reside
+    elsewhere
+* make sure all the software mentioned above is installed and working.
+  ! Yellowstone: tools like megan_bio_emiss need to be compiled on a geyser
+  ! node using the PGI compiler to work
+* make sure all data is available.
+* copy config_BLUEPRINT.bash to config.bash and edit
+  ! adapt all variables to your system and setup
+  ! absolute paths (starting with "/") are necessary
+* edit all namelist and configuration files in the WRFotron directory
+  ! note that those are used as "blueprints" that will be copied to the working
+    directory, and variables of the format __XXX___ will be substituted by
+    values appropriate for each run (like changing dates etc.).
+  ! when preparing namelists, make sure to replace all these placeholders with
+    their respective ___XXX___ name. Use the existing set of namelists for
+    guidance.
+
+--------------------------------------------------------------------------------
+Running
+--------------------------------------------------------------------------------
+
+calling master.bash without arguments gives you usage instructions:
+
+-bash-4.1$ . master.bash
+Call with arguments <year (YYYY)> <month (MM)> <day (DD)> <hour (hh)> ...
+                 or <year (YYYY)> <month (MM)> <day (DD)> <hour (hh)> ...
+possible options (have to go before arguments):
+                  -e <experiment name>
+                  -c <chain directory (submission from CRON)>
+
+so try a first test simulation for time period for which you have all data
+available (assume you have all data ready for 2015-06-30 to 2015-07-03):
+
+. master.bash 2015 07 01 00 24 06
+
+--> this will make a run starting at the first of July 2015 at 0 UTC that
+ends 24 hours later, with a 6 hour meteo-only spinup
+(2015-06-30 18 UTC to 2015-07-01 00 UTC).
+
+Once this run has ended successfully, a restart file will exist in the
+restart directory, and the wrfout files will be in the archive directory.
+Now one can make another run starting the second of July 2015, which will use
+the output of the previous run for chemistry, while re-initializing meteorology:
+
+. master.bash 2015 07 02 00 24 06
+
+and so on...
+
+--------------------------------------------------------------------------------
+Troubleshooting
+--------------------------------------------------------------------------------
+
+You need to make sure all programs are compiled and useable, and that the paths
+in your config.bash point to the correct locations. You need to ensure that
+your data is all available for the period you want to simulate (including meteo
+spin-up!). Finally, you need to ensure your namelists are correct.
+
+If your run fails, go to config.bash and set removeRunDir to false. You can
+then look into the run directory and check all the .log files to see where it
+failed (look into pre/main/post.bash to see which process creates which log).
+
+If you don't succeed with this, send me an email.
+

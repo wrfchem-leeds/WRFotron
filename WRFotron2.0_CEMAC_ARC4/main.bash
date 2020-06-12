@@ -107,6 +107,7 @@ fi
 if (( $chemvarsno == $metvarsno )); then
  msg "WARNING chemistry restart file and meteorology restart file have same variables"
 fi
+
 # determining arrays only in old (chemistry) restart file
 chemVarsArr=( $(awk 'FNR==NR{a[$0]++;next}!a[$0]' metVarList chemVarList) )
 # converting to comma-separated string
