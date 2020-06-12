@@ -3,7 +3,6 @@
 # WRFOTRON
 # ------------------------------------------------------------------------------
 
-source activate ncl_nco_python3
 module load netcdf
 
 ncksBin=$(which ncks)
