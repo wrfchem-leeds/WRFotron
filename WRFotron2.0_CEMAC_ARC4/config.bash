@@ -33,8 +33,8 @@ WRFfiredir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_code/finn/s
 # input data
 # ------------------------------------------------------------------------------
 # initial and boundary meteorological data
-#metDir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_data/initial_boundary_meteo_ecmwf
-metDir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_data/initial_boundary_meteo_gfs
+metDir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_data/initial_boundary_meteo_ecmwf
+#metDir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_data/initial_boundary_meteo_gfs
 metInc=6
 # initial and boundary chemistry data (MZ4/CAM-Chem pre 2018, WACCM post 2018)
 MOZARTdir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_data/initial_boundary_chem_mz4

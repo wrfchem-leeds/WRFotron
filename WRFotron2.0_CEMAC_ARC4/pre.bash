@@ -33,31 +33,31 @@ done
 #then
 #  ln -s ${chainDir}/Vtable.GFS_new Vtable
 #else
-ln -s ungrib/Variable_Tables/Vtable.GFS Vtable
+#ln -s ungrib/Variable_Tables/Vtable.GFS Vtable
 #fi
 
 # list of met files to link
-fileList=( ${metDir}/GF__startYear____startMonth____startDay____startHour__ )
-let totTime="__fcstTime__+__spinupTime__+metInc"
-for hour in $(seq -w ${metInc} ${metInc} ${totTime})
-do
-  curYear=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%Y")
-  curMonth=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%m")
-  curDay=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%d")
-  curHour=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%H")
-  fileList=( ${fileList[@]} ${metDir}/GF${curYear}${curMonth}${curDay}${curHour} )
-done
+#fileList=( ${metDir}/GF__startYear____startMonth____startDay____startHour__ )
+#let totTime="__fcstTime__+__spinupTime__+metInc"
+#for hour in $(seq -w ${metInc} ${metInc} ${totTime})
+#do
+#  curYear=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%Y")
+#  curMonth=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%m")
+#  curDay=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%d")
+#  curHour=$(date -u --date="__startYear__-__startMonth__-__startDay__ __startHour__:00:00 ${hour} hours" "+%H")
+#  fileList=( ${fileList[@]} ${metDir}/GF${curYear}${curMonth}${curDay}${curHour} )
+#done
 
-/bin/csh ./link_grib.csh ${fileList[@]}
+#/bin/csh ./link_grib.csh ${fileList[@]}
 
 # -----------------------------------------------------------------------------
 # 1b) ungrib - for ECMWF meteo
 # -----------------------------------------------------------------------------
 # link the Vtable
-#ln -s ${chainDir}/Vtable.ERA-interim.pl Vtable
-#ln -s ${chainDir}/Vtable.ECMWF Vtable
+ln -s ${chainDir}/Vtable.ERA-interim.pl Vtable
+ln -s ${chainDir}/Vtable.ECMWF Vtable
 # link the ECMWF files to be ungribbed - both the surface and pressure levels for the date required (change)
-#/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20160901_20170101.grib ${metDir}/ecmwf_global_surface_20160901_20170101.grib
+/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20160901_20170101.grib ${metDir}/ecmwf_global_surface_20160901_20170101.grib
 #
 cp namelist.wps.prep namelist.wps
 
