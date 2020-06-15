@@ -2,7 +2,7 @@
 ### Tools to automatise WRF-Chem runs with re-initialised meteorology  
 WRFotron created by Christoph Knote (christoph.knote@lmu.de)  
 User guide created by Luke Conibear (l.a.conibear@leeds.ac.uk)  
-*Helpful additions from Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, and Edward Butt.*  
+*Helpful additions from Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, Helen Burns, and CEMAC.*  
 #### Version
 0.0 15/10/2015 CK - Initial release  
 1.0 01/06/2018 LC  
