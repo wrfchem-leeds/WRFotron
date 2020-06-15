@@ -6,7 +6,7 @@
 # ------------------------------------------------------------------------------
 module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7
 # WRFotron
-chainDir=/nobackup/$USER/WRFotron2.0
+chainDir=/nobackup/$USER/WRFotron/WRFotron2.0_CEMAC_ARC4
 version=0.2
 projectTag=WRFChem3.7.1_test
 withChemistry=true
