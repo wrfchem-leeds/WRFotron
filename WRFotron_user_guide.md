@@ -680,11 +680,11 @@ ___
 - Make use of CPU affinity to have dedicated input/output processors, as these are not scalable in WRF-Chem:
     - Within namelist.wrf.blueprint:
         - &namelist_quilt
-            - nio_tasks_per_group = 5
-            - nio_tasks_per_group = 2
+            - nio_tasks_per_group = 5 ! number of processors used for IO quilting per IO group.  
+            - nio_tasks_per_group = 2 ! number of quilting groups
             - So the number of cores = nproc_x * nproc_y + nio_groups * nio_tasks_per_group
-            - For example, 44 = 4 * 8 + 2 * 5
-    - Currently unresolved issue with WRFChem4.0.3 being slow for input / output at the meteorological increment (i.e. every 6 hours for ECMWF). 
+            - For example, 42 = 4 * 8 + 2 * 5
+    - Currently unresolved [issue](https://github.com/wrfchem-leeds/WRFotron/issues/4) with WRFChem4.0.3 being slow for input / output at the meteorological increment (i.e. every 6 hours for ECMWF). 
 
 #### b. Output <a name="output"/>
 - LC and BS have created a selection of data science scripts using Python available [here](https://github.com/wrfchem-leeds/python-scripts). 
