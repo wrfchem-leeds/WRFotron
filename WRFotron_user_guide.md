@@ -636,6 +636,7 @@ Setup configurations for key components of WRFotron releases.
 - Changes relative to version 0.0:  
     - MOZART-MOSAIC 4 bin, with aqueous chemistry and VBS SOA (chem_opt = 202).  
     - Without aqueous chemistry in stratocumulus clouds (cldchem_onoff = 0).  
+        - Does not work with WRF-Chem version 3.7.1.   
     - Morrison microphysics (mp_physics= 10).  
     - Initial and boundary conditions for meteorology from ECMWF.  
     - 38 meteoroglogical levels.  
@@ -646,6 +647,7 @@ Setup configurations for key components of WRFotron releases.
 - Changes relative to version 1.0:
 - WRF-Chem version 4.0.3.  
 - With aqueous chemistry in stratocumulus clouds (cldchem_onoff = 1).  
+    - Works with WRF-Chem version 4.0.3.  
 - Biomass burning plume rise throughout the boundary layer (bbinjectscheme = 2).  
     - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
     - The new option 2 has all BB emissions evenly distributed throughout the BL.  
