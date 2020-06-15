@@ -16,14 +16,14 @@
  history_interval                    = 60, 60,                               ! history output file interval in minutes (integer only)
  frames_per_outfile                  = 1, 1,                                 ! number of output times bulked into each history file
  restart                             = __ISRESTART__,                        ! whether this run is a restart
- restart_interval                    = 360,                                 ! restart output file interval in minutes
+ restart_interval                    = 1440,                                 ! restart output file interval in minutes
  io_form_history                     = 2                                     ! NetCDF
  io_form_restart                     = 2                                     ! NetCDF
  io_form_input                       = 2                                     ! NetCDF
  io_form_boundary                    = 2                                     ! NetCDF
  debug_level                         = 400                                   ! debugging level
  iofields_filename                   = "iofields" ,"iofields"                ! an option to request particular variables to appear in output
- io_form_auxinput7                   = 2,                                    ! biomass burning-emissions input (wrffirechemi_d01) data format is WRF netCDF                          
+ io_form_auxinput7                   = 2,                                    ! biomass burning-emissions input (wrffirechemi_d01) data format is WRF netCDF
  auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>'       ! biomass burning filename
  auxinput7_interval_m                = 60,                                   ! biomass burning time interval, minutes
  frames_per_auxinput7                = 1,                                    ! biomass burning files per time interval
@@ -52,7 +52,7 @@
  /
 
  &physics                                                                  ! physics
- mp_physics                          = 8, 8,                                 ! microphysics scheme, 8 = Thompson            
+ mp_physics                          = 8, 8,                                 ! microphysics scheme, 8 = Thompson
  progn                               = 0, 0,                                 ! prognostic number density, switch to use mix-activate scheme, 0 = off
  ra_lw_physics                       = 4, 4,                                 ! longwave radiation scheme, 4 = RRTMG
  ra_sw_physics                       = 4, 4,                                 ! shortwave radiation scheme, 4 = RRTMG
