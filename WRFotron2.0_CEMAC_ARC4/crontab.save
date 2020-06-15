@@ -1,0 +1,12 @@
+#   Crontab file for Nobackup Directory for user (username: user)
+SHELL=/bin/bash
+MAILTO=user
+#-----------------------------------------------------------------------------
+#Min   Hour   Day     Month   Weekday Command
+#-----------------------------------------------------------------------------
+#*       *      *       *       *       /bin/touch /home/ufaserv1_i/user/`/bin/date "+\%Y\%m\%d\%H\%M"`
+13     13     13       *       *       /bin/find /nobackup/user/ -exec /bin/touch -h {} \;
+#00     06      *       *       *       /bin/bash /home/ufaserv1_i/user/wrf3.7.1_code/download_and_find_gfs_mz4/get_GFS_fcst.bash `/bin/date "+\%Y \%m \%d"` 00
+#00     12      *       *       *       /bin/bash /home/ufaserv1_i/user/wrf3.7.1_code/download_and_find_gfs_mz4/get_GFS_fcst.bash `/bin/date "+\%Y \%m \%d"` 12
+# GFS analyses replace forecasts
+#00     15      *       *       * /bin/bash /home/ufaserv1_i/user/wrf3.7.1_code/download_and_find_gfs_mz4/get_GFS_analysis.bash `/bin/date -u --date="1 days ago" "+\%Y \%m \%d"`

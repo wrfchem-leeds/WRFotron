@@ -70,9 +70,43 @@ then
 
 msg "substituting initial data with ${prevRunRstFile}"
 
+# Check nco Version
+ncks --version &> ncover.txt
+ncksvno=$(grep -E '[0-9]' ncover.txt | cut -d" " -f5 | tr -d -c 0-9)
+
+msg "nco version is ${ncksvno}"
+
+if (( ${ncksvno} > 460 )); then
+ncks -m ${prevRunRstFile} | grep -E ':FieldType' |  cut -f1 -d ':' | tr -d '      ' | sort > chemVarList
+ncks -m ${newRunRstFile} | grep -E ':FieldType' |  cut -f1 -d ':' | tr -d '      ' | sort > metVarList
+
+else
 # listing variables in old (chemistry) and new (met-only) restart files
 ncks -m ${prevRunRstFile} | grep -E ': type' | cut -f 1 -d ' ' | sed 's/://' | sort > chemVarList
 ncks -m ${newRunRstFile} | grep -E ': type' | cut -f 1 -d ' ' | sed 's/://' | sort  > metVarList
+fi
+
+chemvarsno=$(wc -l chemVarList | awk '{ print $1 }')
+metvarsno=$(wc -l metVarList | awk '{ print $1 }')
+
+if [ $chemvarsno == 0 ]; then
+if [ $chemvarsno == $metvarsno ]; then
+ msg "WARNING chemistry restart file and meteorology restart file have same variables"
+else
+  msg "WARNING chemistry variable list nor created"
+fi
+fi
+
+# determining arrays only in old (chemistry) restart file
+chemvarsno=$(wc -l chemVarList | awk '{ print $1 }')
+metvarsno=$(wc -l metVarList | awk '{ print $1 }')
+
+if (( $chemvarsno == 0 )); then
+  msg "WARNING chemistry variable list nor created"
+fi
+if (( $chemvarsno == $metvarsno )); then
+ msg "WARNING chemistry restart file and meteorology restart file have same variables"
+fi
 
 # determining arrays only in old (chemistry) restart file
 chemVarsArr=( $(awk 'FNR==NR{a[$0]++;next}!a[$0]' metVarList chemVarList) )
