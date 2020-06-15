@@ -1,7 +1,7 @@
 ## WRFotron user guide
 ### Tools to automatise WRF-Chem runs with re-initialised meteorology  
 WRFotron created by Christoph Knote (christoph.knote@lmu.de)  
-[User guide](https://github.com/lukeconibear/wrf-analysis/blob/master/WRFotron/WRFotron_user_guide.md) created by Luke Conibear (l.a.conibear@leeds.ac.uk)  
+[User guide](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md) created by Luke Conibear (l.a.conibear@leeds.ac.uk)  
 *Helpful additions from Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, and Edward Butt.*  
 #### Versions (see [user guide](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md) for more infomation)  
 - 0.0 15/10/2015 CK - Initial release  
