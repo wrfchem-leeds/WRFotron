@@ -4,11 +4,11 @@
 # ------------------------------------------------------------------------------
 # code
 # ------------------------------------------------------------------------------
-module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7 
+module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7
 # WRFotron
 chainDir=/nobackup/$USER/WRFotron/WRFotron2.0_CEMAC_ARC4
-version=0.1
-projectTag=WRFChem3.7.1
+version=0.2
+projectTag=WRFChem3.7.1_test
 withChemistry=true
 # WPS
 WPSdir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_code/WPS3.7.1
@@ -61,11 +61,11 @@ WRFemitdir=/nobackup/WRFChem/WRFChem3.7.1_WRFotron2.0_clean/WRF3.7.1_code/WRF_Uo
 # simulation directories
 # ------------------------------------------------------------------------------
 # run folder
-workDir=/nobackup/$USER/WRFChem3.7.1_test/run
+workDir=/nobackup/$USER/${projectTag}/run
 # output folder
-archiveRootDir=/nobackup/$USER/WRFChem3.7.1_test/output
+archiveRootDir=/nobackup/$USER/${projectTag}/output
 # restart folder
-restartRootDir=/nobackup/$USER/WRFChem3.7.1_test/restart
+restartRootDir=/nobackup/$USER/${projectTag}/restart
 # remove run directory after run is finished?
 removeRunDir=false
 # post processing script
