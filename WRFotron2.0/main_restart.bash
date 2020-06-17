@@ -5,8 +5,7 @@
 #$ -cwd -V
 #$ -l h_rt=04:00:00
 #$ -pe ib 32
-#$ -l node_type=24core-128G
-#$ -l h_vmem=8G
+#$ -l h_vmem=2G
 
 . config.bash
 
