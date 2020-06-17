@@ -651,6 +651,7 @@ Setup configurations for key components of WRFotron releases.
 - Biomass burning plume rise throughout the boundary layer (bbinjectscheme = 2).  
     - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
     - The new option 2 has all BB emissions evenly distributed throughout the BL.  
+    - To add the bbinjectscheme to any new version of WRFChem, follow the instructions [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/add_bbinjectscheme.md).  
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
 - Updated TUV scheme for photolysis (phot_opt = 4).  
