@@ -1,9 +1,9 @@
 #!/bin/bash
 # ------------------------------------------------------------------------------
-# WRFOTRON
+# WRFOTRON2.0
 # ------------------------------------------------------------------------------
 #$ -cwd -V
-#$ -l h_rt=01:00:00
+#$ -l h_rt=02:00:00
 #$ -pe ib __nprocPre__
 #$ -l node_type=24core-128G
 #$ -l h_vmem=64G
@@ -237,11 +237,11 @@ done
 
 # -----------------------------------------------------------------------------
 
-msg "bring over main_restart"
-cp ${chainDir}/main_restart.bash .
+msg "bring over main_restart and additional variables"
+cp ${chainDir}/{main_restart.bash,add_var.txt} .
 
-msg "bring over concat, convert, wrfout_to_cf to output"
-cp ${chainDir}/{concatenate_201.bash,concatenate_202.bash,convert_201.bash,convert_202.bash,wrfout_to_cf_201.ncl,wrfout_to_cf_202.ncl} ${archiveDir}/.
+msg "bring over concat/regrid scripts"
+cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash} ${archiveDir}/.
 
 # ------------------------------------------------------------------------------
 
