@@ -44,7 +44,13 @@
        INTEGER,  DIMENSION( ims:ime , jms:jme ) , INTENT(in) :: lpbl  
     ```
 
-    c. Insert the conditionals which control the different injection options. Add the following code to line 251, underneath `if( maxval( eburn_in(:) ) == 0. ) cycle`:  
+    c. Declare real variables. Add the following code to line 96, underneath `,z_lev`:  
+    ```fortran
+          real, dimension (num_ebu) :: ebu_sum 
+	      real :: pbl_depth, flame_frac, emiss_frac
+    ```
+
+    d. Insert the conditionals which control the different injection options. Add the following code to line 251, underneath `if( maxval( eburn_in(:) ) == 0. ) cycle`:  
     ```fortran
     !++ SAN, 2015-04-08: adding namelist option to turn on/off plumerise calculations
                if(config_flags%bbinjectscheme > 0) then
@@ -159,7 +165,7 @@
     !-- SAN. Only do following calculations if plumerise is on:
     ```
 
-    d. End the conditional. Add the following code to line 544, underneath `end if has_total_emissions`:  
+    e. End the conditional. Add the following code to line 544, underneath `end if has_total_emissions`:  
     ```fortran
     !++ SAN, 2015-04-08
                 endif ! plumerise_off
