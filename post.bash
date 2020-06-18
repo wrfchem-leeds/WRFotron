@@ -5,7 +5,6 @@
 #$ -cwd -V
 #$ -l h_rt=02:00:00
 #$ -pe smp __nprocPost__
-#$ -l node_type=24core-128G
 #$ -l h_vmem=12G
 
 . __CONFIGDIR__config.bash
