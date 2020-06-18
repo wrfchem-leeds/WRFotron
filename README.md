@@ -32,7 +32,7 @@ cd WRFotron
     
 3. Run WRFotron (using the test example):  
 ```bash
-. master.bash 2014 01 12 00 24 06
+. master.bash 2016 10 12 00 24 06
 ```
 
 #### Misc.
