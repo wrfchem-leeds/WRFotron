@@ -28,13 +28,6 @@ cd WRFotron
 ```bash
 . /nobackup/cemac/cemac.sh
 ```
-    a. **Optional**: To always be able to view and use all the software CEMAC has built when you run `module avail`, add the following lines to `.bashrc`:  
-  
-    ```bash
-    if [ -r /nobackup/cemac/cemac.sh ] ; then
-      . /nobackup/cemac/cemac.sh
-    fi
-    ```
     
 3. Run WRFotron (using the test example):  
 ```bash
@@ -42,6 +35,13 @@ cd WRFotron
 ```
 
 #### Misc.
+- To always be able to view and use all the software CEMAC has built when you run `module avail`, add the following lines to `.bashrc`:   
+```bash
+if [ -r /nobackup/cemac/cemac.sh ] ; then
+  . /nobackup/cemac/cemac.sh
+fi
+```
+
 - WRFChem has been built with all compiler and MPI combinations on ARC4 listed in the directories:
 ```bash
 /nobackup/cemac/software/build/WRFChem/3.7.1/1
