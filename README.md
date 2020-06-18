@@ -14,6 +14,7 @@
 This code is currently licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship and referencing: [![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)
 
 #### How to use
+First, read the [user guide](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md).
 WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
 
 1. Log onto ARC4 and clone a local copy of the WRFotron GitHub repo:  
