@@ -5,7 +5,6 @@
 #$ -cwd -V
 #$ -l h_rt=02:00:00
 #$ -pe ib __nprocPre__
-#$ -l node_type=24core-128G
 #$ -l h_vmem=64G
 
 # we assume we are called from master.bash, and hence know all variables
