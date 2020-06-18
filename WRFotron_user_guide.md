@@ -609,18 +609,17 @@ ___
 ### 7. Versions <a name="versions"/>
 Setup configurations for key components of WRFotron releases.
 #### a. WRFotron0.0 <a name="WRFotron0.0"/>
-- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron0.0)
 - WRF-Chem version 3.7.1.  
 - Single domain.  
 - Continuous nudged meteorology each timestep (with target fields on a 3-hour update freq) with chemical restarts.  
 - Initial and boundary conditions for meteorology from GFS.  
 - Initial and boundary conditions for chemistry from MOZART.  
-- MOZART-MOSAIC 4 bin, without aqueous chemistry and simple SOA (chem_opt = 201).  
+- MOZART-MOSAIC 4 bin, without aqueous chemistry and simple SOA (`chem_opt = 201`).  
 - Horizontal spatial resolution of 30 km spatial resolution.  
 - 33 vertical levels.  
 - 27 meteoroglogical levels .  
 - 180 second timestep for meteorology.  
-- Thompson microphysics scheme (mp_physics = 8).  
+- Thompson microphysics scheme (`mp_physics = 8`).  
 - Radiation from RRTMG for both long and short-wave.  
 - Boundary layer scheme from Mellor-Yamada Nakanishi and Niino-2.5.  
 - Noah Land Surface Model.  
@@ -632,44 +631,42 @@ Setup configurations for key components of WRFotron releases.
     - Biogenic from MEGAN.  
     - Dust from GOCART with AFWA.  
 #### b. WRFotron1.0 <a name="WRFotron1.0"/>
-- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron1.0)
 - Changes relative to version 0.0:  
-    - MOZART-MOSAIC 4 bin, with aqueous chemistry and VBS SOA (chem_opt = 202).  
-    - Without aqueous chemistry in stratocumulus clouds (cldchem_onoff = 0).  
+    - MOZART-MOSAIC 4 bin, with aqueous chemistry and VBS SOA (`chem_opt = 202`).  
+    - Without aqueous chemistry in stratocumulus clouds (`cldchem_onoff = 0`).  
         - Does not work with WRF-Chem version 3.7.1.   
-    - Morrison microphysics (mp_physics= 10).  
+    - Morrison microphysics (`mp_physics = 10`).  
     - Initial and boundary conditions for meteorology from ECMWF.  
     - 38 meteoroglogical levels.  
     - 3 meteorological soil levels for WRFChem4.0.3 and 4 for WRFChem3.7.1.  
     - Consistent timestep for chemistry and biogenics with meteorology.  
 #### c. WRFotron2.0 <a name="WRFotron2.0"/>
-- [Code here](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0)
 - Changes relative to version 1.0:
 - WRF-Chem version 4.0.3.  
-- With aqueous chemistry in stratocumulus clouds (cldchem_onoff = 1).  
+- With aqueous chemistry in stratocumulus clouds (`cldchem_onoff = 1`).  
     - Works with WRF-Chem version 4.0.3.  
-- Biomass burning plume rise throughout the boundary layer (bbinjectscheme = 2).  
+- Biomass burning plume rise throughout the boundary layer (`bbinjectscheme = 2`).  
     - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
     - The new option 2 has all BB emissions evenly distributed throughout the BL.  
     - To add the bbinjectscheme to any new version of WRFChem, follow the instructions [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/add_bbinjectscheme.md).  
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
-- Updated TUV scheme for photolysis (phot_opt = 4).  
+- Updated TUV scheme for photolysis (`phot_opt = 4`).  
     - Download the additional data file from [here](http://www.acom.ucar.edu/wrf-chem/TUV.phot.bz2) to you `WRFChem/run` folder.  
     - Extract the data directories `DATAE1` and `DATAJ1`, and the `wrf_tuv_xsqy.nc` file from downloaded file using `tar xvf TUV.phot.bz2`.  
 - Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 (see [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/CESM-WRFchem_aerosols_plusgas.pdf)).  
 - Fixed the bug where nudging would stop after 312 hours (i.e. after day 13 of a simulation) i.e. changed gfdda_end_h to 10,000.  
 - Nudge above the boundary layer. To do this, go into namelist.wrf.blueprint, and within the FDDA section change:  
-    - if_no_pbl_nudging_uv = 1.  
-    - if_no_pbl_nudging_t = 1.  
-    - if_no_pbl_nudging_q = 1.  
+    - `if_no_pbl_nudging_uv = 1`.  
+    - `if_no_pbl_nudging_t = 1`.  
+    - `if_no_pbl_nudging_q = 1`.  
 - Hard-coded NCL and NCO commands, removing profile.bash.  
 - Fixed the bug where within the anthro_emiss namelist for EDGAR-HTAP2, NH3 was incorrectly set as an aerosol I.e. removed (a) in the emis_map.  
 - Fixed the bug in plume rise where extra biomass burning mass was added aloft when the thickness of the vertical grid (dz) increases by altitude.  
-    - Within chem/module_chem_plumerise_scalar.F:  
-        - dz_flam=zzcon(k2)-zzcon(k1-1) ! original version.  
-        - dz_flam=zzcon(k2+1)-zzcon(k1)   ! fixed version.  
-- Corrected the metInc within config.bash for ECMWF to be 6 (3 was for GFS).  
+    - Within `chem/module_chem_plumerise_scalar.F`:  
+        - `dz_flam=zzcon(k2)-zzcon(k1-1) ! original version`.  
+        - `dz_flam=zzcon(k2+1)-zzcon(k1)   ! fixed version`.  
+- Corrected the `metInc` within config.bash for ECMWF to be 6 (3 was for GFS).  
 - Added the faster version of post.bash from Helen Burns in CEMAC.  
     - Hard coded NCL and NCO commands in.  
     - Also, removed the deletion of pre-processed and temporary wrfout files from the staging directory, as these are often needed for error diagnosis.  
