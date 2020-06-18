@@ -3,8 +3,6 @@
 # WRFOTRON
 # ------------------------------------------------------------------------------
 
-module load netcdf
-
 ncksBin=$(which ncks)
 ncattedBin=$(which ncatted)
 nccopyBin=$(which nccopy)

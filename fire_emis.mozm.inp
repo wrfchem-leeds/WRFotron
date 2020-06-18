@@ -1,7 +1,7 @@
  &control
 domains        = __domains__,
 fire_directory = '__fireDir__',
-fire_filename  = 'FINNv1.5_2014.MOZ4',
+fire_filename  = 'GLOBAL_FINNv15_2016_MOZ4_05022017.txt',
 wrf_directory  = './',
 start_date     = '__startYear__-__startMonth__-__startDay__',
 end_date       = '__endYear__-__endMonth__-__endDay__',

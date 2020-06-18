@@ -4,9 +4,8 @@
 # ------------------------------------------------------------------------------
 #$ -cwd -V
 #$ -l h_rt=04:00:00
-#$ -pe ib 32
-#$ -l node_type=40core-192G
-#$ -l h_vmem=8G
+#$ -pe ib __nprocMain__
+#$ -l h_vmem=2G
 
 . config.bash
 
@@ -15,8 +14,41 @@ unset MP_PE_AFFINITY
 export MP_TASK_AFFINITY=cpu
 
 # -----------------------------------------------------------------------------
+# 1) Meteo spinup
+# -----------------------------------------------------------------------------
+
+msg "meteo"
+
+# first, do meteo simulation
+rm namelist.input
+
+# in case of chemistry its only spinup - for met-only the full duration
+if $withChemistry
+then
+  cp namelist.wrf.prep.spinup namelist.input
+else
+  cp namelist.wrf.prep.met namelist.input
+fi
+
+${mpiCommandMain} ./wrfmeteo.exe
+
+mkdir meteo_out
+mv rsl* meteo_out
+
+# vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+# stuff that follows is for runs with chemistry only...
+if $withChemistry
+then
+
+# from the meteo simulation
+rm wrfout*
+
+# -----------------------------------------------------------------------------
 # 2) Chemistry simulation
 # -----------------------------------------------------------------------------
+
+rm namelist.input
+cp namelist.wrf.prep.chem namelist.input
 
 # update restart files with previous results for chemistry, or do cold start
 
@@ -29,7 +61,7 @@ restartFound=false
 for domain in $(seq -f "0%g" 1 ${max_dom})
 do
 
-newRunRstFile=wrfrst_d${domain}_YYYY-MM-DD_HH:00:00
+newRunRstFile=wrfrst_d${domain}___inpYear__-__inpMonth__-__inpDay_____inpHour__:00:00
 prevRunRstFile=${restartDir}/${newRunRstFile}
 
 if [ -f ${prevRunRstFile} ]
@@ -43,11 +75,10 @@ ncksvno=$(grep -E '[0-9]' ncover.txt | cut -d" " -f5 | tr -d -c 0-9)
 
 msg "nco version is ${ncksvno}"
 
-# Use correct code depending on version
 if (( ${ncksvno} > 460 )); then
-# listing variables in old (chemistry) and new (met-only) restart files
 ncks -m ${prevRunRstFile} | grep -E ':FieldType' |  cut -f1 -d ':' | tr -d '      ' | sort > chemVarList
 ncks -m ${newRunRstFile} | grep -E ':FieldType' |  cut -f1 -d ':' | tr -d '      ' | sort > metVarList
+
 else
 # listing variables in old (chemistry) and new (met-only) restart files
 ncks -m ${prevRunRstFile} | grep -E ': type' | cut -f 1 -d ' ' | sed 's/://' | sort > chemVarList
@@ -66,6 +97,17 @@ fi
 fi
 
 # determining arrays only in old (chemistry) restart file
+chemvarsno=$(wc -l chemVarList | awk '{ print $1 }')
+metvarsno=$(wc -l metVarList | awk '{ print $1 }')
+
+if (( $chemvarsno == 0 )); then
+  msg "WARNING chemistry variable list nor created"
+fi
+if (( $chemvarsno == $metvarsno )); then
+ msg "WARNING chemistry restart file and meteorology restart file have same variables"
+fi
+
+# determining arrays only in old (chemistry) restart file
 chemVarsArr=( $(awk 'FNR==NR{a[$0]++;next}!a[$0]' metVarList chemVarList) )
 # converting to comma-separated string
 chemVarsLst=${chemVarsArr[@]}
@@ -79,6 +121,16 @@ restartFound=true
 fi
 
 done
+
+if ! $restartFound
+then
+
+  msg "No file found at ${prevRunRstFile} - cold start"
+
+  rm namelist.input
+  cp namelist.wrf.prep.chem_cold namelist.input
+
+fi
 
 msg "chem"
 
@@ -98,11 +150,11 @@ msg "save restart files"
 # save restart files in restart directory
 for domain in $(seq -f "0%g" 1 ${max_dom})
 do
-  lastRstFile=wrfrst_d${domain}_YYYY-MM-DD_HH:00:00
+  lastRstFile=wrfrst_d${domain}___endYear__-__endMonth__-__endDay_____endHour__:00:00
   cp ${lastRstFile} ${restartDir}/${lastRstFile}
 done
 
-
+fi
 # that stuff was for runs with chemistry only...
 #^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -113,7 +165,7 @@ for domain in $(seq -f "0%g" 1 ${max_dom})
 do
   for hour in $(seq -w 1 __fcstTime__)
   do
-    curDate=$(date -u --date="YYYY-MM-DD HH:00:00 ${hour} hours" "+%Y-%m-%d_%H")
+    curDate=$(date -u --date="__inpYear__-__inpMonth__-__inpDay__ __inpHour__:00:00 ${hour} hours" "+%Y-%m-%d_%H")
     outFile=wrfout_d${domain}_${curDate}:00:00
 
     cp ${outFile} ${stagingDir}/

@@ -21,18 +21,13 @@
  io_form_restart                     = 2                                     ! NetCDF
  io_form_input                       = 2                                     ! NetCDF
  io_form_boundary                    = 2                                     ! NetCDF
- debug_level                         = 400,                                  ! debugging level
- iofields_filename                   = "iofields", "iofields", "iofields",   ! an option to request particular variables to appear in output
- io_form_auxinput5                   = 2,                                              ! anthropogenic as netCDF                          
- io_form_auxinput6                   = 2,                                              ! biogenic as netCDF                          
- io_form_auxinput7                   = 2,                                              ! biomass burning as netCDF                          
- auxinput5_interval_m                = 60, 60, 60,                                     ! anthropogenic emission time interval, minutes
- auxinput6_inname                    = 'wrfbiochemi_d<domain>',                        ! biogenic emission filename
- auxinput6_interval_d                = 600, 600, 600,                                  ! biogenic emission time interval, days
- auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',                ! biomass burning filename
- auxinput7_interval_m                = 60, 60, 60,                                     ! biomass burning time interval, minutes
- frames_per_auxinput7                = 1, 1, 1,                                        ! biomass burning files per time interval
- io_form_auxinput12                  = __ISRESTARTVALUE__,                             ! restart file type
+ debug_level                         = 400                                   ! debugging level
+ iofields_filename                   = "iofields" ,"iofields"                ! an option to request particular variables to appear in output
+ io_form_auxinput7                   = 2,                                    ! biomass burning-emissions input (wrffirechemi_d01) data format is WRF netCDF                          
+ auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>'       ! biomass burning filename
+ auxinput7_interval_m                = 60,                                   ! biomass burning time interval, minutes
+ frames_per_auxinput7                = 1,                                    ! biomass burning files per time interval
+ io_form_auxinput12                  = __ISRESTARTVALUE__,                   ! restart file type
  /
 
  &domains                                                                  ! domains - dimensions, nesting, parameters
@@ -43,8 +38,8 @@
  e_we                                = 140, 154,                             ! westeast dimension
  e_sn                                = 140, 154,                             ! southnorth dimension
  e_vert                              = 33, 33,                               ! vertical dimension
- num_metgrid_levels                  = 38,                                   ! number of vertical levels in WPS output
- num_metgrid_soil_levels             = 3,                                    ! number of soil levels or layers in WPS output
+ num_metgrid_levels                  = 27,                                   ! number of vertical levels in WPS output
+ num_metgrid_soil_levels             = 4,                                    ! number of soil levels or layers in WPS output
  dx                                  = 30000, 2777.778,                      ! westeast resolution, metres
  dy                                  = 30000, 2777.778,                      ! southnorth resolution, metres
  grid_id                             = 1, 2,                                 ! grid ID
@@ -57,16 +52,16 @@
  /
 
  &physics                                                                  ! physics
- mp_physics                          = 10, 10,                               ! microphysics scheme, 10 = Morrison 2-moment scheme               
- progn                               = 1, 1,                                 ! prognostic number density, switch to use mix-activate scheme
+ mp_physics                          = 8, 8,                                 ! microphysics scheme, 8 = Thompson            
+ progn                               = 0, 0,                                 ! prognostic number density, switch to use mix-activate scheme, 0 = off
  ra_lw_physics                       = 4, 4,                                 ! longwave radiation scheme, 4 = RRTMG
  ra_sw_physics                       = 4, 4,                                 ! shortwave radiation scheme, 4 = RRTMG
- radt                                = 30, 30,                               ! minutes between radiation physics calls, recommended 1 minute per km of dx (e.g. 10 for 10 km grid); use the same value for all nests
+ radt                                = 30, 10,                               ! minutes between radiation physics calls, recommended 1 minute per km of dx (e.g. 10 for 10 km grid); use the same value for all nests
  sf_sfclay_physics                   = 5, 5,                                 ! surface layer physics option, 5 = MYNN (Ravan's suggestion)
  sf_surface_physics                  = 2, 2,                                 ! land surface physics option, 2 = NOAH
  bl_pbl_physics                      = 5, 5,                                 ! boundary layer physics option, 5 = MYNN 2.5
- bldt                                = 0, 0,                                 ! minutes between boundary-layer physics calls, 0 = call every timestep
- cu_physics                          = 5, 0,                                 ! cumulus parameterization option, 5 = Grell 3D, 0 = off
+ bldt                                = 0, 0,                                 ! minutes between boundary-layer physics calls (0=call every timestep)
+ cu_physics                          = 5, 0,                                 ! cumulus parameterization option, 5 = Grell 3D
  cudt                                = 0,                                    ! minutes between cumulus physics calls; should be set to 0 when using all cu_physics except Kain-Fritsch
  cugd_avedx                          = 1,                                    ! number of grid boxes over which subsidence is spread, set to 3 for 4km run, 1 for 36km
  isfflx                              = 1,                                    ! heat and moisture fluxes from the surface for real-data cases and when a PBL is used
@@ -74,7 +69,7 @@
  icloud                              = 1,                                    ! cloud effect to the optical depth in radiation
  surface_input_source                = 1,                                    ! where landuse and soil category data come from, 1 = WPS
  num_soil_layers                     = 3,                                    ! number of soil levels or layers in WPS output
- sf_urban_physics                    = 1,                                    ! activate urban canopy model, 1 = single layer, 2 = multi layer
+ sf_urban_physics                    = 1,                                    ! activate urban canopy model, 1 = single layer, some break the inner domain and no idea why
  mp_zero_out                         = 2,                                    ! this keeps moisture variables above a threshold value ≥0
  mp_zero_out_thresh                  = 1.e-8,                                ! critical value for moisture variable threshold, below which moisture arrays (except for Qv) are set to zero
  cu_rad_feedback                     = .true., .false.,                      ! sub-grid cloud effect to the optical depth in radiation
