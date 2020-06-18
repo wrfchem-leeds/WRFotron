@@ -655,6 +655,8 @@ Setup configurations for key components of WRFotron releases.
 - Diurnal cycle from Olivier et al., (2003).  
 - Aerosol optical properties approximated by Maxwell-Garnett.  
 - Updated TUV scheme for photolysis (phot_opt = 4).  
+    - Download the additional data file from [here](http://www.acom.ucar.edu/wrf-chem/TUV.phot.bz2) to you `WRFChem/run` folder.  
+    - Extract the data directories `DATAE1` and `DATAJ1`, and the `wrf_tuv_xsqy.nc` file from downloaded file using `tar xvf TUV.phot.bz2`.  
 - Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 (see [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/CESM-WRFchem_aerosols_plusgas.pdf)).  
 - Fixed the bug where nudging would stop after 312 hours (i.e. after day 13 of a simulation) i.e. changed gfdda_end_h to 10,000.  
 - Nudge above the boundary layer. To do this, go into namelist.wrf.blueprint, and within the FDDA section change:  
