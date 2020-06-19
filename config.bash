@@ -14,51 +14,51 @@ withChemistry=true
 chainDir=/nobackup/${USER}/WRFotron
 
 # WPS
-WPSdir=/nobackup/wrfchem/WPS3.7.1
+WPSdir=/nobackup/WRFChem/WPS3.7.1
 
 # WRFChem
-WRFdir=/nobackup/wrfchem/WRFChem3.7.1
+WRFdir=/nobackup/WRFChem/WRFChem3.7.1
 
 # WRFMeteo
-WRFmeteodir=/nobackup/wrfchem/WRFMeteo3.7.1
+WRFmeteodir=/nobackup/WRFChem/WRFMeteo3.7.1
 
 # ------------------------------------------------------------------------------
 # preprocessors
 # ------------------------------------------------------------------------------
 # MEGAN
-WRFMEGANdir=/nobackup/wrfchem/megan
+WRFMEGANdir=/nobackup/WRFChem/megan
 
 # MOZBC
-WRFMOZARTdir=/nobackup/wrfchem/mozbc
+WRFMOZARTdir=/nobackup/WRFChem/mozbc
 
 # WESLEY/EXOCOLDENS
-WRFmztoolsdir=/nobackup/wrfchem/wes-coldens
+WRFmztoolsdir=/nobackup/WRFChem/wes-coldens
 
 # ANTHRO_EMISS
-WRFanthrodir=/nobackup/wrfchem/anthro_emis
+WRFanthrodir=/nobackup/WRFChem/anthro_emis
 
 # FIRE_EMISS
-WRFfiredir=/nobackup/wrfchem/finn/src
+WRFfiredir=/nobackup/WRFChem/finn/src
 
 # ------------------------------------------------------------------------------
 # input data
 # ------------------------------------------------------------------------------
 # initial and boundary meteorological data
-metDir=/nobackup/wrfchem/initial_boundary_meteo_ecmwf
+metDir=/nobackup/WRFChem/initial_boundary_meteo_ecmwf
 metInc=6
 
 # initial and boundary chemistry data (MZ4/CAM-Chem pre 2018, WACCM post 2018)
-MOZARTdir=/nobackup/wrfchem/initial_boundary_chem_mz4
+MOZARTdir=/nobackup/WRFChem/initial_boundary_chem_mz4
 
 # geography data
-geogDir=/nobackup/wrfchem/WPSGeog4
+geogDir=/nobackup/WRFChem/WPSGeog4
 landuseDir=modis_landuse_21class_30s/
 
 # MEGAN input data
-MEGANdir=/nobackup/wrfchem/emissions/MEGAN
+MEGANdir=/nobackup/WRFChem/emissions/MEGAN
 
 # anthropogenic emissions - data
-emissDir=/nobackup/wrfchem/emissions/EDGAR-HTAP2/MOZART
+emissDir=/nobackup/WRFChem/emissions/EDGAR-HTAP2/MOZART
 
 # anthropogenic emissions - input namelist
 emissInpFile=emis_edgarhtap2_mozmos.inp
@@ -67,13 +67,13 @@ emissInpFile=emis_edgarhtap2_mozmos.inp
 emissYear=2010
 
 # fire emissions from FINN (requires a / at the end)
-fireDir=/nobackup/wrfchem/emissions/FINN/
+fireDir=/nobackup/WRFChem/emissions/FINN/
 
 # FINN fire emissions input file
 fireInpFile=fire_emis.mozm.inp
 
 # diurnal cycle code
-WRFemitdir=/nobackup/wrfchem/WRF_UoM_EMIT
+WRFemitdir=/nobackup/WRFChem/WRF_UoM_EMIT
 
 # ------------------------------------------------------------------------------
 # simulation directories
