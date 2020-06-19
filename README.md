@@ -30,7 +30,7 @@ cd WRFotron
 . /nobackup/cemac/cemac.sh
 ```
     
-3. Run WRFotron (using the test example):  
+3. Run WRFotron (using the test example), may first need to edit `config.bash` to change the paths to local WRFotron and project tag:  
 ```bash
 . master.bash 2016 10 12 00 24 06
 ```
