@@ -93,7 +93,7 @@ msg "chem"
 
 # do the chem run
 # adding `-bind-to none` to stop the mpi jobs trying to self-allocate binding to processors, which significantly slowed down jobs
-${mpiCommandMain} -bind-to none ./wrf.exe
+${mpiCommandMain} -bind-to none wrf.exe
 
 mkdir chem_out
 mv rsl* chem_out
