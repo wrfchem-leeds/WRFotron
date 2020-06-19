@@ -45,8 +45,7 @@ fi
 
 - WRFChem has been built with all compiler and MPI combinations on ARC4 listed in the directories:
 ```bash
-/nobackup/cemac/software/build/WRFChem/3.7.1/1
-/nobackup/cemac/software/build/WRFChem/4.0.3/1
+/nobackup/cemac/software/build/WRFChem/
 ```
 - The recommended compiler and MPI combination is:
 ```
@@ -61,15 +60,8 @@ export I_MPI_HYDRA_TOPOLIB=ipl
 ```
 fix_makefile.sh
 ```
-- The build scripts and locations are in:  
-```
-/nobackup/cemac/software/build/WRFChem/3.7.1/1
-/nobackup/cemac/software/build/WRFChem/4.0.3/1
-/nobackup/cemac/software/build/WRFChem/4.2/1
-```
 - To build your own versions set the environment variable `CEMAC_DIR` to your own directory within `build.sh`.
 - The executables are found in these locations:
 ```
-/nobackup/cemac/software/apps/WRFChem/3.7.1/1
-/nobackup/cemac/software/apps/WRFChem/4.0.3/1
+/nobackup/cemac/software/apps/WRFChem/
 ```
