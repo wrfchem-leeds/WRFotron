@@ -8,7 +8,7 @@
 - [0.0 15/10/2015](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md#WRFotron0.0)
 - [1.0 01/06/2018](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md#WRFotron1.0)  
 - [2.0 01/02/2019](https://github.com/wrfchem-leeds/WRFotron/blob/master/WRFotron_user_guide.md#WRFotron2.0)  
-- 2.1 20/06/2020
+- 2.1 22/06/2020
 
 #### License  
 This code is currently licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship and referencing: [![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)
