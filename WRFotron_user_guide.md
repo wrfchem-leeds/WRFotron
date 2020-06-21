@@ -1,24 +1,15 @@
 ## WRFotron user guide
-### Tools to automatise WRF-Chem runs with re-initialised meteorology  
-WRFotron created by Christoph Knote (christoph.knote@lmu.de)  
-User guide created by Luke Conibear (l.a.conibear@leeds.ac.uk)  
-*Helpful additions from Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, Helen Burns, and CEMAC.*  
-#### Version
-0.0 15/10/2015 CK - Initial release  
-1.0 01/06/2018 LC  
-2.0 01/02/2019 LC  
-#### License  
-Free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship.
+Tools to automatise WRF-Chem runs with re-initialised meteorology  .
 ___
 ### Contents
 1. [Background and further information](#background)  
 2. [Before you start](#before)  
-3. [Setup](#setup)  
+3. [Manual setup](#setup)  
     a. [Steps](#steps)  
     b. [Conda](#conda)  
 4. [Compilation](#compile)  
     a. [Any HPC](#any)  
-    b. [ARC4 using CEMAC module](#arc4)  
+    b. [CEMAC (recommended)](#cemac)  
 5. [Manual simulation](#manual)  
 6. [Automatic simulation (i.e. WRFotron)](#auto)  
     a. [How it works](#auto-how)  
@@ -27,6 +18,7 @@ ___
     a. [WRFotron0.0](#WRFotron0.0)  
     b. [WRFotron1.0](#WRFotron1.0)  
     c. [WRFotron2.0](#WRFotron2.0)  
+    d. [WRFotron2.1](#WRFotron2.1)  
 8. [Miscellaneous](#misc)  
     a. [Recommendations](#recom)  
     b. [Output process](#output)  
@@ -63,14 +55,14 @@ ___
 - Require knowledge of Linux (bash shell, grep, cut, sed, sort, awk, cat, scp) / FORTRAN (basics) / Python (mainly version 3, with small use of version 2) / high-performance computing (qsub) / [NCO](http://nco.sourceforge.net/) / [NCL](http://www.meteo.mcgill.ca/ncar/ngdoc/ng4.0/ug/ncl/ncloview.html).  
 - Request account on your local high-performance computer (HPC). For those at the University of Leeds visit Advanced Research Computing (ARC) site [here](https://arc.leeds.ac.uk/apply/getting-an-account/).  
 ___
-### 3. Setup <a name="setup"/>
+### 3. Manual setup <a name="setup"/>
 - Change username and all paths specific to your own.
-- For submissions to HPC (.bash), may require own project ID.
+- For submissions to HPC, may require own project ID.
 #### a. Steps <a name="steps"/>
-- Log into your HPC (e.g. ARC3/4).  
+- Log into your HPC.  
 `ssh –Y username@arc4.leeds.ac.uk`  
-- Copy [WRF-Chem version 4.0.3](https://github.com/wrf-model/WRF) and [WRFotron version 2.0](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0) to your nobackup.  
-    - Copy from LC's (earlacoa) ARC3/4 account. If complete this step, then skip next section.   
+- Copy [WRF-Chem](https://github.com/wrf-model/WRF) and [WRFotron](https://github.com/wrfchem-leeds/WRFotron/tree/master) to your nobackup.  
+    - Copy from WRFChem ARC4 account (/nobackup/WRFChem). If complete this step, then skip next section.   
 `cd nobackup`  
 `mkdir username`  
 `cd username`  
@@ -115,11 +107,13 @@ ___
         - Download and compile (in serial) preprocessors from [here](https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community):  
             - anthro_emis (anthropogenic emissions preprocessor).  
                 - Compile (first 5 steps required for all):  
-`export FC=ifort`  
-`module load intel netcdf`  
-`module unload intelmpi`  
-`export NETCDF_DIR=/apps/developers/libraries/netcdf/4.6.3/1/intel-19.0.4`  
-`export NETCDF_DIR=$NETCDF`  
+                ```bash
+                export FC=ifort  
+                module load intel netcdf
+                module unload intelmpi
+                export NETCDF_DIR=/apps/developers/libraries/netcdf/4.6.3/1/intel-19.0.4
+                export NETCDF_DIR=$NETCDF
+                ```
 `./make_anthro`  
             - fire_emiss (fire emissions preprocessor).  
 `./make_fire_emis`  
@@ -243,42 +237,23 @@ cd /nobackup/username/WRFChem4.0.3_WRFotron2.0_clean/WRF4.0.3_code/WRFMeteo4.0.3
 #./configure --prefix=$(pwd)/../flex
 #export FLEX_LIB_DIR='/nobackup/username/WRFChem4.0.3_WRFotron2.0_clean/WRF4.0.3_code/flex/lib'
 ```
-#### b. ARC4 using CEMAC module <a name="arc4"/>
-- For running on ARC4:
-    - You can compile using the above steps:
-        - Adding `export I_MPI_HYDRA_TOPOLIB=ipl` as ARC4 is not optimised for IntelMPI.
-        - Within `pre.bash`, `main.bash`, `main_restart.bash`, and `post.bash` you'll need to change the node type from `24core-128G` to `40core-192G`.
-    - Or you can use the WRF-Chem module on ARC4 created by Helen Burns from CEMAC, which automates this for you.  
-        - This in the adapted [WRFortron2.0 code](https://github.com/wrfchem-leeds/WRFotron/tree/master/WRFotron2.0_arc4) to work with pre-built CEMAC executables on ARC4. Everything required (including WRF, WRF-Chem, python, NCL, NCO, preprocessors, ncview) is loaded the following command which is at the top of `config.bash`:  
-`module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.8.1 wrfchemconda/2.7`
-- First, copy the code to your nobackup:
-`cp -rp /nobackup/WRFChem/WRFotron2.0_WRF3.7.1_ARC4 /nobackup/$USER/`  
-- Then, run this script to load the CEMAC modules:  
-`. /nobackup/cemac/cemac.sh`  
-- Then, run the test case:
+#### b. CEMAC (recommended) <a name="cemac"/>
+WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
+- Log onto ARC4 and clone a local copy of the WRFotron GitHub repo:  
 ```bash
-cd /nobackup/$USER/WRFotron2.0_WRFChem3.7.1
-. master.bash 2014 01 12 00 24 06
+ssh username@arc4.leeds.ac.uk
+cd /nobackup/$USER/
+git clone git@github.com:wrfchem-leeds/WRFotron.git
+cd WRFotron
 ```
-- To always be able to view and use all the software CEMAC has built when you run module avail, add the following lines to `.bashrc`:
+- Load the availability of CEMAC modules:
 ```bash
-if [ -r /nobackup/cemac/cemac.sh ] ; then
-  . /nobackup/cemac/cemac.sh
-fi
+. /nobackup/cemac/cemac.sh
 ```
-- WRFChem has been built with all compiler and mpi combinations on ARC4 listed in the directories:
+- Run WRFotron (using the test example), may first need to edit `config.bash` to change the paths to local WRFotron and project tag:  
 ```bash
-/nobackup/cemac/software/build/WRFChem/3.7.1/1
-/nobackup/cemac/software/build/WRFChem/4.0.3/1
+. master.bash 2016 10 12 00 24 06
 ```
-- Within these folders, `build.sh` can be used to build your own versions (e.g. real.exe, wrf.exe, etc.) by setting the environment variable CEMAC_DIR to your own directory.
-- The executables are found in these locations:
-```bash
-/nobackup/cemac/software/apps/WRFChem/3.7.1/1
-/nobackup/cemac/software/apps/WRFChem/4.0.3/1
-```
-- The recommended compiler and mpi combination is compiler = intel, and mpi = openmpi.
-- If you wish to change the preprocessors (e.g. anthro_emis, mozbc, etc.), then `fix_makefile.sh` will modify the makefiles for the preprosesors.
 ___
 ### 5. Manual simulation <a name="manual"/>
 Independently run a 24 hour simulation for India from 2016 10 05.
@@ -670,6 +645,18 @@ Setup configurations for key components of WRFotron releases.
 - Added the faster version of post.bash from Helen Burns in CEMAC.  
     - Hard coded NCL and NCO commands in.  
     - Also, removed the deletion of pre-processed and temporary wrfout files from the staging directory, as these are often needed for error diagnosis.  
+#### d. WRFotron2.1 <a name="WRFotron2.1"/>
+- Changes relative to version 2.0:  
+- WRF-Chem4.2  
+    - Fixes the performance interval issue of WRFChem4.0.3 [here](https://github.com/wrfchem-leeds/WRFotron/issues/4).  
+- If still use WRFChem3.7.1, then add aqueous chemistry in stratocumulus clouds in WRFChem3.7.1, using the solution [here](https://github.com/wrfchem-leeds/WRFotron/issues/5).  
+- Refactored the GitHub repository:  
+    - Focus on CEMAC WRFotron.  
+    - Removed old WRFotron code but kept a reference to the settings they used in the user guide.  
+    - Removed superfluous files.  
+- Added no binding for MPI executions `-bind-to none` in `main.bash` and `main_restart.bash`.  
+- Added NCO and chemistry variables list version checks to `main.bash` and `main_restart.bash`.  
+- Changed the default memory per core to 2G for `main.bash` and `main_restart.bash`.  
 ___
 ### 8. Miscellaneous <a name="misc"/>
 #### a. Recommendations <a name="recom"/>
