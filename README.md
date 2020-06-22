@@ -60,7 +60,13 @@ export I_MPI_HYDRA_TOPOLIB=ipl
 ```
 fix_makefile.sh
 ```
-- To build your own versions set the environment variable `CEMAC_DIR` to your own directory within `build.sh`.
+- To build your own versions, take a local copy of `build.sh`, set the environment variable `CEMAC_DIR` to your own directory, and run the build script. Directories `/software/apps/WRFChem` are made with the build code, which can be referenced in the paths of `config.bash`.
+```
+cd /nobackup/${USER}
+cp /nobackup/cemac/software/build/WRFChem/4.2/1/build.sh .
+export CEMAC_DIR=/nobackup/${USER}
+. build.sh
+```
 - The executables are found in these locations:
 ```
 /nobackup/cemac/software/apps/WRFChem/
