@@ -145,7 +145,7 @@ How it works
     - Pre-2018:  
 
         - Download `MZ4 <http://www.acom.ucar.edu/wrf-chem/mozart.shtml>`_.  
-        - Download `CAM-Chem <(https://www.acom.ucar.edu/cam-chem/cam-chem.shtml>`_.  
+        - Download `CAM-Chem <https://www.acom.ucar.edu/cam-chem/cam-chem.shtml>`_.  
 
     - Post-2018:
 

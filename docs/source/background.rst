@@ -14,7 +14,7 @@ Background
 - `Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf>`_. 
 - Key papers:  
 
-    - `Grell, G.A., et al. (2005). Fully coupled “online” chemistry within the WRF model. Atmos. Environ. 39, 69576975. <https://doi:10.1016/j.atmosenv.2005.04.027>`_.  
+    - `Grell, G.A., et al. (2005). Fully coupled “online” chemistry within the WRF model. Atmos. Environ. 39, 69576975. <https://doi.org/10.1016/j.atmosenv.2005.04.027>`_.  
     - `Fast, J. D., et al. (2006). Evolution of ozone, particulates, and aerosol direct radiative forcing in the vicinity of Houston using a fully coupled meteorology-chemistry-aerosol model. Journal of Geophysical Research: Atmospheres, 111(21), 129. <https://doi.org/10.1029/2005JD006721>`_.  
     - `Skamarock, W. C., & Klemp, J. B. (2008). A time-split nonhydrostatic atmospheric model for weather research and forecasting applications. Journal of Computational Physics, 227(7), 34653485. <https://doi.org/10.1016/j.jcp.2007.01.037>`_.  
 

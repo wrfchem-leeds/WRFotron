@@ -82,7 +82,7 @@ To run with a nest
 ==================
 - Offline nests:
 
-    - See step-by-step guide to run with a nest document from Carly Reddington [here](https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_offline_nesting_CR.pdf).  
+    - See `step-by-step guide to run with a nest document from Carly Reddington <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_offline_nesting_CR.pdf>`_.  
     - Uses ndown.exe for one-way nesting
     - Feedback = 0
     - Parent and nest domain may drift apart
