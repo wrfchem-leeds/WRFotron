@@ -6,7 +6,7 @@ Versions
    :language: bash
 
 
-2.1.0 22/06/2020
+2.1.0 23/06/2020
 ==================
 - Changes relative to version 2.0.0:  
     - WRF-Chem4.2  
