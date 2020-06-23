@@ -9,6 +9,7 @@ Versions
 2.1.0 23/06/2020
 ==================
 - Changes relative to version 2.0.0:  
+
     - WRF-Chem4.2  
 
         - `Fixes the performance interval issue of WRFChem4.0.3 <https://github.com/wrfchem-leeds/WRFotron/issues/4>`_.  
@@ -29,6 +30,7 @@ Versions
 2.0.0 01/02/2019.
 ==================
 - Changes relative to version 1.0.0:
+
     - WRFChem4.0.3.  
     - With aqueous chemistry in stratocumulus clouds (:bash:`cldchem_onoff = 1`).  
 
