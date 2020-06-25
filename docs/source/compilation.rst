@@ -20,20 +20,29 @@ Pre-built executables
 
 Custom executables
 ******************
-- To build your own versions, take a local copy of :code:`build.sh`, set the environment variable :code:`CEMAC_DIR` to your own directory, and run the build script. Directories :code:`/software/apps/WRFChem` are made with the build code, which can be referenced in the paths of :code:`config.bash`.
+- To build your own versions: first create the empty build directories, then copy the :code:`build.sh` and the WRFChem .tar.gz file for the version of choice (e.g. 4.2 below), and run the build script as below. This copies over the code, builds everything, puts the executables in :code:`software/apps/WRFChem/`, and hardlinks in the correct NetCDF libraries to avoid accidentally pointing to the wrong NetCDF libraries (e.g. from conda) through :code:`/nobackup/WRFChem/build_scripts/linknchdf5.sh`.
 
 .. code-block:: bash
 
   cd /nobackup/${USER}
-  cp /nobackup/cemac/software/build/WRFChem/4.2/1/build.sh .
-  export CEMAC_DIR=/nobackup/${USER}
-  . build.sh
+  mkdir -p software/build/WRFChem/4.2/1
+  mkdir -p software/build/WRFChem/4.2/src
+  cd software/build/WRFChem/4.2/1
+  cp /nobackup/WRFChem/build_scripts/4.2/build.sh .
+  cp /nobackup/cemac/software/build/WRFChem/4.2/src/WRFChem4.2.tar.gz ../src/
+  ./build.sh 
 
-- To modify the makefile for the preprosesors if using bespoke altered preprocessors use:  
+- To build and use a custom preprocessor: first copy over the default preprocessor code from :code:`/nobackup/WRFChem` (e.g. anthro_emis), then copy over the makefile modifier to the same folder, then add your custom edits to the preprocessor, and then create the custom preprocessor. When finished, update :code:`WRFotron/config.bash` to direct to this new custom preprocessor.
 
 .. code-block:: bash
 
-  fix_makefile.sh
+  cd /nobackup/${USER}
+  cp -r /nobackup/WRFChem/anthro_emis .
+  cd anthro_emis
+  cp /nobackup/WRFChem/build_scripts/fix_makefile.sh .
+  # make your custom edits
+  make_anthro
+  # update WRFotron/config.bash to point to this new processor
 
 Misc
 ****
@@ -204,7 +213,7 @@ Compile WPS, WRFMeteo, and WRFChem
 
 - How do you know your compilation was successful? 
 
-    - If you have main/*.exe
+    - If you have :code:`main/*.exe`.
 
 - Check the executables have all relevant linked libraries:
 
@@ -263,7 +272,7 @@ Compile WPS, WRFMeteo, and WRFChem
 
   ./compile em_real >& log.compile
 
-- Check have main/*.exe.
+- Check have :code:`main/*.exe`.
 - Check the executables have all relevant linked libraries:
 
 .. code-block:: bash
