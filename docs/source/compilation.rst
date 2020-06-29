@@ -20,7 +20,14 @@ Pre-built executables
 
 Custom executables
 ******************
-- To build your own versions: first create the empty build directories, then copy the :code:`build.sh` and the WRFChem .tar.gz file for the version of choice (e.g. 4.2 below), and run the build script as below. This copies over the code, builds everything, puts the executables in :code:`software/apps/WRFChem/`, and hardlinks in the correct NetCDF libraries to avoid accidentally pointing to the wrong NetCDF libraries (e.g. from conda) through :code:`/nobackup/WRFChem/build_scripts/linknchdf5.sh`.
+- To build your own versions:
+
+    - First create the empty build directories.
+    - Then copy the :code:`build.sh` and the WRFChem .tar.gz file for the version of choice (e.g. 4.2 below).
+    - Then run the build script as below.
+    - This copies over the code, builds everything, puts the executables in :code:`software/apps/WRFChem/`, and hardlinks in the correct NetCDF libraries to avoid accidentally pointing to the wrong NetCDF libraries (e.g. from conda) through :code:`/nobackup/WRFChem/build_scripts/linknchdf5.sh`.
+    - When finished, update :code:`WRFotron/config.bash` to direct to this new build.
+    - Optional: Can then add any custom edits and `manually recompile <https://wrfotron.readthedocs.io/en/latest/compilation.html#compile-wps-wrfmeteo-and-wrfchem>`_.
 
 .. code-block:: bash
 
@@ -31,8 +38,15 @@ Custom executables
   cp /nobackup/WRFChem/build_scripts/4.2/build.sh .
   cp /nobackup/cemac/software/build/WRFChem/4.2/src/WRFChem4.2.tar.gz ../src/
   ./build.sh 
+  # update WRFotron/config.bash to point to this new build
 
-- To build and use a custom preprocessor: first copy over the default preprocessor code from :code:`/nobackup/WRFChem` (e.g. anthro_emis), then copy over the makefile modifier to the same folder, then add your custom edits to the preprocessor, and then create the custom preprocessor. When finished, update :code:`WRFotron/config.bash` to direct to this new custom preprocessor.
+- To build and use a custom preprocessor:
+
+    - First copy over the default preprocessor code from :code:`/nobackup/WRFChem` (e.g. anthro_emis).
+    - Then copy over the makefile modifier to the same folder.
+    - Then add your custom edits to the preprocessor.
+    - Then create the custom preprocessor.
+    - When finished, update :code:`WRFotron/config.bash` to direct to this new custom preprocessor.
 
 .. code-block:: bash
 
