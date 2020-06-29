@@ -40,6 +40,7 @@ Custom executables
   cp -r /nobackup/WRFChem/anthro_emis .
   cd anthro_emis
   cp /nobackup/WRFChem/build_scripts/fix_makefile.sh .
+  ./fix_makefile.sh
   # make your custom edits
   make_anthro
   # update WRFotron/config.bash to point to this new processor
