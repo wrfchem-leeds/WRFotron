@@ -69,9 +69,9 @@ How it works
     - :code:`pp.ncl` (post-processing script).  
 
         - Calculates AOD for 550nm through interpolations and just extracting for the surface.  
-        - Converts units of aerosols (µg / kg of dry air) to (µg/m|3|) at a certain STP (standard temperature and pressure, there is 3 types), by dividing by the inverse of density (ALT i.e. m|3|/kg).  
+        - Converts units of aerosols at a certain standard temperature and pressure by dividing by the inverse of density: µg/kg of dry air to µg/|m3| by dividing by |m3|/kg.  
 
-            .. |3| replace:: O\ :sup:`3`
+            .. |m3| replace:: m\ :sup:`3`
 
     - WRFChem namelists (read :code:`/WRFChem/run/README.namelist` or user guide for detailed information).  
 
@@ -91,7 +91,7 @@ How it works
 - Crontab script.  
 
     - Not normally allowed, check with HPC staff first.  
-    - Touches all files in /nobackup/${USER} to update their date and stop them getting deleted. 
+    - Touches all files in :code:`/nobackup/${USER}` to update their date and stop them getting deleted. 
     - Create a hidden file in home directory (:code:`vi ~/.not_expire.sh`) and add to it triples of lines such as:  
 
         - Touch -h makes sure symlinks don’t expire too.  

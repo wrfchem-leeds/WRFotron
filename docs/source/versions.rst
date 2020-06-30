@@ -6,7 +6,7 @@ Versions
    :language: bash
 
 
-2.1.0 23/06/2020
+2.1.0 - 23/06/2020
 ==================
 - Changes relative to version 2.0.0:  
 
@@ -27,7 +27,7 @@ Versions
     - Changed the default memory per core to 2G for :bash:`main.bash` and :bash:`main_restart.bash`. 
 
 
-2.0.0 01/02/2019.
+2.0.0 - 01/02/2019
 ==================
 - Changes relative to version 1.0.0:
 
@@ -78,7 +78,7 @@ Versions
         - Also, removed the deletion of pre-processed and temporary wrfout files from the staging directory, as these are often needed for error diagnosis.
 
 
-1.0.0 01/06/2018.
+1.0.0 - 01/06/2018
 ==================
 - Changes relative to version 0.0.0:  
 
@@ -94,7 +94,7 @@ Versions
     - Consistent timestep for chemistry and biogenics with meteorology.  
 
 
-0.0.0 15/10/2015.
+0.0.0 - 15/10/2015
 ==================
 - WRFChem3.7.1.  
 - Single domain.  
