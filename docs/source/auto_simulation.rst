@@ -66,7 +66,7 @@ How it works
 
 - Other files within WRFotron:  
 
-    - :code:`pp.ncl` (post-processing script).  
+    - :code:`postprocessing.py`.  
 
         - Calculates AOD for 550nm through interpolations and just extracting for the surface.  
         - Converts units of aerosols at a certain standard temperature and pressure by dividing by the inverse of density: µg/kg of dry air to µg/|m3| by dividing by |m3|/kg.  

@@ -87,7 +87,7 @@ Manual (alternative)
 
 Setup
 *****
-- Download WRFotron, WRFChem, make a copy for WRFMeteo without the chemistry folder, download WPS, download `WPS Geography files <https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html>`_.:
+- Download WRFotron, WRFChem, make a copy for WRFMeteo without the chemistry folder, download WPS, download `WPS Geography files <https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html>`_:
 
 .. code-block:: bash
 
@@ -158,7 +158,7 @@ Conda
 
 .. code-block:: bash
 
-  conda create -n python3_ncl_nco -c conda-forge -c oggm xarray salem xesmf numpy scipy pandas matplotlib rasterio affine ncl nco
+  conda create -n python3_ncl_nco -c conda-forge -c oggm xarray salem xesmf numpy scipy pandas matplotlib rasterio affine ncl nco wrf-python
 
 - To activate/deactivate conda environment:  
 

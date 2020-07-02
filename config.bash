@@ -4,23 +4,23 @@
 # ------------------------------------------------------------------------------
 # code
 # ------------------------------------------------------------------------------
-module load intel/19.0.4 openmpi/3.1.4  WRFchem/3.7.1 ncl/6.5.0 nco/4.6.0 wrfchemconda/2.7
+module load intel/19.0.4 openmpi/3.1.4 WRFchem/4.2 ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
 
 version=2.1
-projectTag=simulation_WRFChem3.7.1_test
+projectTag=simulation_WRFChem4.2_test
 withChemistry=true
 
 # WRFotron
 chainDir=/nobackup/${USER}/WRFotron
 
 # WPS
-WPSdir=/nobackup/WRFChem/WPS3.7.1
+WPSdir=/nobackup/WRFChem/WPS4.2
 
 # WRFChem
-WRFdir=/nobackup/WRFChem/WRFChem3.7.1
+WRFdir=/nobackup/WRFChem/WRFChem4.2
 
 # WRFMeteo
-WRFmeteodir=/nobackup/WRFChem/WRFMeteo3.7.1
+WRFmeteodir=/nobackup/WRFChem/WRFMeteo4.2
 
 # ------------------------------------------------------------------------------
 # preprocessors
@@ -91,7 +91,7 @@ restartRootDir=/nobackup/${USER}/${projectTag}/restart
 removeRunDir=false
 
 # post processing script
-nclPpScript=${chainDir}/pp.ncl
+pyPpScript=${chainDir}/postprocessing.py
 
 # ------------------------------------------------------------------------------
 # HPC settings

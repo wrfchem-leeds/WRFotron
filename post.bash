@@ -47,7 +47,9 @@ postpoc(){
     cp -p $inFile $outFile
     echo 'deleting tmp_'${outFile}
     rm -f tmp_${outFile}
-    ncl -Q 'wrffilename="'$inFile'"' 'outputfilename="'tmp_${outFile}'"' ${nclPpScript}
+
+    # create new variables
+    python ${pyPpScript} ${inFile} tmp_${outFile}
 
     # append all other variables
     ncks -A tmp_${outFile} ${outFile}
