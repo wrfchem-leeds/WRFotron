@@ -1,9 +1,6 @@
 ;   Script for taking emission data from 
 ;   EDGAR sources and turn them into 
 ;   WRF-Chem input files.
-;
-;
-
 
 ;*********************************************
 load "$NCARG_ROOT/lib/ncarg/nclscripts/csm/gsn_code.ncl"
@@ -19,7 +16,6 @@ load "./vertical_distribution_routines.ncl"
 
 ;*********************************************
 begin
-
 
 ;==============================================================================
 ;Define working directories:
@@ -37,7 +33,6 @@ year  = "2016"
 
 ; select the model domains
 domains = (/"d01","d02","d03"/)
-;domains = (/"d01"/)
 
 ; set the fraction of NOx that is NO  (NO2 fraction will be 1-nox_frac)
 nox_frac = 0.9
@@ -66,7 +61,6 @@ nmvoc_scheme = "EDGAR_NMVOC_V432"
 ;
 nmvoc_scheme@method = "direct"
 
-
 ; switch for choosing how to calculate the time offset from UTC,
 ;  if it is False then just use UTC. If True then use these options:
 ;
@@ -81,25 +75,23 @@ nmvoc_scheme@method = "direct"
 ;                      will use (where applicable) the winter daylight
 ;                      saving offset.
 ;
-
 UTC_offset = True
 UTC_offset@method = "timezones"
 ;UTC_offset@fixed_offset = -4	; this is for Amazon
 ;UTC_offset@fixed_offset = 6	; this is for India
-UTC_offset@fixed_offset = 8	; this is for China
+UTC_offset@fixed_offset = 8	    ; this is for China
 ;UTC_offset@fixed_offset = 0	; this is for UK
 UTC_offset@daylightsaving = False	
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;; control what we're going to do ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 STEP1_create_diurnal_cycle_and_prescaling 	= True
 regional_modification_of_emissions  		= False
-convert_oc_to_om				= False
-check_bcoc_pm_conformation			= False
+convert_oc_to_om				            = False
+check_bcoc_pm_conformation			        = False
 STEP2_apply_vertical_power_emissions 		= False
-use_vertical_power_emission_files 		= False
+use_vertical_power_emission_files 	    	= False
 STEP3_create_emissions_for_WRF_Chem 		= True
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -126,11 +118,9 @@ regional_modification_of_emissions@vars_scale = (/0.0,50.0/)
 ;;;;    advised).
 setfileoption("nc","Format","NetCDF4Classic")
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;; END OF CONFIGURATION CODE, START OF OPERATIONAL CODE ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 
 
 ;;;;; checks to make sure we're not going anything stupid

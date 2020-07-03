@@ -24,43 +24,43 @@ def create_variables(raw_wrfout_filename):
         raw_wrfout_file(string): path to raw wrfout file.
         
     Returns:
-        ds(xarray.core.dataset.Dataset): Saved Dataset with all created variables.
+        new_wrfout_file(xarray.core.dataset.Dataset): Saved Dataset with all created variables.
     """
-    # open NetCDF file
-    raw_wrfout_file = Dataset(raw_wrfout_filename, mode='r')
+    # open raw NetCDF file
+    raw_wrfout_file_nc = Dataset(raw_wrfout_filename, mode='r')
     
     # extract variables
-    timestamp = getvar(raw_wrfout_file, 'Times')
+    timestamp = getvar(raw_wrfout_file_nc, 'Times')
     timestamp = timestamp.rename('timestamp')
-    timestamp = timestamp.assign_coords(XTIME=getvar(raw_wrfout_file, 'pres').coords['Time']) # add both XTIME and time coords
+    timestamp = timestamp.assign_coords(XTIME=getvar(raw_wrfout_file_nc, 'pres').coords['Time']) # add both XTIME and time coords
     timestamp = timestamp.drop('Time') # drop coord
     timestamp = timestamp.expand_dims(dim='Time') # add dim
 
-    pres = getvar(raw_wrfout_file, 'p')
+    pres = getvar(raw_wrfout_file_nc, 'p')
     pres = pres.rename('pres')
 
-    pres_sea_level = getvar(raw_wrfout_file, 'slp')
+    pres_sea_level = getvar(raw_wrfout_file_nc, 'slp')
     pres_sea_level = pres_sea_level.rename('p_sl')
 
-    rel_humidity = getvar(raw_wrfout_file, 'rh')
+    rel_humidity = getvar(raw_wrfout_file_nc, 'rh')
 
-    rel_humidity_2m = getvar(raw_wrfout_file, 'rh2')
+    rel_humidity_2m = getvar(raw_wrfout_file_nc, 'rh2')
     rel_humidity_2m = rel_humidity_2m.rename('rh_2m')
 
-    temp_dew = getvar(raw_wrfout_file, 'td')
+    temp_dew = getvar(raw_wrfout_file_nc, 'td')
 
-    temp_dew_2m = getvar(raw_wrfout_file, 'td2')
+    temp_dew_2m = getvar(raw_wrfout_file_nc, 'td2')
     temp_dew_2m = temp_dew_2m.rename('td_2m')
 
-    temp = getvar(raw_wrfout_file, 'tk')
+    temp = getvar(raw_wrfout_file_nc, 'tk')
     temp = temp.rename('tk')
 
-    temp_potential = getvar(raw_wrfout_file, 'th')
+    temp_potential = getvar(raw_wrfout_file_nc, 'th')
     temp_potential = temp_potential.rename('th')
 
-    terrain = getvar(raw_wrfout_file, 'ter')
+    terrain = getvar(raw_wrfout_file_nc, 'ter')
 
-    height = getvar(raw_wrfout_file, 'z')
+    height = getvar(raw_wrfout_file_nc, 'z')
     height = height.rename('z')
     
     # convert dew temps to kelvin
@@ -74,20 +74,20 @@ def create_variables(raw_wrfout_filename):
     temp_dew_2m.attrs['description'] = '2m dew point temperature'
 
     # rotate wind to Earth coordinates
-    wind_u = getvar(raw_wrfout_file, 'uvmet').isel(u_v=0)
+    wind_u = getvar(raw_wrfout_file_nc, 'uvmet').isel(u_v=0)
     wind_u = wind_u.rename('u_ll')
-    wind_v = getvar(raw_wrfout_file, 'uvmet').isel(u_v=1)
+    wind_v = getvar(raw_wrfout_file_nc, 'uvmet').isel(u_v=1)
     wind_v = wind_v.rename('v_ll')
-    wind_u_10m = getvar(raw_wrfout_file, 'uvmet10').isel(u_v=0)
+    wind_u_10m = getvar(raw_wrfout_file_nc, 'uvmet10').isel(u_v=0)
     wind_u_10m = wind_u_10m.rename('u_ll_10m')
-    wind_v_10m = getvar(raw_wrfout_file, 'uvmet10').isel(u_v=1)
+    wind_v_10m = getvar(raw_wrfout_file_nc, 'uvmet10').isel(u_v=1)
     wind_v_10m = wind_v_10m.rename('v_ll_10m')
-    wind_w = getvar(raw_wrfout_file, 'wa')
+    wind_w = getvar(raw_wrfout_file_nc, 'wa')
     wind_w = wind_w.rename('w_ll')
     
     # calculate layer thickness
-    geopotential_perturbation = getvar(raw_wrfout_file, 'PH')
-    geopotential_base_state = getvar(raw_wrfout_file, 'PHB')
+    geopotential_perturbation = getvar(raw_wrfout_file_nc, 'PH')
+    geopotential_base_state = getvar(raw_wrfout_file_nc, 'PHB')
     
     altitude = (geopotential_perturbation + geopotential_base_state) / 9.81
     altitude.loc[dict(bottom_top_stag=0)] = altitude.isel(bottom_top_stag=0) - terrain
@@ -116,10 +116,10 @@ def create_variables(raw_wrfout_filename):
     )
     
     # inverse density
-    inverse_density = getvar(raw_wrfout_file, 'ALT') # m3 kg-1
+    inverse_density = getvar(raw_wrfout_file_nc, 'ALT') # m3 kg-1
     
     # cloud liquid water path
-    cloud_liquid_water = getvar(raw_wrfout_file, 'QCLOUD') # kg kg-1
+    cloud_liquid_water = getvar(raw_wrfout_file_nc, 'QCLOUD') # kg kg-1
     cloud_liquid_water_path = cloud_liquid_water / inverse_density / layer_thickness_destaggered * 1e3
     cloud_liquid_water_path = cloud_liquid_water_path.sum(dim='bottom_top')
     cloud_liquid_water_path.attrs = cloud_liquid_water.attrs
@@ -128,7 +128,7 @@ def create_variables(raw_wrfout_filename):
     cloud_liquid_water_path = cloud_liquid_water_path.rename('CLWP')
 
     # cloud ice path
-    cloud_ice = getvar(raw_wrfout_file, 'QICE') # kg kg-1
+    cloud_ice = getvar(raw_wrfout_file_nc, 'QICE') # kg kg-1
     cloud_ice_path = cloud_ice / inverse_density / layer_thickness_destaggered * 1e3
     cloud_ice_path = cloud_ice_path.sum(dim='bottom_top')
     cloud_ice_path.attrs = cloud_ice.attrs
@@ -137,7 +137,7 @@ def create_variables(raw_wrfout_filename):
     cloud_ice_path = cloud_ice_path.rename('CIP')
     
     # cloud water vapor columns
-    cloud_water_vapor = getvar(raw_wrfout_file, 'QVAPOR') # rho_water = 1000 kg m-3
+    cloud_water_vapor = getvar(raw_wrfout_file_nc, 'QVAPOR') # rho_water = 1000 kg m-3
     cloud_water_vapor_column = cloud_water_vapor / inverse_density / layer_thickness_destaggered / 1000.0 * 1e2
     cloud_water_vapor_column = cloud_water_vapor_column.sum(dim='bottom_top')
     cloud_water_vapor_column.attrs = cloud_water_vapor.attrs
@@ -168,10 +168,10 @@ def create_variables(raw_wrfout_filename):
     wind_direction_10m = wind_direction_10m.rename('wdir_10m')
     
     # aerosol optical depth, AOD, column and surface
-    optical_thickness_a01 = getvar(raw_wrfout_file, 'TAUAER1') # 300 nm
-    optical_thickness_a02 = getvar(raw_wrfout_file, 'TAUAER2') # 400 nm
-    optical_thickness_a03 = getvar(raw_wrfout_file, 'TAUAER3') # 600 nm
-    optical_thickness_a04 = getvar(raw_wrfout_file, 'TAUAER4') # 1000 nm
+    optical_thickness_a01 = getvar(raw_wrfout_file_nc, 'TAUAER1') # 300 nm
+    optical_thickness_a02 = getvar(raw_wrfout_file_nc, 'TAUAER2') # 400 nm
+    optical_thickness_a03 = getvar(raw_wrfout_file_nc, 'TAUAER3') # 600 nm
+    optical_thickness_a04 = getvar(raw_wrfout_file_nc, 'TAUAER4') # 1000 nm
     
     # AOD at 470 nm
     angstrom_exponent = -1 * np.log(optical_thickness_a02 / optical_thickness_a03) / np.log(400.0 / 600.0)
@@ -216,7 +216,7 @@ def create_variables(raw_wrfout_filename):
     AOD675_sfc = AOD675_sfc.rename('AOD675_sfc')
     
     # convert raw netCDF to xarray dataset
-    ds = xr.open_dataset(xr.backends.NetCDF4DataStore(raw_wrfout_file))
+    raw_wrfout_file_xr = xr.open_dataset(xr.backends.NetCDF4DataStore(raw_wrfout_file_nc))
 
     # list of variables
     variables = [
@@ -258,16 +258,16 @@ def create_variables(raw_wrfout_filename):
     variables_with_time = []
     for variable in variables:
         if variable.name == 'timestamp':
-            variable['XTIME'] = ds['XTIME']
+            variable['XTIME'] = raw_wrfout_file_xr['XTIME']
         else:
             if 'u_v' in variable.coords:
                 variable = variable.drop('u_v')
 
             variable = variable.drop('Time') # remove erroneous time coord
             variable = variable.expand_dims(dim='Time') # add time as a dim
-            variable['XTIME'] = ds['XTIME'] # add time dim to time coord
-            variable['XLAT'] = ds['XLAT'] # add time dim to lat coord
-            variable['XLONG'] = ds['XLONG'] # add time dim to lon coord
+            variable['XTIME'] = raw_wrfout_file_xr['XTIME'] # add time dim to time coord
+            variable['XLAT'] = raw_wrfout_file_xr['XLAT'] # add time dim to lat coord
+            variable['XLONG'] = raw_wrfout_file_xr['XLONG'] # add time dim to lon coord
             del variable.attrs['projection']
             del variable.attrs['coordinates']
 
@@ -279,18 +279,19 @@ def create_variables(raw_wrfout_filename):
 
         variables_with_time.append(variable)
 
-    # merge xarray dataset with new variables
-    ds = xr.merge(
+    # new xarray dataset with new variables
+    new_wrfout_file_xr = xr.merge(
         variables_with_time, # combine raw with new
         compat='override' # skip comparing and pick variable from first dataset
     ) 
     
-    # save merged xarray dataset
-    ds.to_netcdf(sys.argv[2], format='NETCDF3_CLASSIC')
+    # save new xarray dataset
+    new_wrfout_file_xr.to_netcdf(sys.argv[2], format='NETCDF3_CLASSIC')
 
     # close file handles
-    raw_wrfout_file.close()
-    ds.close()
+    raw_wrfout_file_nc.close()
+    raw_wrfout_file_xr.close()
+    new_wrfout_file_xr.close()
     
 
 def main():
