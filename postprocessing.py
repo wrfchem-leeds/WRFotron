@@ -286,7 +286,7 @@ def create_variables(raw_wrfout_filename):
     ) 
     
     # save merged xarray dataset
-    ds.to_netcdf(sys.argv[2])
+    ds.to_netcdf(sys.argv[2], format='NETCDF3_CLASSIC')
 
     # close file handles
     raw_wrfout_file.close()

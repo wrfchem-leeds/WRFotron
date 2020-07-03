@@ -78,7 +78,7 @@ rm FILE*
 # -----------------------------------------------------------------------------
 
 cp -r ${WRFdir}/run/* .
-
+cp ${chainDir}/add_var_to_wrfout.txt .
 
 rm namelist.input
 cp namelist.wrf.prep.real_metonly namelist.input
@@ -234,8 +234,8 @@ done
 
 # -----------------------------------------------------------------------------
 
-msg "bring over main_restart and additional variables"
-cp ${chainDir}/{main_restart.bash,add_var_to_wrfout.txt} .
+msg "bring over main_restart"
+cp ${chainDir}/main_restart.bash .
 
 msg "bring over concat/regrid scripts"
 cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash} ${archiveDir}/.
