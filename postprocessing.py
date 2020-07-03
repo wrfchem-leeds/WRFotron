@@ -5,7 +5,7 @@ Based on the NCL postprocessing script (pp.ncl)
 Using same variable names for consistency
 
 Example:
-    python postprocessing.py inFile outFile
+    python postprocessing.py inFile outFile WRFChem_path
     
 """
 import sys
@@ -14,6 +14,7 @@ from wrf import getvar
 from wrf import destagger
 import numpy as np
 import xarray as xr
+import re
 
 def create_variables(raw_wrfout_filename):
     """
@@ -286,11 +287,15 @@ def create_variables(raw_wrfout_filename):
     ) 
     
     # save new xarray dataset
-    new_wrfout_file_xr.to_netcdf(sys.argv[2], format='NETCDF3_CLASSIC')
+    # base format on the WRFChem version
+    wrfchem_version = re.findall(r'\d+[\.]?[\d+]?[\.]?\d+]?', sys.argv[3])[-1]
+    if float(wrfchem_version[0:3]) < 4.0: # pre 4.0 use NETCDF3 CLASSIC
+        new_wrfout_file_xr.to_netcdf(sys.argv[2], format='NETCDF3_CLASSIC')
+    else: # post 4.0, use NETCDF4 / HDF5 (default)
+        new_wrfout_file_xr.to_netcdf(sys.argv[2])
 
     # close file handles
     raw_wrfout_file_nc.close()
-    raw_wrfout_file_xr.close()
     new_wrfout_file_xr.close()
     
 

@@ -49,7 +49,13 @@ postpoc(){
     rm -f tmp_${outFile}
 
     # create new variables
-    python ${pyPpScript} ${inFile} tmp_${outFile}
+    python ${pyPpScript} ${inFile} tmp_${outFile} $WRFdir
+
+    # temporary workaround for WRFChem4 due to NCO bug (fxm TODO nco1089) need to convert netcdf4 back to netcdf3, remove when fixed
+    if [ "$(printf '%s\n' "4.0.0" "${WRFdir} | grep -Eo '[0-9]+([.][0-9]+)?([.][0-9]+)?' | tail -1" | sort -V | head -n1)" = 4.0.0 ]; then
+        ncks -3 -O tmp_${outFile} tmp_${outFile}
+        ncks -3 -O ${outFile} ${outFile}
+    fi
 
     # append all other variables
     ncks -A tmp_${outFile} ${outFile}
