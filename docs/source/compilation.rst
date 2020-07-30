@@ -107,6 +107,16 @@ Setup
   cd /nobackup/${USER}
   cp -r /nobackup/WRFChem/{WRFotron,WRFChem4.2,WRFMeteo4.2,WPS4.2,WPSGeog4} .
 
+- You will need to remove, or at minimum, change the module load line at the top of :code:`config.bash`. The modules intel, openmpi, and WRFchem are for the CEMAC installation, and keeping these (and potentially others) can interfere with executables. These need to be removed. NCL, NCO, and conda can be used from CEMAC for manual runs, or you could have your own personal conda environments with NCL and NCO (see below).
+
+.. code-block:: bash
+
+  # cemac compilation uses
+  module load intel/19.0.4 openmpi/3.1.4 WRFchem/4.2 ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
+
+  # for manual compilation remove (at least) intel, openmpi, and WRFchem
+  module load ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
+
 - Download flex (tool for generating scanners: programs which recognize lexical patterns in text).  
 - `Download and compile (in serial) preprocessors <https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community>`_:  
     - anthro_emis (anthropogenic emissions preprocessor).  
