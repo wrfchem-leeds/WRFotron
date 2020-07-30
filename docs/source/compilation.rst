@@ -117,6 +117,23 @@ Setup
   # for manual compilation remove (at least) intel, openmpi, and WRFchem
   module load ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
 
+- The executables within :code:`pre.bash` need to be copied over directly, rather than just linked which is adequate for the CEMAC method. To do this make both of the following replacements:
+
+.. code-block:: bash
+
+  # on line 21, replace:
+  for aFile in util geogrid ungrib link_grib.csh metgrid
+  # with:
+  for aFile in util geogrid geogrid.exe ungrib ungrib.exe link_grib.csh metgrid metgrid.exe
+
+  # and then on line 80, replace:
+  cp -r ${WRFdir}/run/* .
+  # with:
+  cp -r ${WRFdir}/run/* .
+  rm *.exe
+  cp -r ${WRFdir}/main/*.exe .
+  cp -r ${WRFmeteodir}/main/wrf.exe wrfmeteo.exe
+
 - Download flex (tool for generating scanners: programs which recognize lexical patterns in text).  
 - `Download and compile (in serial) preprocessors <https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community>`_:  
     - anthro_emis (anthropogenic emissions preprocessor).  
