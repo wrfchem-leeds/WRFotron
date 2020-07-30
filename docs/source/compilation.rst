@@ -107,7 +107,7 @@ Setup
   cd /nobackup/${USER}
   cp -r /nobackup/WRFChem/{WRFotron,WRFChem4.2,WRFMeteo4.2,WPS4.2,WPSGeog4} .
 
-- You will need to remove, or at minimum, change the module load line at the top of :code:`config.bash`. The modules intel, openmpi, and WRFchem are for the CEMAC installation, and keeping these (and potentially others) can interfere with executables. These need to be removed. NCL, NCO, and conda can be used from CEMAC for manual runs, or you could have your own personal conda environments with NCL and NCO (see below).
+- You will need to remove, or at minimum, change the module load line at the top of :code:`config.bash`. The modules intel, openmpi, and WRFchem are for the CEMAC installation, and keeping these (and potentially others) can interfere with executables. These need to be removed. NCL, NCO, and conda can be used from CEMAC for manual runs, or you could have your own personal conda environments with NCL and NCO (see below). You can see the manual blueprint in the repository: `config.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/config.bash.blueprint_manual>`_.
 
 .. code-block:: bash
 
@@ -117,7 +117,7 @@ Setup
   # for manual compilation remove (at least) intel, openmpi, and WRFchem
   module load ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
 
-- The executables within :code:`pre.bash` need to be copied over directly, rather than just linked which is adequate for the CEMAC method. To do this make both of the following replacements:
+- The executables within :code:`pre.bash` need to be copied over directly, rather than just linked which is adequate for the CEMAC method. To do this make both of the following replacements. You can see the manual blueprint in the repository: `pre.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash.blueprint_manual>`_.
 
 .. code-block:: bash
 
@@ -134,6 +134,7 @@ Setup
   cp -r ${WRFdir}/main/*.exe .
   cp -r ${WRFmeteodir}/main/wrf.exe wrfmeteo.exe
 
+- All executables and preprocessors will need to have :code:`./` before them to execute. This includes :code:`ungrib.exe`, :code:`geogrid.exe`, :code:`metgrid.exe`, :code:`real.exe`, :code:`megan_bio_emiss`, :code:`wesely`, :code:`exo_coldens`, :code:`anthro_emiss`, :code:`fire_emis`, and :code:`mozbc` in :code:`pre.bash`. Also, :code:`wrfmeteo.exe` and :code:`wrf.exe` in :code:`main.bash`. Also, :code:`wrf.exe` in :code:`main_restart.bash`. You can see the manual blueprints in the repository: `pre.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash.blueprint_manual>`_, `main.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/main.bash.blueprint_manual>`_, and `main_restart.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/main_restart.bash.blueprint_manual>`_.
 - Download flex (tool for generating scanners: programs which recognize lexical patterns in text).  
 - `Download and compile (in serial) preprocessors <https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community>`_:  
     - anthro_emis (anthropogenic emissions preprocessor).  
