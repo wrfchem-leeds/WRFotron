@@ -150,11 +150,12 @@ Setup
 
 .. code-block:: bash
 
-  export FC=ifort  
+  conda deactivate
+  module purge
   module load intel netcdf
-  module unload intelmpi
-  export NETCDF_DIR=/apps/developers/libraries/netcdf/4.6.3/1/intel-19.0.4
+  export NETCDF=$(nc-config --prefix)
   export NETCDF_DIR=$NETCDF
+  export FC=ifort
 
   ./make_anthro
 
