@@ -5,7 +5,7 @@ WRFotron created by Christoph Knote (christoph.knote@lmu.de).
 
 [User guide](https://wrfotron.readthedocs.io/en/latest/) created by Luke Conibear (l.a.conibear@leeds.ac.uk).  
 
-Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, and Edward Butt.  
+Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, and Lauren Fleming.  
 
 #### Quick start
 WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
