@@ -78,6 +78,9 @@ rm FILE*
 # -----------------------------------------------------------------------------
 
 cp -r ${WRFdir}/run/* .
+rm *.exe
+cp -r ${WRFdir}/main/*.exe .
+cp -r ${WRFmeteodir}/main/wrf.exe wrfmeteo.exe
 cp ${chainDir}/add_var_to_wrfout.txt .
 
 rm namelist.input
@@ -142,6 +145,7 @@ msg "exo_coldens"
 msg "emissions - anthro"
 
 # anthropogenic emissions
+ln -s ${WRFanthrodir}/anthro_emis .
 ./anthro_emis < anthro_emis.inp > anthro_emis.out
 
 # apply diurnal cycle
@@ -157,6 +161,7 @@ python sum_sector_emiss_wrfchemi.py >> diurnal_emiss.out
 
 msg "emissions - fire"
 
+ln -s ${WRFfiredir}/fire_emis .
 ./fire_emis < fire_emis.inp > fire_emis.out
 
 # -----------------------------------------------------------------------------
