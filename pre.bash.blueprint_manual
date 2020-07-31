@@ -183,7 +183,7 @@ mv rsl* second_real_out
 
 msg "MOZART/WACCM"
 
-ln -s $WRFMOZARTdir/mozbc .
+ln -s ${WRFMOZARTdir}/mozbc .
 
 # If daily MOZBC files use this portion (otherwise comment out)
 #let totDays="((__spinupTime__+__fcstTime__)/24)+2"

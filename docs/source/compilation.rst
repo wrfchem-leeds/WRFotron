@@ -135,6 +135,14 @@ Setup
   cp -r ${WRFmeteodir}/main/wrf.exe wrfmeteo.exe
 
 - All executables and preprocessors will need to have :code:`./` before them to execute. This includes :code:`ungrib.exe`, :code:`geogrid.exe`, :code:`metgrid.exe`, :code:`real.exe`, :code:`megan_bio_emiss`, :code:`wesely`, :code:`exo_coldens`, :code:`anthro_emiss`, :code:`fire_emis`, and :code:`mozbc` in :code:`pre.bash`. Also, :code:`wrfmeteo.exe` and :code:`wrf.exe` in :code:`main.bash`. Also, :code:`wrf.exe` in :code:`main_restart.bash`. You can see the manual blueprints in the repository: `pre.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash.blueprint_manual>`_, `main.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/main.bash.blueprint_manual>`_, and `main_restart.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/main_restart.bash.blueprint_manual>`_.
+- Add links to the preprocessor executables :code:`anthro_emis`, :code:`fire_emis`, and :code:`mozbc` by adding the following code. You can see the manual blueprints in the repository: `pre.bash.blueprint_manual <https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash.blueprint_manual>`_.
+
+.. code-block:: bash
+
+  ln -s ${WRFanthrodir}/anthro_emis . # section 4.a, line 148
+  ln -s ${WRFfiredir}/fire_emis .     # section 4.b, line 164
+  ln -s ${WRFMOZARTdir}/mozbc .         # section 6,   line 186
+
 - Download flex (tool for generating scanners: programs which recognize lexical patterns in text).  
 - `Download and compile (in serial) preprocessors <https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community>`_:  
     - anthro_emis (anthropogenic emissions preprocessor).  
