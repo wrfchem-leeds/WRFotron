@@ -92,9 +92,9 @@ Setup
 .. code-block:: bash
 
   cd /nobackup/${USER}
-  git clone git@github.com:wrfchem-leeds/WRFotron.git
-  git clone git@github.com:wrf-model/WRF.git WRFChem
-  git clone git@github.com:wrf-model/WPS.git
+  git clone https://github.com/wrfchem-leeds/WRFotron.git
+  git clone https://github.com/wrf-model/WRF.git WRFChem
+  git clone https://github.com/wrf-model/WPS.git
 
   cp -r WRFChem WRFMeteo
   cd WRFMeteo
