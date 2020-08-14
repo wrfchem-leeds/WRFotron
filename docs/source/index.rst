@@ -32,7 +32,7 @@ WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is l
 
 .. code-block:: bash
 
-  git clone git@github.com:wrfchem-leeds/WRFotron.git
+  git clone https://github.com/wrfchem-leeds/WRFotron.git
 
 2. Load the availability of CEMAC modules:
 
