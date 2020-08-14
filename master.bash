@@ -366,7 +366,7 @@ PATCH_END
 sed -e "/! CHEM/r patchy" namelist.wrf.prep.real      > tmp; mv tmp namelist.wrf.prep.real
 sed -e "/! CHEM/r patchy" namelist.wrf.prep.chem      > tmp; mv tmp namelist.wrf.prep.chem
 sed -e "/! CHEM/r patchy" namelist.wrf.prep.chem_cold > tmp; mv tmp namelist.wrf.prep.chem_cold
-rm patchy
+rm -f patchy
 
 # copy ancillary namelists
 
