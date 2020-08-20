@@ -241,25 +241,16 @@ To run with NAEI emissions
 
 To add (or remove) variables to wrfout files
 ============================================
-- With help from Doug Lowe:
+- First, check whether the variable is in the Registry. If it isn't, then add it using the `steps here <https://www.climatescience.org.au/sites/default/files/WRF_gill_registry.pdf>`_.  
+- Then, if you're running with chemistry edit the file :code:`iofields.chem`, otherwise edit the file :code:`iofields.met`, which are both in WRFotron.  
+- There are lines of text such as:  
 
-    - In namelist.wrf.blueprint (in the &time_control section) add this line:
+.. code-block:: bash
 
-    .. code-block:: bash
+  +:h:0:ccn1,ccn2,ccn3,ccn4,ccn5,ccn6
 
-      iofields_filename                   = 'add_remove_var.txt','add_remove_var.txt','add_remove_var.txt',
-
-    - There is one file per domain, and these can be different.  
-    - The file `add_remove_var.txt` needs to be copied into the run folder to be read in.   
-    - Inside your add_remove_var.txt file, you’ll have lines of text such as:  
-
-    .. code-block:: bash
-
-      +:h:0:ccn1,ccn2,ccn3,ccn4,ccn5,ccn6
-
-    - The + (to add) or  (to remove) a variable.
-    - The h is for the history stream. Can have history, restarts, or both.
-    - The 0 is for the stream number. Generally, stream numbers of 10-24 are okay, and avoid 22-23.
-    - Then list the variables.
-    - `Additional information on pages 19-20 <https://www.climatescience.org.au/sites/default/files/WRF_gill_registry.pdf>`_.  
+- The + is to add or - is to remove a variable.
+- The h is for the history (wrfout) stream. Can have history, restarts, or both.
+- The 0 is for the stream number. Generally, stream numbers of 10-24 are okay, and avoid 22-23.
+- Then list the variables.
 
