@@ -81,7 +81,6 @@ cp -r ${WRFdir}/run/* .
 rm *.exe
 cp -r ${WRFdir}/main/*.exe .
 cp -r ${WRFmeteodir}/main/wrf.exe wrfmeteo.exe
-cp ${chainDir}/add_var_to_wrfout.txt .
 
 rm namelist.input
 cp namelist.wrf.prep.real_metonly namelist.input
