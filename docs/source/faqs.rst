@@ -195,13 +195,16 @@ To run with WRFChem3.7.1 or WRFChem4.2
     - Replace all instances of 4.2 with 3.7.1, or vice-versa.
     - Use the appropriate geography files, being either :code:`/nobackup/WRFChem/WPSGeog3` or :code:`/nobackup/WRFChem/WPSGeog4`.
 
-- Within :code:`namelist.wps.blueprint`, for the :code:`geog_data_res` variable, use :code:`'modis_30s+30s'` for WRFChem3.7.1 and use :code:`'default'` for WRFChem4.2.
+- Within :code:`namelist.wps.blueprint`:
+
+    - For the :code:`geog_data_res` variable (within :code:`&geogrid`), use :code:`'modis_30s+30s'` for WRFChem3.7.1 and use :code:`'default'` for WRFChem4.2.
 
 - Within :code:`namelist.wrf.blueprint`:
 
-    - For the :code:`num_metgrid_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
-    - For the :code:`num_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
-    - For the :code:`num_land_cat` variable, use :code:`20` for WRFChem3.7.1 and :code:`21` for WRFChem4.2.
+    - Remove the :code:`force_use_old_data` variable (within :code:`&time_control`) for WRFChem3.7.1 and have it set to :code:`T` for WRFChem4.2.
+    - For the :code:`num_metgrid_soil_layers` variable (within :code:`&domains`), use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
+    - For the :code:`num_soil_layers` variable (within :code:`&physics`), use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
+    - For the :code:`num_land_cat` variable (within :code:`&physics`), use :code:`20` for WRFChem3.7.1 and :code:`21` for WRFChem4.2.
 
 To run with a diurnal cycle
 ===========================
