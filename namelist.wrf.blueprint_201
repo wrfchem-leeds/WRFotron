@@ -22,7 +22,7 @@
  io_form_input                       = 2                                     ! NetCDF
  io_form_boundary                    = 2                                     ! NetCDF
  debug_level                         = 400                                   ! debugging level
- iofields_filename                   = "add_var_to_wrfout.txt", "add_var_to_wrfout.txt", "add_var_to_wrfout.txt",   ! an option to request particular variables to appear in output
+ iofields_filename                   = "iofields", "iofields", "iofields",   ! an option to request particular variables to appear in output
  io_form_auxinput5                   = 2,                                              ! anthropogenic as netCDF                          
  io_form_auxinput6                   = 2,                                              ! biogenic as netCDF                          
  io_form_auxinput7                   = 2,                                              ! biomass burning as netCDF                          

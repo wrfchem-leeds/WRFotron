@@ -34,7 +34,7 @@ WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is l
 
   git clone https://github.com/wrfchem-leeds/WRFotron.git
 
-2. Load the availability of CEMAC modules:
+2. Load the availability of CEMAC modules. If have other modules loaded then unload them (:code:`module purge`), and similarly deactivate conda (:code:`conda deactivate`), as both of these can cause conflits.:
 
 .. code-block:: bash
 

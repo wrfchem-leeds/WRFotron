@@ -188,30 +188,20 @@ Changes for WRFChem4
 
         - RRTMK (ra_sw_physics=14, ra_lw_physics=14) improves RRTMG
 
-- Setting changes
+To run with WRFChem3.7.1 or WRFChem4.2
+======================================
+- Within :code:`config.bash`:
 
-    - namelist.wps.blueprint
+    - Replace all instances of 4.2 with 3.7.1, or vice-versa.
+    - Use the appropriate geography files, being either :code:`/nobackup/WRFChem/WPSGeog3` or :code:`/nobackup/WRFChem/WPSGeog4`.
 
-        - Need to change geog_data_res from ‘modis_30s+30s ‘ to ‘default’
+- Within :code:`namelist.wps.blueprint`, for the :code:`geog_data_res` variable, use :code:`'modis_30s+30s'` for WRFChem3.7.1 and use :code:`'default'` for WRFChem4.2.
 
-    - Namelist.wrf.blueprint
+- Within :code:`namelist.wrf.blueprint`:
 
-        - Num_metgrid_soil_layers from 4 to 3
-        - Num_soil_layers from 4 to 3
-        - Num_land_cat from 20 to 21
-        - io_form_auxinput12 = ISRESTARTVALUE
-
-    - master.bash
-
-        - WPS and spin up
-
-            - s/ISRESTARTVALUE/0/g
-
-        - WRFChem
-
-            - s/ISRESTARTVALUE/1/g
-
-    - New static geography files in WPSGeog4
+    - For the :code:`num_metgrid_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChenm4.2.
+    - For the :code:`num_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChenm4.2.
+    - For the :code:`num_land_cat` variable, use :code:`20` for WRFChem3.7.1 and :code:`21` for WRFChenm4.2.
 
 To run with a diurnal cycle
 ===========================
