@@ -78,7 +78,6 @@ rm FILE*
 # -----------------------------------------------------------------------------
 
 cp -r ${WRFdir}/run/* .
-cp ${chainDir}/add_var_to_wrfout.txt .
 
 rm namelist.input
 cp namelist.wrf.prep.real_metonly namelist.input
