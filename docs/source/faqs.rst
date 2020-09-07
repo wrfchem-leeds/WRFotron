@@ -199,9 +199,9 @@ To run with WRFChem3.7.1 or WRFChem4.2
 
 - Within :code:`namelist.wrf.blueprint`:
 
-    - For the :code:`num_metgrid_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChenm4.2.
-    - For the :code:`num_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChenm4.2.
-    - For the :code:`num_land_cat` variable, use :code:`20` for WRFChem3.7.1 and :code:`21` for WRFChenm4.2.
+    - For the :code:`num_metgrid_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
+    - For the :code:`num_soil_layers` variable, use :code:`4` for WRFChem3.7.1 and :code:`3` for WRFChem4.2.
+    - For the :code:`num_land_cat` variable, use :code:`20` for WRFChem3.7.1 and :code:`21` for WRFChem4.2.
 
 To run with a diurnal cycle
 ===========================
