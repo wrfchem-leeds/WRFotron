@@ -247,3 +247,8 @@ To add (or remove) variables to wrfout files
 - The 0 is for the stream number. Generally, stream numbers of 10-24 are okay, and avoid 22-23.
 - Then list the variables.
 
+To include upper boundary conditions
+====================================
+- Turn on the :code:`have_bcs_upper` flag within :code:`namelist.chem.blueprint` and `follow steps within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZCART_UsersGuide.pdf>`_.   
+
+
