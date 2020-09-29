@@ -249,6 +249,19 @@ To add (or remove) variables to wrfout files
 
 To include upper boundary conditions
 ====================================
-- Turn on the :code:`have_bcs_upper` flag within :code:`namelist.chem.blueprint` and `follow steps within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZCART_UsersGuide.pdf>`_.   
+- Turn on the :code:`have_bcs_upper` boolean within :code:`namelist.chem.blueprint`.  
+- Set the lowest pressure level where the upper boundary concentrations are overwritten: :code:`fixed_ubc_press` variable, default is 50 (hPa).  
+- Provide 2 data files: a climatology for tropopause levels (:code:`clim_p_trop.nc`) and an input file with upper boundary conditions for gas species (:code:`fixed_ubc_inname`).  
+
+    - `Climatologies for 4 different time periods derived from WACCM RCP simulations are here <https://www2.acom.ucar.edu/wrf-chem/wrf-chem-tools-community>`_. `A direct download link is here <http://www.acom.ucar.edu/wrf-chem/UBC_inputs.tar>`_. Within here is the :code:`clim_p_trop.nc` file, along with the 4 different climatology time periods: :code:`ubvals_b40.20th.track1_1950-1959.nc`, :code:`ubvals_b40.20th.track1_1980-1989.nc`, :code:`ubvals_b40.20th.track1_1996-2005.nc`, and :code:`ubvals_rcp4_5.2deg_2020-2029.nc` where the years used to produce the climatology are specified in the file names.  
+
+- Copy the climatology files over to each run folder by adding the following to the bottom of :code:`pre.bash`:  
+
+.. code-block:: bash
+
+  msg "bringing over upper boundary condition files"  
+  cp /nobackup/${USER}/where_you_place_these_files/{clim_p_trop.nc,ubvals_b40.20th.track1_1996-2005.nc} .  
+
+- `More information is here <https://www2.acom.ucar.edu/sites/default/files/wrf-chem/8A_2_Barth_WRFWorkshop_11.pdf>`_ and `here within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZCART_UsersGuide.pdf>`_.  
 
 
