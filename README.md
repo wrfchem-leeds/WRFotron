@@ -8,7 +8,7 @@ WRFotron created by Christoph Knote (christoph.knote@lmu.de).
 Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, and Lauren Fleming.  
 
 #### Quick start
-WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
+WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds users). Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
 
 1. Log into ARC4, clone the WRFotron repo, and edit the `chainDir` path within config.bash if it is not `/nobackup/${USER}/WRFotron`:  
 ```bash
@@ -24,6 +24,8 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
 ```bash
 . master.bash 2016 10 12 00 24 06
 ```
+
+For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).
 
 #### License  
 This code is currently licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship and referencing: [![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)
