@@ -26,7 +26,7 @@ Contents
 
 Quick start
 ===========
-WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is loaded in :code:`config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
+WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds users). Everything required is loaded in :code:`config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
 
 1. Log into ARC4, clone the WRFotron repo, and edit the :code:`chainDir` path within :code:`config.bash` if it is not :code:`/nobackup/${USER}/WRFotron`:  
 
@@ -45,3 +45,5 @@ WRFotron uses pre-built executables on ARC4 from CEMAC. Everything required is l
 .. code-block:: bash
 
   . master.bash 2016 10 12 00 24 06
+
+For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions `here <https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative>`_.  
