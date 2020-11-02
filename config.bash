@@ -98,7 +98,7 @@ pyPpScript=${chainDir}/postprocessing.py
 # ------------------------------------------------------------------------------
 # number of cores to run with for each stage
 nprocPre=1
-nprocMain=32
+nprocMain=64
 nprocPost=4
 
 # mpirun for real.exe and wrf.exe

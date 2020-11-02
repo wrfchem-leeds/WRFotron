@@ -263,7 +263,7 @@ How it works
     - 1 day simulation takes 1 hour wall clock time approximately.  
     - 1 month simulation takes 2 days wall clock time approximately.  
     - 1 year simulations takes 1 month wall clock time approximately.  
-    - :code:`pre.bash` = 7 hours, 1 core, 32GB/process (run in serial).
-    - :code:`main.bash` = 48 hours, 32 cores, 1GB/process (run in parallel).
-    - :code:`post.bash` = 48 hours, 4 core, 12GB/process (run in parallel).
+    - :code:`pre.bash` = 2 hours, 1 core, 12GB/process (run in serial).
+    - :code:`main.bash` = 48 hours, 64 cores, 2GB/process (run in parallel).
+    - :code:`post.bash` = 48 hours, 4 cores, 12GB/process (run in parallel).
 
