@@ -267,3 +267,5 @@ How it works
     - :code:`main.bash` = 48 hours, 64 cores, 2GB/process (run in parallel).
     - :code:`post.bash` = 48 hours, 4 cores, 12GB/process (run in parallel).
 
+- Analyse output using Python. For those new to Python, I have a `introductory course <https://github.com/wrfchem-leeds/python-scripts/tree/master/introduction_to_python>`_.  
+
