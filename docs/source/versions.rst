@@ -6,6 +6,17 @@ Versions
    :language: bash
 
 
+2.2.0 - 10/11/2020
+==================
+- Summary of changes:  
+
+    - Changing default settings to turn on heterogeneous uptake of N2O5 onto aerosol particles. Within :bash:`namelist.chem.blueprint`, :bash:`n2o5_hetchem = 1`.  
+    - Added `introductory Python course for analysing WRFChem output <https://github.com/wrfchem-leeds/python-scripts/tree/master/introduction_to_python>`_.  
+    - Added blueprints for CEMAC/manual compilation runs.  
+    - Added Python postprocessing script.  
+    - Changed default cores to 64.   
+
+
 2.1.0 - 23/06/2020
 ==================
 - Changes relative to version 2.0.0:  
