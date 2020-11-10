@@ -1,4 +1,5 @@
 ### WRFotron
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/wrfchem-leeds/WRFotron)  
 Tools to automatise WRF-Chem runs with re-initialised meteorology.  
 
 WRFotron created by Christoph Knote (christoph.knote@lmu.de).  
