@@ -1,5 +1,8 @@
 ### WRFotron
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/wrfchem-leeds/WRFotron)  
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/wrfchem-leeds/WRFotron)
+![GitHub](https://img.shields.io/github/license/wrfchem-leeds/WRFotron?label=License)
+[![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)  
+
 Tools to automatise WRF-Chem runs with re-initialised meteorology.  
 
 WRFotron created by Christoph Knote (christoph.knote@lmu.de).  
@@ -27,6 +30,3 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
 ```
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).
-
-#### License  
-This code is currently licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRF simulations made using the WRFotron scripts, and you think this contributed substantially to you research, please consider offering co-authorship and referencing: [![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)
