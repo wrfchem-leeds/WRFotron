@@ -107,7 +107,6 @@ How it works
 
   cd /nobackup/${USER}  
   find . -exec touch -ah {} \;
-  find . -exec touch -a {} \;  
 
 - Simulation folder layout  automatically created by WRFChem:  
 

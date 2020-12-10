@@ -5,6 +5,8 @@
 # code
 # ------------------------------------------------------------------------------
 module load ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
+# if also using personal conda, then remove the above line and replace with:
+# conda activate python3_ncl_nco
 
 version=2.1
 projectTag=simulation_WRFChem4.2_test

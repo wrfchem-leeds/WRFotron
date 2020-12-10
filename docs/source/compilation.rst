@@ -195,7 +195,7 @@ Conda
 
 .. code-block:: bash
 
-  conda create -n python3_ncl_nco -c conda-forge -c oggm xarray salem xesmf numpy scipy pandas matplotlib rasterio affine ncl nco wrf-python
+  conda create -n python3_ncl_nco -c conda-forge xarray salem xesmf numpy scipy pandas matplotlib rasterio affine ncl nco wrf-python dask geopandas descartes
 
 - To activate/deactivate conda environment:  
 
