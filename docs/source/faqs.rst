@@ -264,4 +264,18 @@ To include upper boundary conditions
 
 - `More information is here <https://www2.acom.ucar.edu/sites/default/files/wrf-chem/8A_2_Barth_WRFWorkshop_11.pdf>`_ and `here within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZCART_UsersGuide.pdf>`_.  
 
+To run with the chemistry option T1-MOZCART (chem_opt = 114)
+============================================================
+- Replace the contents of :code:`mozbc.inp` with that from :code:`mozbc.inp.blueprint_114_mz4`.  
+- Delete ONIT from boundary condition input file (i.e. :code:`moz0001.nc`), as this is not currently in our version of WRFChem.  
+- Delete N2O from boundary condition input file (i.e. :code:`moz0001.nc`), as this is not in the MOZBC netcdf file.  
+- Make the following changes to :code:`namelist.chem.blueprint`:  
 
+  - :code:`cldchem_onoff = 0`, was previously 1.  
+  - :code:`biomass_burn_opt = 4`, was previously 2.  
+
+- Make the following change to :code:`namelist.wrf.blueprint`:  
+
+  - :code:`auxinput6_inname = 'wrfbiochemi_d<domain>', ! biogenic emission filename`, was previously :code:`'wrfbiochemi_d<domain>_<date>'`.    
+
+- More `information is here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/T1-MOZCART-UsersGuide-27April2018.pdf>`_.  
