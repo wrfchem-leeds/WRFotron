@@ -51,7 +51,7 @@ Versions
 
         - The original option 2 was 50% at the surface and 50% evenly throughout the BL.  
         - The new option 2 has all BB emissions evenly distributed throughout the BL.  
-        - `To add the bbinjectscheme to any new version of WRFChem <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/add_bbinjectscheme.md>`_.  
+        - `To add the bbinjectscheme to any new version of WRFChem <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/add_bbinjectscheme.md>`_.  
 
     - Diurnal cycle from Olivier et al., (2003).  
     - Aerosol optical properties approximated by Maxwell-Garnett.  
@@ -60,7 +60,7 @@ Versions
         - `Download the additional data files <http://www.acom.ucar.edu/wrf-chem/TUV.phot.bz2>`_ to your :bash:`WRFChem/run` folder.  
         - Extract the data directories :bash:`DATAE1` and :bash:`DATAJ1`, and the :bash:`wrf_tuv_xsqy.nc` file from downloaded file using :bash:`tar xvf TUV.phot.bz2`.  
 
-    - `Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/CESM-WRFchem_aerosols_plusgas.pdf>`_.  
+    - `Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/CESM-WRFchem_aerosols_plusgas.pdf>`_.  
     - Fixed the bug where nudging would stop after 312 hours (i.e. after day 13 of a simulation) i.e. changed :bash:`gfdda_end_h` to 10,000.  
     - Nudge above the boundary layer. To do this, go into :bash:`namelist.wrf.blueprint`, and within the FDDA section change:  
 

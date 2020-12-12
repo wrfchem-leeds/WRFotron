@@ -82,7 +82,7 @@ To run with a nest
 ==================
 - Offline nests:
 
-    - See `step-by-step guide to run with a nest document from Carly Reddington <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_offline_nesting_CR.pdf>`_.  
+    - See `step-by-step guide to run with a nest document from Carly Reddington <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/Guide_to_offline_nesting_CR.pdf>`_.  
     - Uses ndown.exe for one-way nesting
     - Feedback = 0
     - Parent and nest domain may drift apart
@@ -230,7 +230,7 @@ To run with a diurnal cycle
 
 To run with NAEI emissions
 ==========================
-- `Follow the guide created by Ailish Graham <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/Guide_to_NAEI_emissions_AG.pdf>`_.  
+- `Follow the guide created by Ailish Graham <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/Guide_to_NAEI_emissions_AG.pdf>`_.  
 
 To add (or remove) variables to wrfout files
 ============================================
@@ -262,7 +262,7 @@ To include upper boundary conditions
   msg "bringing over upper boundary condition files"  
   cp /nobackup/${USER}/where_you_place_these_files/{clim_p_trop.nc,ubvals_b40.20th.track1_1996-2005.nc} .  
 
-- `More information is here <https://www2.acom.ucar.edu/sites/default/files/wrf-chem/8A_2_Barth_WRFWorkshop_11.pdf>`_ and `here within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZCART_UsersGuide.pdf>`_.  
+- `More information is here <https://www2.acom.ucar.edu/sites/default/files/wrf-chem/8A_2_Barth_WRFWorkshop_11.pdf>`_ and `here within Chapter 2 here <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/MOZCART_UsersGuide.pdf>`_.  
 
 To run with the chemistry option T1-MOZCART (chem_opt = 114)
 ============================================================
@@ -278,4 +278,4 @@ To run with the chemistry option T1-MOZCART (chem_opt = 114)
 
   - :code:`auxinput6_inname = 'wrfbiochemi_d<domain>', ! biogenic emission filename`, was previously :code:`'wrfbiochemi_d<domain>_<date>'`.    
 
-- More `information is here <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/T1-MOZCART-UsersGuide-27April2018.pdf>`_.  
+- More `information is here <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/T1-MOZCART-UsersGuide-27April2018.pdf>`_.  

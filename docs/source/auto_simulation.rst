@@ -85,7 +85,7 @@ How it works
         - Variable table for the intial and boundary meteorological conditions.  
 
     - preprocessor input files (:code:`emis_edgarhtap2_mozmos.inp`, :code:`exo_coldens.inp`, :code:`fire_emis.mozm.inp`, :code:`mozbc.inp`, :code:`megan_bio_emiss.inp`, :code:`mozbc.inp.blueprint_201_mz4`, :code:`mozbc.inp.blueprint_202_mz4`).     
-    - For files which depend on the aerosol / chemistry schemes (mozbc.inp, namelist.chem, and namelist.wrf), there are blueprints of each of these files for both the mozart_mosaic_4bin (:code:`chem_opt = 201`) and the mozart_mosaic_4bin_aq (:code:`chem_opt = 202`). See `document <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf>`_.  
+    - For files which depend on the aerosol / chemistry schemes (mozbc.inp, namelist.chem, and namelist.wrf), there are blueprints of each of these files for both the mozart_mosaic_4bin (:code:`chem_opt = 201`) and the mozart_mosaic_4bin_aq (:code:`chem_opt = 202`). See `document <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/MOZART_MOSAIC_V3.6.readme_dec2016.pdf>`_.  
 
         - Replace the contents of the namelist with the blueprint_201 / 202 version.  
 

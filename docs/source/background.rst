@@ -10,8 +10,8 @@ Background
 - `WRF workshops, in person, UK <https://www.ncas.ac.uk/index.php/en/wrf-tutorials>`_.  
 - `Past WRFChem presentations <http://www2.mmm.ucar.edu/wrf/users/workshops/>`_.  
 - `WRFChem tutorials here <https://ruc.noaa.gov/wrf/wrf-chem/tutorialexercises.htm>`_.  
-- `Fire INventory from NCAR (FINN) emission preparation <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/FINN_Emiss_prep_MOZART.pdf>`_.  
-- `Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme <https://github.com/wrfchem-leeds/WRFotron/blob/master/additional_docs/MOZART_MOSAIC_V3.6.readme_dec2016.pdf>`_. 
+- `Fire INventory from NCAR (FINN) emission preparation <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/FINN_Emiss_prep_MOZART.pdf>`_.  
+- `Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/MOZART_MOSAIC_V3.6.readme_dec2016.pdf>`_. 
 - Key papers:  
 
     - `Grell, G.A., et al. (2005). Fully coupled “online” chemistry within the WRF model. Atmos. Environ. 39, 69576975. <https://doi.org/10.1016/j.atmosenv.2005.04.027>`_.  

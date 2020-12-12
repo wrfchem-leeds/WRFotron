@@ -7,7 +7,7 @@ WRFotron created by Christoph Knote (christoph.knote@lmu.de).
 
 User guide created by Luke Conibear (l.a.conibear@leeds.ac.uk).  
 
-Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Douglas Lowe, Scott Archer-Nicholls, and Edward Butt.  
+Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Douglas Lowe, Scott Archer-Nicholls, Edward Butt, and Lauren Fleming.  
 
 Contents
 ========
