@@ -259,7 +259,7 @@ Compile WPS, WRFMeteo, and WRFChem
 
 .. code-block:: bash
 
-  cd /nobackup/username/WRFChem
+  cd /nobackup/${USER}/WRFChem
   ./clean -a
   ./configure
 
@@ -287,7 +287,7 @@ Compile WPS, WRFMeteo, and WRFChem
 
 .. code-block:: bash
 
-  cd /nobackup/username/WPS
+  cd /nobackup/${USER}/WPS
   ./clean -a
   ./configure
 
@@ -320,7 +320,7 @@ Compile WPS, WRFMeteo, and WRFChem
 
   export WRF_CHEM=0
 
-  cd /nobackup/username/WRFMeteo
+  cd /nobackup/${USER}/WRFMeteo
   ./clean -a
   ./configure
 
