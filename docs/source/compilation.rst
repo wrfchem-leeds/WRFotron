@@ -215,33 +215,45 @@ Conda
 
 Compile WPS, WRFMeteo, and WRFChem
 **********************************
-- Modules:
+- Setup:
 
 .. code-block:: bash
 
-  conda deactivate # maybe multiple times
+
+  # compiler setup
+  COMPILER_VER='intel:19.0.4'
+  MPI_VER='openmpi:3.1.4' # could use intelmpi instead of openmpi, and then also need: export I_MPI_HYDRA_TOPOLIB=ipl
+  CMP=${COMPILER_VER%:*}
+  CMP_VER=${COMPILER_VER#*:}
+  MP=${MPI_VER%:*}
+  MP_VER=${MPI_VER#*:}
+  FLAVOUR="${CMP}-${CMP_VER}-${MP}-${MP_VER}"
+
+  # modules
+  conda deactivate # maybe multiple times if many environments activated
   module purge
-  module load intel openmpi netcdf
-  # could use intelmpi instead of openmpi, and then also need: export I_MPI_HYDRA_TOPOLIB=ipl
+  module load licenses sge ${CMP}/${CMP_VER} ${MP}/${MP_VER} netcdf hdf5 patchelf
 
-- Environment variables:
+  # environment variables - shell
+  NETCDF=$(nc-config --prefix)
+  NETCDF_DIR=$NETCDF
+  YACC='/usr/bin/yacc -d'
+  FLEX_LIB_DIR='/nobackup/WRFChem/flex/lib'
+  LD_LIBRARY_PATH=$FLEX_LIB_DIR:$LD_LIBRARY_PATH
+  JASPERLIB='/usr/lib64'
+  JASPERINC='/usr/include'
 
-.. code-block:: bash
+  # environment variables - WRFChem
+  WRF_EM_CORE=1 # selects the ARW core
+  WRF_NMM_CORE=0 # ensures that the NMM core is deselected
+  WRF_CHEM=1 # selects the WRF-Chem module
+  WRF_KPP=1 # turns on Kinetic Pre-Processing (KPP)
+  WRFIO_NCD_LARGE_FILE_SUPPORT=1 # supports large wrfout files
 
-  export FC=ifort
-  export NETCDF=$(nc-config --prefix)
-  export NETCDF_DIR=$NETCDF
-  export YACC='/usr/bin/yacc -d'
-  export FLEX_LIB_DIR='/nobackup/WRFChem/flex/lib'
-  export LD_LIBRARY_PATH=$FLEX_LIB_DIR:$LD_LIBRARY_PATH
-  export JASPERLIB=/usr/lib64
-  export JASPERINC=/usr/include
+  # export variables
+  export FC CC NETCDF NETCDF_DIR YACC FLEX_LIB_DIR LD_LIBRARY_PATH JASPERLIB JASPERINC
+  export WRFIO_NCD_LARGE_FILE_SUPPORT WRF_KPP WRF_CHEM WRF_NMM_CORE WRF_EM_CORE
 
-  export WRF_EM_CORE=1 # selects the ARW core
-  export WRF_NMM_CORE=0 # ensures that the NMM core is deselected
-  export WRF_CHEM=1 # selects the WRFChem module
-  export WRF_KPP=1 # turns on Kinetic Pre-Processing (KPP)
-  export WRFIO_NCD_LARGE_FILE_SUPPORT=1 # supports large wrfout files
 
 - WRFChem compilation:
 
