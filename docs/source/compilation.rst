@@ -158,9 +158,9 @@ Setup
 
 .. code-block:: bash
 
-  conda deactivate
+  conda deactivate # maybe multiple times
   module purge
-  module load intel netcdf
+  module load intel netcdf openmpi
   export NETCDF=$(nc-config --prefix)
   export NETCDF_DIR=$NETCDF
   export FC=ifort
@@ -219,12 +219,10 @@ Compile WPS, WRFMeteo, and WRFChem
 
 .. code-block:: bash
 
-  conda deactivate
-  module unload conda
-  module unload openmpi
-  module load intel
-  module load intelmpi
-  module load netcdf
+  conda deactivate # maybe multiple times
+  module purge
+  module load intel openmpi netcdf
+  # could use intelmpi instead of openmpi, and then also need: export I_MPI_HYDRA_TOPOLIB=ipl
 
 - Environment variables:
 
@@ -234,7 +232,7 @@ Compile WPS, WRFMeteo, and WRFChem
   export NETCDF=$(nc-config --prefix)
   export NETCDF_DIR=$NETCDF
   export YACC='/usr/bin/yacc -d'
-  export FLEX_LIB_DIR='/nobackup/username/flex/lib'
+  export FLEX_LIB_DIR='/nobackup/WRFChem/flex/lib'
   export LD_LIBRARY_PATH=$FLEX_LIB_DIR:$LD_LIBRARY_PATH
   export JASPERLIB=/usr/lib64
   export JASPERINC=/usr/include
