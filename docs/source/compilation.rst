@@ -26,7 +26,7 @@ Custom executables
     - Then copy the :code:`build.sh` and the WRFChem .tar.gz file for the version of choice (e.g. 4.2 below).
     - Then run the build script as below.
     - This copies over the code, builds everything, puts the executables in :code:`software/apps/WRFChem/`, and hardlinks in the correct NetCDF libraries to avoid accidentally pointing to the wrong NetCDF libraries (e.g. from conda) through :code:`/nobackup/WRFChem/build_scripts/linknchdf5.sh`.
-    - When finished, update :code:`WRFotron/config.bash` to direct to this new build.
+    - When finished, update :code:`WRFotron/config.bash` to direct to this new build, remove the WRFChem module from being loaded, and copy over the manual blueprints as :code:`pre.bash`, :code:`main.bash`, and  :code:`main_restart.bash` (reasons why given below in Manual compilation).  
     - Optional: Can then add any custom edits and `manually recompile <https://wrfotron.readthedocs.io/en/latest/compilation.html#compile-wps-wrfmeteo-and-wrfchem>`_.
 
 .. code-block:: bash
@@ -38,7 +38,19 @@ Custom executables
   cp /nobackup/WRFChem/build_scripts/4.2/build.sh .
   cp /nobackup/cemac/software/build/WRFChem/4.2/src/WRFChem4.2.tar.gz ../src/
   ./build.sh 
-  # update WRFotron/config.bash to point to this new build
+
+  # go to your WRFotron and update config.bash to point to this new build, e.g.:
+  # cd /nobackup/${USER}/WRFotron
+  # gedit config.bash # or any other text editor
+  # WRFdir=/nobackup/${USER}/software/build/WRFChem/4.2/1/intel-19.0.4-openmpi-3.1.4/WRFChem4.2/WRFChem4.2 # example here for WRFChem, the exact path will be specific to your build(s)
+
+  # in config.bash remove WRFchem/4.2 from the module load line, e.g.:
+  # module load intel/19.0.4 openmpi/3.1.4 ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
+
+  # from the namelists folder, copy over the manual build pre.bash and main.bash, e.g.:
+  # cp namelists/pre.bash.blueprint_manual pre.bash
+  # cp namelists/main.bash.blueprint_manual main.bash
+  # cp namelists/main_restart.bash.blueprint_manual main_restart.bash
 
 - To build and use a custom preprocessor:
 
