@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------------
 # code
 # ------------------------------------------------------------------------------
-module load intel/19.0.4 openmpi/3.1.4 WRFchem/4.2 ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
+module load intel/19.0.4 openmpi/3.1.4 netcdf/4.6.3 WRFchem/4.2 ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
 
 version=2.1
 projectTag=simulation_WRFChem4.2_test
