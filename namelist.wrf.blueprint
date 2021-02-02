@@ -23,12 +23,7 @@
  io_form_boundary                    = 2                                     ! NetCDF
  debug_level                         = 400,                                  ! debugging level
  iofields_filename                   = "iofields", "iofields", "iofields",   ! an option to request particular variables to appear in output
- io_form_auxinput5                   = 2,                                              ! anthropogenic as netCDF                          
- io_form_auxinput6                   = 2,                                              ! biogenic as netCDF                          
  io_form_auxinput7                   = 2,                                              ! biomass burning as netCDF                          
- auxinput5_interval_m                = 60, 60, 60,                                     ! anthropogenic emission time interval, minutes
- auxinput6_inname                    = 'wrfbiochemi_d<domain>',                        ! biogenic emission filename
- auxinput6_interval_d                = 600, 600, 600,                                  ! biogenic emission time interval, days
  auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',                ! biomass burning filename
  auxinput7_interval_m                = 60, 60, 60,                                     ! biomass burning time interval, minutes
  frames_per_auxinput7                = 1, 1, 1,                                        ! biomass burning files per time interval
