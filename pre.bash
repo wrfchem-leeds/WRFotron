@@ -146,7 +146,7 @@ anthro_emis < anthro_emis.inp > anthro_emis.out
 # apply diurnal cycle
 ln -s ${WRFemitdir}/* .
 rm -f final_output
-cp -rp ${WRFemitdir}/WRF_UoM_EMIT/final_output .
+cp -rp ${WRFemitdir}/final_output .
 ncl MAIN_emission_processing.ncl > diurnal_emiss.out
 python sum_sector_emiss_wrfchemi.py >> diurnal_emiss.out
 

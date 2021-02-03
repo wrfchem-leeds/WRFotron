@@ -23,12 +23,12 @@
  io_form_boundary                    = 2                                     ! NetCDF
  debug_level                         = 400,                                  ! debugging level
  iofields_filename                   = "iofields", "iofields", "iofields",   ! an option to request particular variables to appear in output
- io_form_auxinput7                   = 2,                                              ! biomass burning as netCDF                          
- auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',                ! biomass burning filename
- auxinput7_interval_m                = 60, 60, 60,                                     ! biomass burning time interval, minutes
- frames_per_auxinput7                = 1, 1, 1,                                        ! biomass burning files per time interval
- io_form_auxinput12                  = __ISRESTARTVALUE__,                             ! restart file type
- force_use_old_data                  = T,                                              ! allow WRFChem4 to run with data from WRFChem3
+ io_form_auxinput7                   = 2,                                    ! biomass burning as netCDF                          
+ auxinput7_inname                    = 'wrffirechemi_d<domain>_<date>',      ! biomass burning filename
+ auxinput7_interval_m                = 60, 60, 60,                           ! biomass burning time interval, minutes
+ frames_per_auxinput7                = 1, 1, 1,                              ! biomass burning files per time interval
+ io_form_auxinput12                  = __ISRESTARTVALUE__,                   ! restart file type
+ force_use_old_data                  = T,                                    ! allow WRFChem4 to run with data from WRFChem3
  /
 
  &domains                                                                  ! domains - dimensions, nesting, parameters
