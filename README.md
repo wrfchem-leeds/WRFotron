@@ -14,12 +14,12 @@ Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, T
 #### Quick start
 WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds users). Everything required is loaded in `config.bash`, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.  
 
-1. Log into ARC4, clone the WRFotron repo, and edit the `chainDir` path within config.bash if it is not `/nobackup/${USER}/WRFotron`:  
+1. Log into ARC4, clone the WRFotron repo, and edit the `chainDir` path within `config.bash` if it is not `/nobackup/${USER}/WRFotron`:  
 ```bash
 git clone https://github.com/wrfchem-leeds/WRFotron.git
 ```
 
-2. Load the availability of CEMAC modules. If have other modules loaded then unload them (`module purge`), and similarly deactivate conda (`conda deactivate`), as both of these can cause conflits.:
+2. Load the availability of CEMAC modules. If have other modules loaded then unload them (`module purge`), and similarly deactivate conda (`conda deactivate`), as both of these can cause conflits:
 ```bash
 . /nobackup/cemac/cemac.sh
 ```
