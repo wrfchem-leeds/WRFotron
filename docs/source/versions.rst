@@ -5,6 +5,36 @@ Versions
 .. role:: bash(code)
    :language: bash
 
+2.3.0 - 04/02/2021
+==================
+- Updates
+
+  - Action needed:
+
+    - Either clone the new repository.
+    - Or add the following changes to an existing WRFotron:
+
+      - In :bash:`config.bash`, add :bash:`netcdf/4.6.3` to the loaded modules.
+      - In :bash:`namelist.wrf.blueprint`, remove all instances of :bash:`auxinput5/6` from the :bash:`&time_control` section.
+
+        - `This fixes meteorological spin up in CEMAC builds issue <https://github.com/wrfchem-leeds/WRFotron/issues/24>`_.
+
+      - In :bash:`namelist.chem.blueprint`, change :bash:`dust_opt` to 13.
+
+        - `This replaces dust_opt 3 for WRFChem4.2 issue <https://github.com/wrfchem-leeds/WRFotron/issues/25>`_.
+
+      - In :bash:`pre.bash`, remove duplicate :bash:`WRF_UoM_EMIT/` in path for copying over the :bash:`final_output` (line 149).
+
+  - No action needed:
+
+    - CEMAC conda module includes python libraries required for post-processing (:bash:`pp_concat_regrid.py`) script.
+    - CEMAC modulefile for WRFChem4.2 updated for build 2.
+
+      - `This fixes the N2O5 chemistry issue <https://github.com/wrfchem-leeds/WRFotron/issues/23>`_.
+
+    - CEMAC build for WPSChem3.7.1 fixed for geogrid and metgrid.
+    - Removed superfluous :bash:`anthro_emis.inp` from WRF_UoM_EIT.
+
 
 2.2.0 - 10/11/2020
 ==================
