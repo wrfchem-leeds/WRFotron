@@ -3,7 +3,7 @@ User Guide
 **********
 Tools to automatise WRF-Chem runs with re-initialised meteorology.
 
-WRFotron created by Christoph Knote (christoph.knote@lmu.de).  
+WRFotron created by Christoph Knote (christoph.knote@med.uni-augsburg.de).  
 
 User guide created by Luke Conibear (l.a.conibear@leeds.ac.uk).  
 
