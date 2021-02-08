@@ -269,64 +269,51 @@ Compile WPS, WRFMeteo, and WRFChem
 
 - WRFChem compilation:
 
+  - HPC option will be specific to your HPC architecture.
+  - ARC4 = 15 = INTEL (ifort/icc) (dmpar) e.g. Distributed-Memory Parallelism MPI.
+  - Compile for basic nesting: option 1.
+  - Compile real (as oppose to ideal simulations).
+  - Thousands of messages will appear. Compilation takes about 20-30 minutes.
+  - How do you know your compilation was successful? If you have all four :code:`main/*.exe`.
+  - Check the executables have all relevant linked libraries: :code:`ldd main/wrf.exe`.
+
 .. code-block:: bash
 
   cd /nobackup/${USER}/WRFChem
   ./clean -a
-  ./configure
+  ./configure # 15 for intel (ifort/icc) (dmpar) hpc architecture, 1 for basic nesting
 
-- HPC option will be specific to your HPC architecture.
-- ARC4 = 15 = INTEL (ifort/icc) (dmpar) e.g. Distributed-Memory Parallelism MPI.
-- Compile for basic nesting: option 1.
-- Compile real (as oppose to ideal simulations).
-- Thousands of messages will appear. Compilation takes about 20-30 minutes.
-
-.. code-block:: bash
-
-  ./compile em_real >& log.compile
-
-- How do you know your compilation was successful? 
-
-    - If you have :code:`main/*.exe`.
-
-- Check the executables have all relevant linked libraries:
-
-.. code-block:: bash
-
-  ldd main/wrf.exe
+  ./compile em_real >& log.compile 
 
 - WPS compilation (requires a successfully compiled WRF):
+
+  - HPC option will be specific to your HPC architecture.
+  - ARC4 = 17 = INTEL (ifort/icc) (serial).
+  - Sometimes :code:`configure.wps` can assign the incorrect path to WRFChem, check and edit if required.
+  - How do you know your compilation was successful? If you have :code:`geogrid.exe`, :code:`metgrid.exe`, and :code:`ungrib.exe`.
+  - Check the executables have all relevant linked libraries: :code:`ldd geogrid.exe`.
 
 .. code-block:: bash
 
   cd /nobackup/${USER}/WPS
   ./clean -a
-  ./configure
-
-- HPC option will be specific to your HPC architecture.
-- ARC4 = 17 = INTEL (ifort/icc) (serial).
-- Sometimes configure.wps can assign the incorrect path to WRFChem, check and edit if required:
-
-.. code-block:: bash
+  ./configure # 17 for intel (ifort/icc) (serial) hpc architecture
 
   gedit configure.wps
   WRF_DIR="/nobackup/${USER}/WRFChem"
 
   ./compile >& log.compile
 
-- How do you know your compilation was successful?
-
-    - If you have geogrid.exe, metgrid.exe, and ungrib.exe.
-
-- Check the executables have all relevant linked libraries:
-
-.. code-block:: bash
-
-  ldd geogrid.exe
-
 - WRFMeteo compilation:
 
-    - Deselect the WRFChem module
+    - Deselect the WRFChem module.
+    - HPC option will be specific to your HPC architecture.
+    - ARC4 = 15 = INTEL (ifort/icc) (dmpar).  
+    - Compile for basic nesting: option 1.
+    - Compile real (as oppose to ideal simulations).
+    - Thousands of messages will appear. Compilation takes about 20-30 minutes.
+    - How do you know your compilation was successful? If you have all four :code:`main/*.exe`.
+    - Check the executables have all relevant linked libraries: :code:`ldd main/wrf.exe`.
 
 .. code-block:: bash
 
@@ -334,31 +321,19 @@ Compile WPS, WRFMeteo, and WRFChem
 
   cd /nobackup/${USER}/WRFMeteo
   ./clean -a
-  ./configure
-
-- HPC option will be specific to your HPC architecture.
-- ARC4 = 15 = INTEL (ifort/icc) (dmpar).
-- Compile for basic nesting: option 1.
-- Compile real (as oppose to ideal simulations).
-- Thousands of messages will appear. Compilation takes about 20-30 minutes.
-
-.. code-block:: bash
+  ./configure # 15 for intel (ifort/icc) (dmpar) hpc architecture, 1 for basic nesting
 
   ./compile em_real >& log.compile
 
-- Check have :code:`main/*.exe`.
-- Check the executables have all relevant linked libraries:
+- Preprocessors
 
-.. code-block:: bash
-
-  ldd main/real.exe
-
-- If make any changes to pre-processor settings then require a fresh re-compile.
-- Also check if preprocessor requires a different module version that currently compiled with.
-- Run above environment variables to get NetCDF.
-- Add :code:`-lnetcdff` to Makefile.
-- Note for wes_coldens: FC hardcoded in :code:`make_util`.
-- Downloaded tools from `here <http://www.acom.ucar.edu/wrf-chem/download.shtml>`_.
+  - If make any changes to preprocessors then they require recompilation.
+  - Raw preprocessors downloaded from `here <http://www.acom.ucar.edu/wrf-chem/download.shtml>`_.
+  - Ensure the setup is the same as above for manual compilation of WPS/WRFChem/WRFMeteo.
+  
+    - May need to check if preprocessor requires a different module version that currently compiled with.
+    - If Makefile cannot locate the correct NetCDF path, may need to add :code:`-lnetcdff`.
+    - Note for wes_coldens: FC hardcoded in :code:`make_util`.
 
 - If need JASPER:
 
