@@ -354,8 +354,7 @@ cat < ${chainDir}/namelist.chem.blueprint >> namelist.wrf.prep.chem_cold
 # meh - auxinput_interval_d might need max_domains values!
 cat > patchy << PATCH_END
  io_form_auxinput5                   = 2,
- ! io_form_auxinput5                   = 2,
- ! auxinput5_interval_m                = 60,
+ auxinput5_interval_m                = 60,
  ! frames_per_auxinput5                = 1,
  ! auxinput5_inname                    = 'wrfchemi_d<domain>_<date>'
  io_form_auxinput6                   = 2,
