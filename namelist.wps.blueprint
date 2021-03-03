@@ -12,17 +12,17 @@
  parent_grid_ratio =   1, 3,                            ! nesting ratio relative to the domain’s parent
  i_parent_start    =   1, 35,                           ! x coordinate of the lower-left corner
  j_parent_start    =   1, 10,                           ! y coordinate of the lower-left corner
- e_we              =  140, 220,                         ! westeast dimension
- e_sn              =  140, 120,                         ! southnorth dimension
+ e_we              =  170, 220,                         ! westeast dimension
+ e_sn              =  170, 120,                         ! southnorth dimension
  geog_data_res     = 'default', 'default',              ! resolution, or list of resolutions separated by + symbols, of source data to be used when interpolating static terrestrial data to the nest’s grid
  dx = 30000,                                            ! westeast resolution, in metres for 'polar', 'lambert', and 'mercator'
  dy = 30000,                                            ! westeast resolution, in metres for 'polar', 'lambert', and 'mercator'
  map_proj = 'lambert',                                  ! map projection
- ref_lat   =  20.0,                                     ! center latitude
- ref_lon   =  80.0,                                     ! centre longitude
- truelat1  =  10.0,                                     ! the first true latitude for the Lambert conformal projection, or the only true latitude for the Mercator and polar stereographic projections
- truelat2  =  30.0,                                     ! the second true latitude for the Lambert conformal conic projection. For all other projections, truelat2 is ignored
- stand_lon =  80.0,                                     ! the longitude that is parallel with the y-axis in the Lambert conformal and polar stereographic projections
+ ref_lat   =  33.0,                                     ! center latitude
+ ref_lon   =  103.0,                                    ! centre longitude
+ truelat1  =  23.0,                                     ! the first true latitude for the Lambert conformal projection, or the only true latitude for the Mercator and polar stereographic projections
+ truelat2  =  43.0,                                     ! the second true latitude for the Lambert conformal conic projection. For all other projections, truelat2 is ignored
+ stand_lon =  103.0,                                    ! the longitude that is parallel with the y-axis in the Lambert conformal and polar stereographic projections
  geog_data_path = '__geogDir__'                         ! path to the static geography files
 /
 

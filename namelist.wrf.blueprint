@@ -37,8 +37,8 @@
  time_step_fract_num                 = 0,                                    ! numerator for fractional time step
  time_step_fract_den                 = 1,                                    ! denominator for fractional time step
  max_dom                             = 1,                                    ! number of domains
- e_we                                = 140, 154,                             ! westeast dimension
- e_sn                                = 140, 154,                             ! southnorth dimension
+ e_we                                = 170, 154,                             ! westeast dimension
+ e_sn                                = 170, 154,                             ! southnorth dimension
  e_vert                              = 33, 33,                               ! vertical dimension
  num_metgrid_levels                  = 38,                                   ! number of vertical levels in WPS output
  num_metgrid_soil_levels             = 3,                                    ! number of soil levels or layers in WPS output
