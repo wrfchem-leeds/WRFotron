@@ -127,8 +127,8 @@ def create_variables(raw_wrfout_filename):
     # cloud liquid water path
     cloud_liquid_water = getvar(raw_wrfout_file_nc, "QCLOUD")  # kg kg-1
     cloud_liquid_water_path = (
-        cloud_liquid_water / inverse_density / layer_thickness_destaggered * 1e3
-    )
+        cloud_liquid_water * layer_thickness_destaggered / inverse_density * 1_000
+    ) # the 1000 at the end has units g/kg, to get from kg/m2 to g/m2
     cloud_liquid_water_path = cloud_liquid_water_path.sum(dim="bottom_top")
     cloud_liquid_water_path.attrs = cloud_liquid_water.attrs
     cloud_liquid_water_path.attrs["units"] = "g m-2"
@@ -137,7 +137,7 @@ def create_variables(raw_wrfout_filename):
 
     # cloud ice path
     cloud_ice = getvar(raw_wrfout_file_nc, "QICE")  # kg kg-1
-    cloud_ice_path = cloud_ice / inverse_density / layer_thickness_destaggered * 1e3
+    cloud_ice_path = cloud_ice * layer_thickness_destaggered / inverse_density * 1_000  # the 1000 at the end has units g/kg, to get from kg/m2 to g/m2
     cloud_ice_path = cloud_ice_path.sum(dim="bottom_top")
     cloud_ice_path.attrs = cloud_ice.attrs
     cloud_ice_path.attrs["units"] = "g m-2"
@@ -145,9 +145,9 @@ def create_variables(raw_wrfout_filename):
     cloud_ice_path = cloud_ice_path.rename("CIP")
 
     # cloud water vapor columns
-    cloud_water_vapor = getvar(raw_wrfout_file_nc, "QVAPOR")  # rho_water = 1000 kg m-3
+    cloud_water_vapor = getvar(raw_wrfout_file_nc, "QVAPOR")  # rho_water = 1000 kg m-3, to cm --> H2O in cm3 cm-2
     cloud_water_vapor_column = (
-        cloud_water_vapor / inverse_density / layer_thickness_destaggered / 1000.0 * 1e2
+        cloud_water_vapor * layer_thickness_destaggered / inverse_density / 10
     )
     cloud_water_vapor_column = cloud_water_vapor_column.sum(dim="bottom_top")
     cloud_water_vapor_column.attrs = cloud_water_vapor.attrs

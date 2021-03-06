@@ -5,7 +5,7 @@
 #$ -cwd -V
 #$ -l h_rt=48:00:00
 #$ -pe ib __nprocMain__
-#$ -l h_vmem=4G
+#$ -l h_vmem=2G
 
 . config.bash
 
