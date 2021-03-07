@@ -27,6 +27,7 @@ for domain in domains:
                 wrf_a02 = ds[variable + "_a02"].isel(bottom_top=0)
                 wrf_a03 = ds[variable + "_a03"].isel(bottom_top=0)
                 wrf = wrf_a01 + wrf_a02 + wrf_a03
+                wrf = wrf / ds['ALT'] # unit conversion from ug/kg to ug/m3
             elif (
                 (surface_only == "yes")
                 and (variable == "PM2_5_DRY")
