@@ -30,7 +30,8 @@ for domain in domains:
                 wrf_a03 = ds[variable + "_a03"].isel(bottom_top=0)
                 wrf = wrf_a01 + wrf_a02 + wrf_a03
                 if convert_aerosol_units_from_ugkg_to_ugm3:
-                    wrf = wrf / ds['ALT']
+                    inverse_density = ds['ALT'].isel(bottom_top=0)
+                    wrf = wrf / inverse_density
             elif (
                 surface_only
                 and (variable == "PM2_5_DRY")
