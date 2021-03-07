@@ -5,6 +5,7 @@ import glob
 import xesmf as xe
 import numpy as np
 
+# setup - ensure meets your requirements
 year = "2016"
 month = "10"
 res = 0.25
@@ -12,8 +13,9 @@ domains = ["1"]
 variables = ["PM2_5_DRY", "o3", "AOD550_sfc"]
 aerosols = ["bc", "oc", "nh4", "so4", "no3", "asoaX", "bsoaX", "oin"]
 variables.extend(aerosols)
-surface_only = "yes"
-regrid = "yes"
+surface_only = True
+regrid = True
+convert_aerosol_units_from_ugkg_to_ugm3 = True
 
 for domain in domains:
     path = os.getcwd()
@@ -22,14 +24,15 @@ for domain in domains:
         with salem.open_mf_wrf_dataset(
             filelist, chunks={"west_east": "auto", "south_north": "auto"}
         ) as ds:
-            if (surface_only == "yes") and (variable in aerosols):
+            if surface_only and (variable in aerosols):
                 wrf_a01 = ds[variable + "_a01"].isel(bottom_top=0)
                 wrf_a02 = ds[variable + "_a02"].isel(bottom_top=0)
                 wrf_a03 = ds[variable + "_a03"].isel(bottom_top=0)
                 wrf = wrf_a01 + wrf_a02 + wrf_a03
-                wrf = wrf / ds['ALT'] # unit conversion from ug/kg to ug/m3
+                if convert_aerosol_units_from_ugkg_to_ugm3:
+                    wrf = wrf / ds['ALT']
             elif (
-                (surface_only == "yes")
+                surface_only
                 and (variable == "PM2_5_DRY")
                 or (variable == "o3")
             ):
@@ -37,7 +40,7 @@ for domain in domains:
             else:
                 wrf = ds[variable]
 
-        if regrid == "yes":
+        if regrid:
             ds_out = xr.Dataset(
                 {
                     "lat": (["lat"], np.arange(-60, 85, res)),
