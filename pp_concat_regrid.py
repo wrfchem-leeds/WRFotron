@@ -52,11 +52,15 @@ for domain in domains:
             regridder = xe.Regridder(wrf, ds_out, "bilinear", reuse_weights=have_weights)
             wrf_regrid = regridder(wrf)
 
-        if variable in aerosols:
+        if variable in aerosols and regrid:
             wrf_regrid.to_netcdf(
                 f"{path}/wrfout_d0{domain}_global_{res}deg_{year}-{month}_{variable}_2p5.nc"
             )
-        else:
+        elif regrid:
             wrf_regrid.to_netcdf(
+                f"{path}/wrfout_d0{domain}_global_{res}deg_{year}-{month}_{variable}.nc"
+            )
+        else:
+            wrf.to_netcdf(
                 f"{path}/wrfout_d0{domain}_global_{res}deg_{year}-{month}_{variable}.nc"
             )
