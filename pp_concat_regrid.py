@@ -5,6 +5,12 @@ import glob
 import xesmf as xe
 import numpy as np
 
+# steps
+# 1. accounts for the staggered nature of the wrfchem grid
+# 2. combines the hourly wrfout files to monthly files
+# 3. extracts only the variables of interest (some at the surface only and some with converted units)
+# 4. regrids (optional) the variables to a global rectlinear grid
+
 # setup - ensure meets your requirements
 year = "2016"
 month = "10"
