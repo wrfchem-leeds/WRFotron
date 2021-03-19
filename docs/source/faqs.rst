@@ -1,6 +1,14 @@
 **************************
 Frequently Asked Questions
 **************************
+Benchmarking and Testing 
+========================
+- Run together automatically by submitting :code:`qsub benchmark_and_test.bash`.  
+- This runs short (48 hour) simulations per season over the default domain and evaluates against either the China measurements or from OpenAQ.  
+- To select which measurement set the model is evaluated against, set the corresponding Boolean in :code:`benchmark.py`.  
+- They run from the output directory, and can both be run manually using :code:`qsub benchmark.bash` and :code:`qsub tests.bash`.
+- To discuss these further and suggest improvements, see the discussions for them: `Benchmarks <https://github.com/wrfchem-leeds/WRFotron/discussions/34>`_ and `Tests <https://github.com/wrfchem-leeds/WRFotron/discussions/33>`_.  
+
 Recommendations
 ===============
 - Submit runs individually and quality control.  

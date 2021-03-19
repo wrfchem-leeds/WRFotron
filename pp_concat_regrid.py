@@ -9,17 +9,17 @@ import numpy as np
 # 1. accounts for the staggered nature of the wrfchem grid
 # 2. combines the hourly wrfout files to monthly files
 # 3. extracts only the variables of interest (some at the surface only and some with converted units)
-# 4. regrids (optional) the variables to a global rectlinear grid
+# 4. regrids (optional) the variables to a global rectilinear grid
 
 # setup - ensure meets your requirements
 year = "2016"
 month = "10"
-res = 0.25
 domains = ["1"]
 variables = ["PM2_5_DRY", "o3", "AOD550_sfc"]
 aerosols = ["bc", "oc", "nh4", "so4", "no3", "asoaX", "bsoaX", "oin"]
 variables.extend(aerosols)
 surface_only = True
+res = 0.25
 regrid = True
 convert_aerosol_units_from_ugkg_to_ugm3 = True
 

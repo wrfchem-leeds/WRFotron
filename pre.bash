@@ -56,7 +56,7 @@ done
 #ln -s ${chainDir}/Vtable.ERA-interim.pl Vtable
 ln -s ${chainDir}/Vtable.ECMWF Vtable
 # link the ECMWF files to be ungribbed - both the surface and pressure levels for the date required (change)
-/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20160901_20170101.grib ${metDir}/ecmwf_global_surface_20160901_20170101.grib
+/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20151201_20160501.grib ${metDir}/ecmwf_global_surface_20151201_20160501.grib
 
 cp namelist.wps.prep namelist.wps
 
@@ -199,7 +199,7 @@ msg "MOZART/WACCM"
 
 # If monthly MOZBC files use this portion (otherwise comment out)
 # MOZART - pre 2018
-ln -s ${MOZARTdir}/MZ2016oct ./moz0000.nc
+ln -s ${MOZARTdir}/MZ2016feb ./moz0000.nc
 ln -s ${MOZARTdir}/MZ2016nov ./moz0001.nc
 ln -s ${MOZARTdir}/MZ2016dec ./moz0002.nc
 # WACCM - post 2018
@@ -237,7 +237,8 @@ msg "bring over main_restart"
 cp ${chainDir}/main_restart.bash .
 
 msg "bring over concat/regrid scripts"
-cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash} ${archiveDir}/.
+cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash,benchmark.py,benchmark.bash,tests.bash} ${archiveDir}/.
+cp -r ${chainDir}/tests ${archiveDir}/.
 
 # ------------------------------------------------------------------------------
 
