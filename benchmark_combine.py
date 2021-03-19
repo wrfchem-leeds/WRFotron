@@ -87,15 +87,15 @@ for country in countries:
             obs_values_annual = np.append(obs_values_annual, obs_values_season)
             wrf_values_annual = np.append(wrf_values_annual, wrf_values_season)
 
-            np.savez_compressed(f'{path}/obs_values_{obs_source}_{season}.npz', obs_values_season=obs_values_season)
-            np.savez_compressed(f'{path}/wrf_values_{obs_source}_{season}.npz', wrf_values_season=wrf_values_season)
+            np.savez_compressed(f'{path}/obs_values_{obs_source}_{country}_{parameter}_{season}.npz', obs_values_season=obs_values_season)
+            np.savez_compressed(f'{path}/wrf_values_{obs_source}_{country}_{parameter}_{season}.npz', wrf_values_season=wrf_values_season)
 
             obs_count.update({f'{country}_{parameter}_{season}': np.count_nonzero(~np.isnan(obs_values_season))})
 
             nmbfs.update({f'{country}_{parameter}_{season}': normalised_mean_bias_factor(obs_values_season, wrf_values_season)})
             nmaefs.update({f'{country}_{parameter}_{season}': normalised_mean_absolute_error_factor(obs_values_season, wrf_values_season)})
 
-        np.savez_compressed(f'{path}/obs_values_{obs_source}_annual.npz', obs_values_annual=obs_values_annual)
+        np.savez_compressed(f'{path}/obs_values_{obs_source}_{country}_{parameter}_annual.npz', obs_values_annual=obs_values_annual)
         
         obs_count.update({f'{country}_{parameter}_annual': np.count_nonzero(~np.isnan(obs_values_annual))})
 
