@@ -259,11 +259,11 @@ How it works
 
 - Approximate job run times and HPC requirements:
  
-    - 1 day simulation takes 1 hour wall clock time approximately.  
-    - 1 month simulation takes 2 days wall clock time approximately.  
-    - 1 year simulations takes 1 month wall clock time approximately.  
+    - 1 day simulation takes 1-2 hour wall clock time approximately.  
+    - 1 month simulation takes 2-4 days wall clock time approximately.  
+    - 1 year simulations takes 1-2 month wall clock time approximately.  
     - :code:`pre.bash` = 2 hours, 1 core, 12GB/process (run in serial).
-    - :code:`main.bash` = 48 hours, 64 cores, 2GB/process (run in parallel).
+    - :code:`main.bash` = 48 hours, 128 cores, 1GB/process (run in parallel).
     - :code:`post.bash` = 48 hours, 4 cores, 12GB/process (run in parallel).
 
 - Analyse output using Python. For those new to Python, I have a `introductory course <https://github.com/wrfchem-leeds/python-scripts/tree/master/introduction_to_python>`_.  

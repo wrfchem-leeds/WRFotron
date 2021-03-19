@@ -15,17 +15,8 @@ Recommendations
 - Check all steps in the process have run correctly.  
 - Check main.bash.o has “substituting initial chemistry from restart” if do not want a cold start.  
 - Manage space requirements, as run and output folders can get very large.  
-- Make use of CPU affinity to have dedicated input/output processors, as these are not scalable in WRF-Chem. `More information here <https://github.com/wrfchem-leeds/WRFotron/issues/29>`_:
-
-    - Within namelist.wrf.blueprint:
-
-        - &namelist_quilt
-
-            - nio_tasks_per_group = 5 ! number of processors used for IO quilting per IO group.  
-            - nio_group = 2 ! number of quilting groups
-            - So the number of cores = nproc_x * nproc_y + nio_groups * nio_tasks_per_group
-            - For example, 42 = 4 * 8 + 2 * 5
-
+- Run :code:`main.bash` in 2 week chunks to fit within 48 hours.  
+- `Information on improving performance <https://github.com/wrfchem-leeds/WRFotron/issues/29>`_.  
 - `LC and BS have created a selection of data science scripts using Python <https://github.com/wrfchem-leeds/python-scripts>`_. 
 
 Troubleshooting and errors
