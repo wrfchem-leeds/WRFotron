@@ -18,7 +18,7 @@ done
 # spring - may
 for file in pre.bash
 do
-    sed -i 's/20141201_20150501/20140501_20150901/g' $file
+    sed -i 's/20141201_20150501/20150501_20150901/g' $file
     sed -i 's/MZ2015feb/MZ2015may/g' $file
 done
 
