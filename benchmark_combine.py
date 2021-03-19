@@ -58,7 +58,7 @@ nmaefs = {}
 
 obs_count = {}
 
-season_dates = {'winter': '2016-02', 'spring': '2016-05', 'summer': '2016-08', 'autumn': '2016-11'}
+season_dates = {'winter': '2015-02', 'spring': '2015-05', 'summer': '2015-08', 'autumn': '2015-11'}
 
 for country in countries:
     for parameter in parameters.keys():

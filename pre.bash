@@ -56,7 +56,7 @@ done
 #ln -s ${chainDir}/Vtable.ERA-interim.pl Vtable
 ln -s ${chainDir}/Vtable.ECMWF Vtable
 # link the ECMWF files to be ungribbed - both the surface and pressure levels for the date required (change)
-/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20151201_20160501.grib ${metDir}/ecmwf_global_surface_20151201_20160501.grib
+/bin/csh ./link_grib.csh ${metDir}/ecmwf_global_pressurelevels_20150901_20160101.grib ${metDir}/ecmwf_global_surface_20150901_20160101.grib
 
 cp namelist.wps.prep namelist.wps
 
@@ -199,9 +199,9 @@ msg "MOZART/WACCM"
 
 # If monthly MOZBC files use this portion (otherwise comment out)
 # MOZART - pre 2018
-ln -s ${MOZARTdir}/MZ2016feb ./moz0000.nc
-ln -s ${MOZARTdir}/MZ2016nov ./moz0001.nc
-ln -s ${MOZARTdir}/MZ2016dec ./moz0002.nc
+ln -s ${MOZARTdir}/MZ2015oct ./moz0000.nc
+ln -s ${MOZARTdir}/MZ2015nov ./moz0001.nc
+ln -s ${MOZARTdir}/MZ2015dec ./moz0002.nc
 # WACCM - post 2018
 #ln -s ${MOZARTdir}/WACCM2019jan ./moz0000.nc
 #ln -s ${MOZARTdir}/WACCM2019feb ./moz0001.nc

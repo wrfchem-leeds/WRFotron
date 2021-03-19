@@ -58,10 +58,10 @@ landuseDir=modis_landuse_21class_30s/
 MEGANdir=/nobackup/WRFChem/emissions/MEGAN
 
 # anthropogenic emissions - data
-emissDir=/nobackup/WRFChem/emissions/EDGAR-HTAP2/MOZART
+emissDir=/nobackup/WRFChem/emissions/EDGAR-HTAP2_MEIC2015/MOZART
 
 # anthropogenic emissions - input namelist
-emissInpFile=emis_edgarhtap2_mozmos.inp
+emissInpFile=emis_edgarhtap2-meic2015_mozmos.inp
 
 # anthropogenic emissions - year the emissions are valid for (for offset calculation)
 emissYear=2010

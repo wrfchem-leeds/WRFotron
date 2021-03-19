@@ -15,16 +15,16 @@ for season in 'winter' 'spring' 'summer' 'autumn'
 do
     if [ $season == 'winter' ]
     then
-        wrfout_files=wrfout_d01_2016-02*
+        wrfout_files=wrfout_d01_2015-02*
     elif [ $season == 'spring' ]
     then
-        wrfout_files=wrfout_d01_2016-05*
+        wrfout_files=wrfout_d01_2015-05*
     elif [ $season == 'summer' ]
     then
-        wrfout_files=wrfout_d01_2016-08*
+        wrfout_files=wrfout_d01_2015-08*
     elif [ $season == 'autumn' ]
     then
-        wrfout_files=wrfout_d01_2016-11*
+        wrfout_files=wrfout_d01_2015-11*
     fi
 
     for wrfout_file in $wrfout_files

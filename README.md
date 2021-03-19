@@ -26,7 +26,7 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
     
 3. From within the WRFotron folder run `master.bash`:  
 ```bash
-. master.bash 2016 10 12 00 24 06
+. master.bash 2015 10 12 00 24 06
 ```
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).

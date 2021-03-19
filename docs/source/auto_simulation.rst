@@ -21,7 +21,7 @@ WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds 
 
 .. code-block:: bash
 
-  . master.bash 2016 10 12 00 24 06
+  . master.bash 2015 10 12 00 24 06
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions `here <https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative>`_.  
 
@@ -223,18 +223,18 @@ How it works
 
     .. code-block:: bash
 
-      . master.bash 2016 10 05 00 24 06
+      . master.bash 2015 10 05 00 24 06
 
     - Start year / start month / start day / start hour (UTC time) / simulation length / spin up length.  
-    - Spin-up runs from 2016-10-04_18:00:00 to 2016-10-05_00:00:00.  
-    - Simulation runs from 2016-10-05_00:00:00 to 2016-10-06_00:00:00.  
+    - Spin-up runs from 2015-10-04_18:00:00 to 2015-10-05_00:00:00.  
+    - Simulation runs from 2015-10-05_00:00:00 to 2015-10-06_00:00:00.  
     - Check linked files were for this ${USER}.  
 
     - Now make another run starting when the first one finishes, which will use the output of the previous run for chemistry initial conditions (rather than MOZART chemical boundary conditions), while re-initialising meteorology (from GFS/ECMWF data):
 
     .. code-block:: bash
 
-      . master.bash 2016 10 05 00 24 06 999999
+      . master.bash 2015 10 05 00 24 06 999999
 
     - The 999999 is the job id for the :code:`main.bash` from the previous run. This is used in the syntax to tell the HPC machine to wait until this job has finished before starting the new run. This is because the new run uses the files created from the first run. This allows you to submit several runs in a row at the same time, each of them restarting using the result of the previous run.
     - Four-dimension data assimilation (FDDA, i.e. re-initialisation of meteorology).  

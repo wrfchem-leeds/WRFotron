@@ -8,34 +8,34 @@
 
 # winter - feb
 for file in pre.bash
-    do sed -i 's/20160901_20170101/20151201_20160501/g' $file
-    do sed -i 's/MZ2016oct/MZ2016feb/g' $file
+    do sed -i 's/20150901_20160101/20141201_20150501/g' $file
+    do sed -i 's/MZ2015oct/MZ2015feb/g' $file
 done
 
-. master.bash 2016 02 01 00 48 00
+. master.bash 2015 02 01 00 48 00
 
 # spring - may
 for file in pre.bash
-    do sed -i 's/20151201_20160501/20160501_20160901/g' $file
-    do sed -i 's/MZ2016feb/MZ2016may/g' $file
+    do sed -i 's/20141201_20150501/20140501_20150901/g' $file
+    do sed -i 's/MZ2015feb/MZ2015may/g' $file
 done
 
-. master.bash 2016 05 01 00 48 00
+. master.bash 2015 05 01 00 48 00
 
 # summer - aug
 for file in pre.bash
-    do sed -i 's/MZ2016may/MZ2016aug/g' $file
+    do sed -i 's/MZ2015may/MZ2015aug/g' $file
 done
 
-. master.bash 2016 08 01 00 48 00
+. master.bash 2015 08 01 00 48 00
 
 # autumn - nov
 for file in pre.bash
-    do sed -i 's/20160501_20160901/20160901_20170101/g' $file
-    do sed -i 's/MZ2016aug/MZ2016nov/g' $file
+    do sed -i 's/20150501_20150901/20150901_20160101/g' $file
+    do sed -i 's/MZ2015aug/MZ2015nov/g' $file
 done
 
-. master.bash 2016 11 01 00 48 00
+. master.bash 2015 11 01 00 48 00
 
 # ------------------------------------
 # 2. run benchmarking
