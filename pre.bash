@@ -237,7 +237,7 @@ msg "bring over main_restart"
 cp ${chainDir}/main_restart.bash .
 
 msg "bring over concat/regrid scripts"
-cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash,benchmark.py,benchmark.bash,tests.bash} ${archiveDir}/.
+cp ${chainDir}/{pp_concat_regrid.py,pp_concat_regrid.bash,benchmark.py,benchmark_combine.py,benchmark.bash,tests.bash} ${archiveDir}/.
 cp -r ${chainDir}/tests ${archiveDir}/.
 
 # ------------------------------------------------------------------------------
