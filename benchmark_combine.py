@@ -108,7 +108,7 @@ def plot_scatter(index, country, parameter, season, df, title, label):
     plt.plot(x, x, '', color='black', ls='--')
     plt.plot(x, 0.5 * x, '', color='black', ls='--')
     plt.plot(x, 2 * x, '', color='black', ls='--')
-        text = f"NMBF = {np.round(nmbfs[f'{country}_{parameter}_{season}'], decimals=2)}\nNMAEF = {np.round(nmaefs[f'{country}_{parameter}_{season}'], decimals=2)}"
+    text = f"NMBF = {np.round(nmbfs[f'{country}_{parameter}_{season}'], decimals=2)}\nNMAEF = {np.round(nmaefs[f'{country}_{parameter}_{season}'], decimals=2)}"
     at = matplotlib.offsetbox.AnchoredText(text, prop=dict(size=12), frameon=True, loc=2)
     at.patch.set_boxstyle("round,pad=0.,rounding_size=0.2")
     ax.add_artist(at)
