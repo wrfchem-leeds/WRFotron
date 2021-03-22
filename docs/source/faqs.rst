@@ -1,14 +1,6 @@
 **************************
 Frequently Asked Questions
 **************************
-Benchmarking and Testing 
-========================
-- Run together automatically by submitting :code:`. benchmark_and_test.bash`.  
-- This runs short (48 hour) simulations per season over the default domain and evaluates against either the China measurements or from OpenAQ.  
-- To select which measurement set the model is evaluated against, set the corresponding Boolean in :code:`benchmark.py`.  
-- They run from the output directory, and can both be run manually using :code:`qsub benchmark.bash` and :code:`qsub tests.bash`.
-- To discuss these further and suggest improvements, see the discussions for them: `Benchmarks <https://github.com/wrfchem-leeds/WRFotron/discussions/34>`_ and `Tests <https://github.com/wrfchem-leeds/WRFotron/discussions/33>`_.  
-
 Recommendations
 ===============
 - Submit runs individually and quality control.  
@@ -278,3 +270,15 @@ To run with the chemistry option T1-MOZCART (chem_opt = 114)
   - :code:`auxinput6_inname = 'wrfbiochemi_d<domain>', ! biogenic emission filename`, was previously :code:`'wrfbiochemi_d<domain>_<date>'`.    
 
 - More `information is here <https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/T1-MOZCART-UsersGuide-27April2018.pdf>`_.  
+
+Benchmarking and Testing 
+========================
+- Run together automatically by submitting :code:`. benchmark_and_test.bash`.  
+- This runs short (48 hour) simulations per season over the default domain and evaluates against either the China measurements or from OpenAQ.  
+- To select which measurement set the model is evaluated against, set the corresponding Boolean in :code:`benchmark.py`.  
+- They run from the output directory, and can both be run manually using :code:`qsub benchmark.bash` and :code:`qsub tests.bash`.
+- To discuss these further and suggest improvements, see the discussions for them: `Benchmarks <https://github.com/wrfchem-leeds/WRFotron/discussions/34>`_ and `Tests <https://github.com/wrfchem-leeds/WRFotron/discussions/33>`_.  
+
+Run WRFChem for long-term scenarios
+===================================
+- See information from this `NCAR technical note <http://dx.doi.org/10.5065/D6445JJ7>`_ and `CLWRF (CLimate WRF) <https://www.meteo.unican.es/en/software/clwrf>`_.  
