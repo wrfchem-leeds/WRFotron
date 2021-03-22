@@ -257,7 +257,7 @@ How it works
   qsub main.bash  
   qsub post.bash
 
-- Approximate job run times and HPC requirements:
+- Approximate job run times and HPC requirements (For a 30 km domain at 1.5 minute timestep over China using :code:`chem_opt = 202`. For a different setup, you can scale this accordingly.):
  
     - 1 day simulation takes 1-2 hour wall clock time approximately.  
     - 1 month simulation takes 2-4 days wall clock time approximately.  
