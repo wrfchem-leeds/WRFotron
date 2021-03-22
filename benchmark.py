@@ -17,13 +17,13 @@ parameters = {
     'pm25': 'PM2_5_DRY',
     'o3': 'o3'
 }
+
 # ---------------
 # data
 path = os.getcwd()
 wrfout_file = sys.argv[1]
 year = re.findall(r'wrfout_d01_\d+', wrfout_file)[0][-4:]
 month = re.findall(r'wrfout_d01_\d+-\d+', wrfout_file)[0][-2:]
-
 grid_rectilinear_global = xr.Dataset(
     {
         "lat": (["lat"], np.arange(-60, 85, 0.25)),
@@ -35,7 +35,7 @@ grid_rectilinear_global = xr.Dataset(
 # processing
 if use_china_measurements:
     obs_source = 'china_measurements'
-    if year in ['2013', '2014', '2015', '2016', '2017', '2020']:
+    if year in ['2014', '2015', '2016', '2017', '2020']:
         obs_filename = f'/nobackup/WRFChem/measurements/china_measurements_corrected/df_obs_summary_{year}.csv'
 elif use_openaq:
     obs_source = 'openaq'
@@ -49,10 +49,6 @@ elif use_openaq:
 
 
 df_obs = pd.read_csv(obs_filename, index_col="date.utc", parse_dates=True)
-
-number_of_stations = {}
-nmbfs = {}
-nmaefs = {}
 
 ds_wrfout = salem.open_wrf_dataset(wrfout_file)
 year_month_day = str(ds_wrfout.time.values)[2:12]
@@ -72,10 +68,12 @@ for country in countries:
         df_obs_dt_country_parameter = df_obs_dt_country.loc[df_obs_dt_country.parameter == parameter]
         df_obs_dt_country_parameter.replace(-999, np.nan, inplace=True)
 
-        number_of_stations.update({f'{parameter}_{country}': len(df_obs_dt_country_parameter.index)})
-
+        datetimes = []
+        lats = []
+        lons = []
         obs_values = []
         wrf_values = []
+
         for index, obs in df_obs_dt_country_parameter.iterrows():
             lat = obs['coordinates.latitude']
             lon = obs['coordinates.longitude']
@@ -91,8 +89,22 @@ for country in countries:
                 obs_value = obs.value
                 wrf_value = ds_wrfout_parameter_regrid.sel(lat=lat, lon=lon, method='nearest').values[0]
 
+            datetimes.append(np.datetime64(f'{year_month_day}T{hour}:00:00'))
+            lats.append(lat)
+            lons.append(lon)
             obs_values.append(obs_value)
             wrf_values.append(wrf_value)
 
-        np.savez_compressed(f'{path}/obs_values_{obs_source}_{year_month_day}-{hour}_{parameter}_{country}.npz', obs_values=np.array(obs_values))
-        np.savez_compressed(f'{path}/wrf_values_{obs_source}_{year_month_day}-{hour}_{parameter}_{country}.npz', wrf_values=np.array(wrf_values))
+
+        df_values = pd.DataFrame.from_dict({
+            'datetime': datetimes,
+            'lat': np.array(lats),
+            'lon': np.array(lons),
+            'obs_value': np.array(obs_values),
+            'wrf_value': np.array(wrf_values)
+        })
+        df_values.set_index('datetime', inplace=True)
+        df_values.loc[df_values.obs_value <= 0, 'obs_value'] = np.nan
+        df_values.loc[df_values.wrf_value <= 0, 'wrf_value'] = np.nan
+        df_values.dropna(inplace=True)
+        df_values.to_csv(f'{path}/df_values_{obs_source}_{year_month_day}-{hour}_{parameter}_{country}.csv')
