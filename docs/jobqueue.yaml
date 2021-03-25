@@ -1,0 +1,33 @@
+jobqueue:
+
+  sge:
+    name: dask-worker
+
+    # Dask worker options
+    cores: 1                   # Total number of cores per job
+    memory: '1 GB'            # Total amount of memory per job
+    processes: 1                # Number of Python processes per job
+
+    interface: ib0                       # Network interface to use like eth0 or ib0
+    death-timeout: 60                    # Number of seconds to wait if a worker can not find a scheduler
+    local-directory: null                # Location of fast local storage like /scratch or $TMPDIR
+
+    # SGE resource manager options
+    shebang: "#!/usr/bin/env bash"
+    queue: null
+    project: null
+    walltime: '01:00:00'
+    extra: []
+    env-extra: []
+    job-extra: []
+    log-directory: null
+
+    resource-spec: null
+
+distributed:
+  worker:
+    memory:
+      target: false # dont spill to disk
+      spill: false # dont spill to disk
+      pause: 0.80 # pause memory execution at 80% use
+      terminate: 0.95 # restart the worker at 95% use
