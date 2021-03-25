@@ -7,7 +7,7 @@ Tools to automatise WRF-Chem runs with re-initialised meteorology.
 
 WRFotron created by Christoph Knote (christoph.knote@med.uni-augsburg.de).  
 
-[User guide](https://wrfotron.readthedocs.io/en/latest/) created by Luke Conibear (l.a.conibear@leeds.ac.uk).  
+[User guide](https://wrfchem-leeds.github.io/WRFotron/) created by Luke Conibear (l.a.conibear@leeds.ac.uk).  
 
 Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, and Lauren Fleming.  
 
