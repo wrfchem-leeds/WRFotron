@@ -348,9 +348,9 @@
 <li><p>Initial and boundary conditions for chemistry from WACCM for post 2018 or CAM-Chem for pre 2018 <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/CESM-WRFchem_aerosols_plusgas.pdf">here</a>.</p></li>
 <li><p>Fixed the bug where nudging would stop after 312 hours (i.e. after day 13 of a simulation) i.e. changed <code class="docutils literal notranslate"><span class="pre">gfdda_end_h</span></code> to 10,000.</p></li>
 <li><p>Nudge above the boundary layer. To do this, go into <code class="docutils literal notranslate"><span class="pre">namelist.wrf.blueprint</span></code>, and within the FDDA section change:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">if_no_pbl_nudging_uv</span>                <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of u and v in the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
-<span class="nv">if_no_pbl_nudging_t</span>                 <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of t in the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
-<span class="nv">if_no_pbl_nudging_q</span>                 <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of q in the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">if_no_pbl_nudging_uv</span>                <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of u and v <span class="k">in</span> the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
+<span class="nv">if_no_pbl_nudging_t</span>                 <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of t <span class="k">in</span> the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
+<span class="nv">if_no_pbl_nudging_q</span>                 <span class="o">=</span> <span class="m">1</span>, <span class="m">1</span>, <span class="m">1</span>,                                    ! nudging of q <span class="k">in</span> the PBL, <span class="nv">0</span> <span class="o">=</span> yes, <span class="nv">1</span> <span class="o">=</span> no
 </pre></div>
 </div>
 </li>
@@ -459,9 +459,9 @@
     <div class="container">
       <p>
         
-          By The Jupyter Book community<br/>
+          By Luke Conibear<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

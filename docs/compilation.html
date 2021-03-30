@@ -375,9 +375,9 @@ module load ncl/6.5.0 nco/4.6.0 wrfchemconda/3.7 sge
 </div>
 <p>The executables within <code class="docutils literal notranslate"><span class="pre">pre.bash</span></code> need to be copied over directly, rather than just linked which is adequate for the CEMAC method. To do this make both of the following replacements. You can see the manual blueprint in the repository: <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/namelists/pre.bash.blueprint_manual">pre.bash.blueprint_manual</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># on line 21, replace:</span>
-<span class="k">for</span> aFile in util geogrid ungrib link_grib.csh metgrid
+<span class="k">for</span> aFile <span class="k">in</span> util geogrid ungrib link_grib.csh metgrid
 <span class="c1"># with:</span>
-<span class="k">for</span> aFile in util geogrid geogrid.exe ungrib ungrib.exe link_grib.csh metgrid metgrid.exe
+<span class="k">for</span> aFile <span class="k">in</span> util geogrid geogrid.exe ungrib ungrib.exe link_grib.csh metgrid metgrid.exe
 
 <span class="c1"># and then on line 80, replace:</span>
 cp -r <span class="si">${</span><span class="nv">WRFdir</span><span class="si">}</span>/run/* .
@@ -613,9 +613,9 @@ make install
     <div class="container">
       <p>
         
-          By The Jupyter Book community<br/>
+          By Luke Conibear<br/>
         
-            &copy; Copyright 2020.<br/>
+            &copy; Copyright 2021.<br/>
       </p>
     </div>
   </footer>

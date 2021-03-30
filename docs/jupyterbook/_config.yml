@@ -1,4 +1,6 @@
 title: ""
 logo: images/logo.png
+author: Luke Conibear
+copyright: "2021"
 execute:
   execute_notebooks: "off"
