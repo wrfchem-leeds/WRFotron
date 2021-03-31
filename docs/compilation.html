@@ -285,7 +285,7 @@
 <li><p>When finished, update <code class="docutils literal notranslate"><span class="pre">WRFotron/config.bash</span></code> to direct to this new build, remove the WRFChem module from being loaded, and copy over the manual blueprints as <code class="docutils literal notranslate"><span class="pre">pre.bash</span></code>, <code class="docutils literal notranslate"><span class="pre">main.bash</span></code>, and  <code class="docutils literal notranslate"><span class="pre">main_restart.bash</span></code> (reasons why given below in Manual compilation).</p></li>
 <li><p>Optional: Can then add any custom edits and <a class="reference external" href="compilation.html#compile-wps-wrfmeteo-and-wrfchem">manually recompile</a>.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span> <span class="c1"># replace ${USER} with your username</span>
 mkdir -p software/build/WRFChem/4.2/1
 mkdir -p software/build/WRFChem/4.2/src
 <span class="nb">cd</span> software/build/WRFChem/4.2/1
@@ -315,7 +315,7 @@ cp /nobackup/cemac/software/build/WRFChem/4.2/src/WRFChem4.2.tar.gz ../src/
 <li><p>Then create the custom preprocessor.</p></li>
 <li><p>When finished, update <code class="docutils literal notranslate"><span class="pre">WRFotron/config.bash</span></code> to direct to this new custom preprocessor.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span> <span class="c1"># replace ${USER} with your username</span>
 cp -r /nobackup/WRFChem/anthro_emis .
 <span class="nb">cd</span> anthro_emis
 cp /nobackup/WRFChem/build_scripts/fix_makefile.sh .

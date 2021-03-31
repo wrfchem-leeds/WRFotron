@@ -24,7 +24,7 @@ To build your own WRFChem executables:
 - When finished, update `WRFotron/config.bash` to direct to this new build, remove the WRFChem module from being loaded, and copy over the manual blueprints as `pre.bash`, `main.bash`, and  `main_restart.bash` (reasons why given below in Manual compilation).  
 - Optional: Can then add any custom edits and [manually recompile](compilation.html#compile-wps-wrfmeteo-and-wrfchem).
 ```bash
-cd /nobackup/${USER}
+cd /nobackup/${USER} # replace ${USER} with your username
 mkdir -p software/build/WRFChem/4.2/1
 mkdir -p software/build/WRFChem/4.2/src
 cd software/build/WRFChem/4.2/1
@@ -53,7 +53,7 @@ To build and use a custom preprocessor:
 - Then create the custom preprocessor.
 - When finished, update `WRFotron/config.bash` to direct to this new custom preprocessor.
 ```bash
-cd /nobackup/${USER}
+cd /nobackup/${USER} # replace ${USER} with your username
 cp -r /nobackup/WRFChem/anthro_emis .
 cd anthro_emis
 cp /nobackup/WRFChem/build_scripts/fix_makefile.sh .
