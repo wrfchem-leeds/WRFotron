@@ -8,7 +8,7 @@
 #$ -l h_vmem=12G
 
 module purge
-module load licenses sge intel/19.0.4 nco/4.6.0 wrfchemconda/3.7
+module load licenses sge intel/19.0.4 nco/4.6.0 wrfchemconda/3.7 netcdf/4.6.3
 export OMP_NUM_THREADS=__nprocPost__
 
 . __CONFIGDIR__config.bash
