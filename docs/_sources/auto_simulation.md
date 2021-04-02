@@ -197,6 +197,4 @@ For a 30 km domain at 1.5 minute timestep over China using `chem_opt = 202`. For
 - `post.bash` = 48 hours, 4 cores, 12GB/process (run in parallel).
 
 ### Analyse output using Python
-For those new to Python, see this [introductory course](https://github.com/wrfchem-leeds/python-scripts/tree/master/introduction_to_python).
-
-To speed up Python scripts, see [here](https://nbviewer.jupyter.org/github/lukeconibear/tips_to_speed_up_python/blob/master/Tips%20to%20speed%20up%20Python.ipynb).
+For those new to Python, see this [introductory course](https://www.lukeconibear.com/introduction_to_scientific_computing/index.html).  
