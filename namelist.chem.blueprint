@@ -28,7 +28,7 @@
  seas_opt                            = 2,                         ! sea salt emissions, 2 = MOSAIC or MADE/SORGAM sea salt emissions
  dust_opt                            = 13,                        ! dust emissions, 13 = GOCART for MOSAIC - Zeng et al., (2020) GMD, Zhao et al., (2013) ACP, Zhao et al., (2010) ACP
  dmsemis_opt                         = 1,                         ! include GOCART dms emissions from sea surface
- biomass_burn_opt                    = 2, 2, 2,                   ! biomass burning emissions, 2 = MOCART
+ biomass_burn_opt                    = 2, 2, 2,                   ! biomass burning emissions, use option 2 with chem_opt = 112/201/202
  plumerisefire_frq                   = 30, 30, 30,                ! time interval for calling the biomass burning plume rise subroutine
  scale_fire_emiss                    = .true., .true., .true.,    ! must be equal to .true. when running with FINN emissions
  aer_ra_feedback                     = 1, 1, 1,                   ! feedback from the aerosols to the radiation schemes, 1 = on
