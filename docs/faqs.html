@@ -273,6 +273,11 @@
    Run WRFChem for long-term scenarios
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#misc">
+   Misc.
+  </a>
+ </li>
 </ul>
 
         </nav>
@@ -608,6 +613,14 @@ cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="
 <h2>Run WRFChem for long-term scenarios<a class="headerlink" href="#run-wrfchem-for-long-term-scenarios" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>See information from this <a class="reference external" href="http://dx.doi.org/10.5065/D6445JJ7">NCAR technical note</a> and <a class="reference external" href="https://www.meteo.unican.es/en/software/clwrf">CLWRF (CLimate WRF)</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="misc">
+<h2>Misc.<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>To see details of all the variables, see the registry files e.g. for chemistry: <code class="docutils literal notranslate"><span class="pre">WRFChem{version}/Registry/registry.chem</span></code></p></li>
+<li><p>To see the equations used for your mechanism, see the file: <code class="docutils literal notranslate"><span class="pre">WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.eqn</span></code></p></li>
+<li><p>To see the variable mappings between the mechanism and WRFChem (which can have different names), see the file: <code class="docutils literal notranslate"><span class="pre">WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.equiv</span></code></p></li>
 </ul>
 </div>
 </div>

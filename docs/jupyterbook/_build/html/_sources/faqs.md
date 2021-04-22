@@ -222,3 +222,9 @@ Choosing the diurnal cycle:
 ## Run WRFChem for long-term scenarios
 
 - See information from this [NCAR technical note](http://dx.doi.org/10.5065/D6445JJ7) and [CLWRF (CLimate WRF)](https://www.meteo.unican.es/en/software/clwrf).  
+
+## Misc.
+
+- To see details of all the variables, see the registry files e.g. for chemistry: `WRFChem{version}/Registry/registry.chem`  
+- To see the equations used for your mechanism, see the file: `WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.eqn`  
+- To see the variable mappings between the mechanism and WRFChem (which can have different names), see the file: `WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.equiv`  
