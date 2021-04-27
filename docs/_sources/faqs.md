@@ -228,3 +228,4 @@ Choosing the diurnal cycle:
 - To see details of all the variables, see the registry files e.g. for chemistry: `WRFChem{version}/Registry/registry.chem`  
 - To see the equations used for your mechanism, see the file: `WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.eqn`  
 - To see the variable mappings between the mechanism and WRFChem (which can have different names), see the file: `WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}.equiv`  
+- To see the rate constants used per equation, see the file (note, that these match the equations in sequential order e.g., the final rate constant for equation 346 matches to equation {S060}): `WRFChem{version}/chem/KPP/mechanisms/{mechanism}/{mechanism}_Rates.f90`  
