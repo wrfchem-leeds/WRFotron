@@ -219,9 +219,19 @@ Choosing the diurnal cycle:
 - They run from the output directory, and can both be run manually using `qsub benchmark.bash` and `qsub tests.bash`.
 - To discuss these further and suggest improvements, see the discussions for them: [Benchmarks](https://github.com/wrfchem-leeds/WRFotron/discussions/34) and [Tests](https://github.com/wrfchem-leeds/WRFotron/discussions/33).  
 
-## Run WRFChem for long-term scenarios
+## Run WRFChem for long-term scenarios (Climate WRF)
 
-- See information from this [NCAR technical note](http://dx.doi.org/10.5065/D6445JJ7) and [CLWRF (CLimate WRF)](https://www.meteo.unican.es/en/software/clwrf).  
+- Use a version of WRFChem compiled with climate functionality.
+  - Use manual compilation.  
+    - After running `./configure` and creating the `configure.wrf` file within a clean WRFChem folder, edit the `configure.wrf` file to add `-DCLWRFGHG \` to line 212 (after `-DNETCDF`).  
+      - The flag CLWRFGHG compiles green house gases computation (for CAM ra_lw/sw).  
+    - Run the compilation (`./compile em_real >& log.compile`).
+    - Within the `WRFChem/run` folder, link one of the scenarios e.g., `ln -sf CAMtr_volume_mixing_ratio.RCP4.5 CAMtr_volume_mixing_ratio`.  
+- More information here:  
+  - [Setup wiki](http://www.meteo.unican.es/wiki/cordexwrf/SoftwareTools/ClWrf).  
+  - [Slides: clWRF: Hands-On tasks](http://www.xn--llusfb-5va.cat/curriculum/ConDocs/LluisCORWESHandsOn_tasks.pdf).  
+  - [CLWRF (CLimate WRF)](https://www.meteo.unican.es/en/software/clwrf).  
+  - [NCAR technical note](http://dx.doi.org/10.5065/D6445JJ7).  
 
 ## Misc.
 

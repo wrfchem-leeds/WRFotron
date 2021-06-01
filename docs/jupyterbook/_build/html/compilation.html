@@ -352,11 +352,11 @@ mpi: openmpi
 <p>Download WRFotron, WRFChem, make a copy for WRFMeteo without the chemistry folder, download WPS, download <a class="reference external" href="https://www2.mmm.ucar.edu/wrf/users/download/get_sources_wps_geog.html">WPS Geography files</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
 git clone https://github.com/wrfchem-leeds/WRFotron.git
-git clone https://github.com/wrf-model/WRF.git WRFChem
-git clone https://github.com/wrf-model/WPS.git
+git clone https://github.com/wrf-model/WRF.git WRFChem4.2
+git clone https://github.com/wrf-model/WPS.git WPS4.2
 
-cp -r WRFChem WRFMeteo
-<span class="nb">cd</span> WRFMeteo
+cp -r WRFChem4.2 WRFMeteo4.2
+<span class="nb">cd</span> WRFMeteo4.2
 rm -rf chem
 </pre></div>
 </div>

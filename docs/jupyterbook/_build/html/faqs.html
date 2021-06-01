@@ -269,8 +269,8 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#run-wrfchem-for-long-term-scenarios">
-   Run WRFChem for long-term scenarios
+  <a class="reference internal nav-link" href="#run-wrfchem-for-long-term-scenarios-climate-wrf">
+   Run WRFChem for long-term scenarios (Climate WRF)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -609,10 +609,32 @@ cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="
 <li><p>To discuss these further and suggest improvements, see the discussions for them: <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/discussions/34">Benchmarks</a> and <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/discussions/33">Tests</a>.</p></li>
 </ul>
 </div>
-<div class="section" id="run-wrfchem-for-long-term-scenarios">
-<h2>Run WRFChem for long-term scenarios<a class="headerlink" href="#run-wrfchem-for-long-term-scenarios" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-wrfchem-for-long-term-scenarios-climate-wrf">
+<h2>Run WRFChem for long-term scenarios (Climate WRF)<a class="headerlink" href="#run-wrfchem-for-long-term-scenarios-climate-wrf" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>See information from this <a class="reference external" href="http://dx.doi.org/10.5065/D6445JJ7">NCAR technical note</a> and <a class="reference external" href="https://www.meteo.unican.es/en/software/clwrf">CLWRF (CLimate WRF)</a>.</p></li>
+<li><p>Use a version of WRFChem compiled with climate functionality.</p>
+<ul>
+<li><p>Use manual compilation.</p>
+<ul>
+<li><p>After running <code class="docutils literal notranslate"><span class="pre">./configure</span></code> and creating the <code class="docutils literal notranslate"><span class="pre">configure.wrf</span></code> file within a clean WRFChem folder, edit the <code class="docutils literal notranslate"><span class="pre">configure.wrf</span></code> file to add <code class="docutils literal notranslate"><span class="pre">-DCLWRFGHG</span> <span class="pre">\</span></code> to line 212 (after <code class="docutils literal notranslate"><span class="pre">-DNETCDF</span></code>).</p>
+<ul>
+<li><p>The flag CLWRFGHG compiles green house gases computation (for CAM ra_lw/sw).</p></li>
+</ul>
+</li>
+<li><p>Run the compilation (<code class="docutils literal notranslate"><span class="pre">./compile</span> <span class="pre">em_real</span> <span class="pre">&gt;&amp;</span> <span class="pre">log.compile</span></code>).</p></li>
+<li><p>Within the <code class="docutils literal notranslate"><span class="pre">WRFChem/run</span></code> folder, link one of the scenarios e.g., <code class="docutils literal notranslate"><span class="pre">ln</span> <span class="pre">-sf</span> <span class="pre">CAMtr_volume_mixing_ratio.RCP4.5</span> <span class="pre">CAMtr_volume_mixing_ratio</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>More information here:</p>
+<ul>
+<li><p><a class="reference external" href="http://www.meteo.unican.es/wiki/cordexwrf/SoftwareTools/ClWrf">Setup wiki</a>.</p></li>
+<li><p><a class="reference external" href="http://www.xn--llusfb-5va.cat/curriculum/ConDocs/LluisCORWESHandsOn_tasks.pdf">Slides: clWRF: Hands-On tasks</a>.</p></li>
+<li><p><a class="reference external" href="https://www.meteo.unican.es/en/software/clwrf">CLWRF (CLimate WRF)</a>.</p></li>
+<li><p><a class="reference external" href="http://dx.doi.org/10.5065/D6445JJ7">NCAR technical note</a>.</p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="misc">

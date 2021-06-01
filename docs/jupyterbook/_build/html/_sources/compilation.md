@@ -88,11 +88,11 @@ Download WRFotron, WRFChem, make a copy for WRFMeteo without the chemistry folde
 ```bash
 cd /nobackup/${USER}
 git clone https://github.com/wrfchem-leeds/WRFotron.git
-git clone https://github.com/wrf-model/WRF.git WRFChem
-git clone https://github.com/wrf-model/WPS.git
+git clone https://github.com/wrf-model/WRF.git WRFChem4.2
+git clone https://github.com/wrf-model/WPS.git WPS4.2
 
-cp -r WRFChem WRFMeteo
-cd WRFMeteo
+cp -r WRFChem4.2 WRFMeteo4.2
+cd WRFMeteo4.2
 rm -rf chem
 ```
 Or copy these folders over from `/nobackup/WRFChem`:
