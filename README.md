@@ -3,6 +3,8 @@
 ![GitHub](https://img.shields.io/github/license/wrfchem-leeds/WRFotron?label=License)
 [![DOI](https://zenodo.org/badge/234609545.svg)](https://zenodo.org/badge/latestdoi/234609545)  
 
+![logo](https://user-images.githubusercontent.com/19871268/122675619-23ddae00-d1d2-11eb-81ab-f8ca50c7746f.png)
+
 Tools to automatise WRF-Chem runs with re-initialised meteorology.  
 
 WRFotron created by Christoph Knote (christoph.knote@med.uni-augsburg.de).  
