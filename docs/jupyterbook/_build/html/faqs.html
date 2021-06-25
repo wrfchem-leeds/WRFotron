@@ -274,6 +274,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#to-change-the-mozbc-boundary-conditions">
+   To change the MOZBC boundary conditions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#misc">
    Misc.
   </a>
@@ -635,6 +640,13 @@ cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="
 <li><p><a class="reference external" href="http://dx.doi.org/10.5065/D6445JJ7">NCAR technical note</a>.</p></li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="section" id="to-change-the-mozbc-boundary-conditions">
+<h2>To change the MOZBC boundary conditions<a class="headerlink" href="#to-change-the-mozbc-boundary-conditions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Change the data reference in <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash#L201-L208"><code class="docutils literal notranslate"><span class="pre">pre.bash</span></code></a>.</p></li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">mozbc.inp</span></code> to be a copy of the corresponding MOZBC blueprint in the namelists folder, e.g., to use WACCM instead of MZ4 make <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/mozbc.inp"><code class="docutils literal notranslate"><span class="pre">mozbc.inp</span></code></a> a copy of <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/namelists/mozbc.inp.blueprint_202_waccm"><code class="docutils literal notranslate"><span class="pre">mozbc.inp.blueprint_202_waccm</span></code></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="misc">

@@ -233,6 +233,10 @@ Choosing the diurnal cycle:
   - [CLWRF (CLimate WRF)](https://www.meteo.unican.es/en/software/clwrf).  
   - [NCAR technical note](http://dx.doi.org/10.5065/D6445JJ7).  
 
+## To change the MOZBC boundary conditions
+- Change the data reference in [`pre.bash`](https://github.com/wrfchem-leeds/WRFotron/blob/master/pre.bash#L201-L208).  
+- Change `mozbc.inp` to be a copy of the corresponding MOZBC blueprint in the namelists folder, e.g., to use WACCM instead of MZ4 make [`mozbc.inp`](https://github.com/wrfchem-leeds/WRFotron/blob/master/mozbc.inp) a copy of [`mozbc.inp.blueprint_202_waccm`](https://github.com/wrfchem-leeds/WRFotron/blob/master/namelists/mozbc.inp.blueprint_202_waccm).  
+
 ## Misc.
 
 - To see details of all the variables, see the registry files e.g. for chemistry: `WRFChem{version}/Registry/registry.chem`  
