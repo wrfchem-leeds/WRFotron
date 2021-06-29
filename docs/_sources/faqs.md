@@ -228,6 +228,7 @@ Choosing the diurnal cycle:
     - Run the compilation (`./compile em_real >& log.compile`).
     - Within the `WRFChem/run` folder, link one of the scenarios e.g., `ln -sf CAMtr_volume_mixing_ratio.RCP4.5 CAMtr_volume_mixing_ratio`.  
 - More information here:  
+  - [Slides from Rajesh Kumar, NCAR](https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/Future_AQ_steps_WRF-Chem.pdf).  
   - [Setup wiki](http://www.meteo.unican.es/wiki/cordexwrf/SoftwareTools/ClWrf).  
   - [Slides: clWRF: Hands-On tasks](http://www.xn--llusfb-5va.cat/curriculum/ConDocs/LluisCORWESHandsOn_tasks.pdf).  
   - [CLWRF (CLimate WRF)](https://www.meteo.unican.es/en/software/clwrf).  
