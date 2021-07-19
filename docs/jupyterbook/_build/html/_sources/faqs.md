@@ -10,6 +10,28 @@
 - Information on improving performance [here](https://github.com/wrfchem-leeds/WRFotron/issues/29).  
 - A selection of data science scripts using Python [here](https://github.com/wrfchem-leeds/python-scripts). 
 
+## Anthropogenic emissions
+
+- The anthropogenic emission data must meet the following requirements:  
+  - PM$_{2.5 - 10}$ = all matter for 2.5-10 $\mu m$ only.  
+  - PM$_{2.5}$ = Other PM$_{2.5}$ = inorganic matter for <2.5 $\mu m$ only.  
+
+- To meet this requirement you can either edit the data or the input namelist to [`anthro_emis`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp).  
+  - It is recommended to edit the data, as these subtractions can lead to negative values in some grid cells which will break the model.  
+  - These negative grid cell values can be set to 0 to avoid this.  
+
+- Example:  
+  - For EDGARHTAPv2.2, we were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
+  - Hence, for this inventory, we would need edit the data so that:  
+    - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - OM  
+      - Note that here, this is OM and not OC.  
+      - OM can either be subtracted directly if available, or converted from OC using a sector-specific scaling factor e.g., 1.4.  
+    - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
+  - These new variables would then be used in the `anthro_emis` namelist e.g.:  
+    - The `PM2.5` in [`'PM25I(a)->0.1*PM2.5(emis_tot)'`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L94) is Other PM$_{2.5}$.  
+    - The `PM10` in [`'PM_10(a)->PM10(emis_tot)'`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L89) is PM$_{2.5 - 10}$.  
+
+
 ## Troubleshooting and errors
 
 - Find the errors' first occurance, checking rsl.error, rsl.out, .e, .o, and .log files within the run folder.  
