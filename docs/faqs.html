@@ -323,7 +323,11 @@
 <ul>
 <li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> assigned to all matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
 <li><p>PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> assigned to inorganic matter for &lt;2.5 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
-<li><p>OC assigned to OM.</p></li>
+<li><p>OC assigned to OM.</p>
+<ul>
+<li><p>OM is sometimes provided directly or can be converted from OC using a (sector-specific) scaling factor (e.g., 1.4 - 1.7).</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>To meet this requirement you can either edit the data or the input namelist to <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp"><code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code></a>.</p>
@@ -344,12 +348,6 @@
 <li><p>Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> - BC - <em>OM</em></p>
 <ul>
 <li><p>Note that here, this is OM and not OC.</p></li>
-<li><p>OM can either be subtracted directly if available, or converted from OC using a sector-specific scaling factor e.g., 1.4.</p></li>
-</ul>
-</li>
-<li><p>Assign OC to OM rather than OC to account for conversion applied in the data:</p>
-<ul>
-<li><p>e.g., <code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code></p></li>
 </ul>
 </li>
 <li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> = PM<span class="math notranslate nohighlight">\(_{10}\)</span> - PM<span class="math notranslate nohighlight">\(_{2.5}\)</span></p></li>
@@ -357,8 +355,9 @@
 </li>
 <li><p>These new variables would then be used in the <code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code> namelist e.g.:</p>
 <ul>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> in <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L94"><code class="docutils literal notranslate"><span class="pre">'PM25I(a)-&gt;0.1*PM2.5(emis_tot)'</span></code></a> is Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PM10</span></code> in <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L89"><code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM10(emis_tot)'</span></code></a> is PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM25I(a)-&gt;0.1*PM2.5(emis_tot)'</span></code> is assigned to Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PM10</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM10(emis_tot)'</span></code> is assigned to PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> in <code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code> is assigned to OM.</p></li>
 </ul>
 </li>
 </ul>

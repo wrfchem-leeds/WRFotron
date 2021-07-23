@@ -16,6 +16,7 @@
   - PM$_{2.5 - 10}$ assigned to all matter for 2.5-10 $\mu m$ only.  
   - PM$_{2.5}$ = Other PM$_{2.5}$ assigned to inorganic matter for <2.5 $\mu m$ only.  
   - OC assigned to OM.  
+    - OM is sometimes provided directly or can be converted from OC using a (sector-specific) scaling factor (e.g., 1.4 - 1.7).  
 
 - To meet this requirement you can either edit the data or the input namelist to [`anthro_emis`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp).  
   - *It is recommended to edit the data*, as these subtractions can lead to negative values in some grid cells which will break the model.  
@@ -27,13 +28,11 @@
   - Hence, for this inventory, we would need edit the data so that:  
     - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - *OM*  
       - Note that here, this is OM and not OC.  
-      - OM can either be subtracted directly if available, or converted from OC using a sector-specific scaling factor e.g., 1.4.  
-    - Assign OC to OM rather than OC to account for conversion applied in the data:  
-      - e.g., `'ORGJ(a)->0.9*OM(emis_tot)'`  
     - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
   - These new variables would then be used in the `anthro_emis` namelist e.g.:  
-    - The `PM2.5` in [`'PM25I(a)->0.1*PM2.5(emis_tot)'`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L94) is Other PM$_{2.5}$.  
-    - The `PM10` in [`'PM_10(a)->PM10(emis_tot)'`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L89) is PM$_{2.5 - 10}$.  
+    - The `PM2.5` in `'PM25I(a)->0.1*PM2.5(emis_tot)'` is assigned to Other PM$_{2.5}$.  
+    - The `PM10` in `'PM_10(a)->PM10(emis_tot)'` is assigned to PM$_{2.5 - 10}$.  
+    - The `ORGI` and `ORGJ` in `'ORGJ(a)->0.9*OM(emis_tot)'` is assigned to OM.  
 
 
 ## Troubleshooting and errors
