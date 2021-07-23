@@ -24,15 +24,20 @@
   - The exact changes needed with depend on the emission inventory and the chemical mechanism.  
 
 - Example:  
-  - For EDGARHTAPv2.2 (using `chem_opt = 202`), we were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
-  - Hence, for this inventory, we would need edit the data so that:  
-    - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - *OM*  
-      - Note that here, this is OM and not OC.  
-    - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
-  - These new variables would then be used in the `anthro_emis` namelist e.g.:  
-    - The `PM2.5` in `'PM25I(a)->0.1*PM2.5(emis_tot)'` is assigned to Other PM$_{2.5}$.  
-    - The `PM10` in `'PM_10(a)->PM10(emis_tot)'` is assigned to PM$_{2.5 - 10}$.  
-    - The `ORGI` and `ORGJ` in `'ORGJ(a)->0.9*OM(emis_tot)'` is assigned to OM.  
+  - For EDGARHTAPv2.2 (using `chem_opt = 202`):
+    - We were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
+    - Hence, for this inventory, we would need edit the data so that:  
+      - OM = OC * 1.4 (for example)
+      - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - *OM*  
+        - Note that here, this is OM and not OC.  
+      - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
+    - These new variables would then be used in the `anthro_emis` namelist e.g.:  
+      - The `PM2.5` in `'PM25I(a)->0.1*PM2.5(emis_tot)'` is assigned to Other PM$_{2.5}$.  
+      - The `PM10` in `'PM_10(a)->PM10(emis_tot)'` is assigned to PM$_{2.5 - 10}$.  
+      - The `ORGI` and `ORGJ` in `'ORGJ(a)->0.9*OM(emis_tot)'` is assigned to OM.  
+    - For ECLIPSEv6b (using `chem_opt = 202`):  
+      - We were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC, and OM.  
+      - So here we can use OM directly, and otherwise the steps are the same as above.
 
 
 ## Troubleshooting and errors

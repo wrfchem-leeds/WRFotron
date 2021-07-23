@@ -342,9 +342,12 @@
 </li>
 <li><p>Example:</p>
 <ul>
-<li><p>For EDGARHTAPv2.2 (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>), we were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC.</p></li>
+<li><p>For EDGARHTAPv2.2 (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>):</p>
+<ul>
+<li><p>We were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC.</p></li>
 <li><p>Hence, for this inventory, we would need edit the data so that:</p>
 <ul>
+<li><p>OM = OC * 1.4 (for example)</p></li>
 <li><p>Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> - BC - <em>OM</em></p>
 <ul>
 <li><p>Note that here, this is OM and not OC.</p></li>
@@ -358,6 +361,14 @@
 <li><p>The <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM25I(a)-&gt;0.1*PM2.5(emis_tot)'</span></code> is assigned to Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">PM10</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM10(emis_tot)'</span></code> is assigned to PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span>.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> in <code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code> is assigned to OM.</p></li>
+</ul>
+</li>
+<li><p>For ECLIPSEv6b (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>):</p>
+<ul>
+<li><p>We were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC, and OM.</p></li>
+<li><p>So here we can use OM directly, and otherwise the steps are the same as above.</p></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
