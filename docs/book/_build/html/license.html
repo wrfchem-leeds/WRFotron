@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Background</title>
+    <title>License</title>
     
   <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -46,6 +46,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -55,8 +57,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Before you start" href="before_you_start.html" />
-    <link rel="prev" title="WRFotron" href="index.html" />
+    <link rel="prev" title="Versions" href="versions.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -92,8 +93,8 @@
  </li>
 </ul>
 <ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="background.html">
    Background
   </a>
  </li>
@@ -127,8 +128,8 @@
    Versions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="license.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    License
   </a>
  </li>
@@ -172,7 +173,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/background.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/license.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -205,30 +206,9 @@
         
               <div>
                 
-  <div class="section" id="background">
-<h1>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>National Center for Atmospheric Research (NCAR) Weather Research and Forecasting (WRF) Model Users <a class="reference external" href="http://www2.mmm.ucar.edu/wrf/users/">link</a>.</p></li>
-<li><p>NCAR WRF with chemistry (WRFChem) <a class="reference external" href="https://www2.acom.ucar.edu/wrf-chem">link</a>.</p></li>
-<li><p>National Oceanic and Atmospheric Administration (NOAA) WRFChem <a class="reference external" href="https://ruc.noaa.gov/wrf/wrf-chem/">link</a>.</p></li>
-<li><p>WRF version 4.0 user guide <a class="reference external" href="https://www2.mmm.ucar.edu/wrf/users/docs/user_guide_V4/WRFUsersGuide_july2018_tutorial.pdf">link</a>.</p></li>
-<li><p>WRFChem version 3.9.1.1 user guide <a class="reference external" href="https://ruc.noaa.gov/wrf/wrf-chem/Users_guide.pdf">link</a>.</p></li>
-<li><p>WRFChem emissions version 3.9.1.1 user guide <a class="reference external" href="https://ruc.noaa.gov/wrf/wrf-chem/Emission_guide.pdf">link</a>.</p></li>
-<li><p>WRF workshops, in person, UK <a class="reference external" href="https://www.ncas.ac.uk/index.php/en/wrf-tutorials">link</a>.</p></li>
-<li><p>Past WRFChem presentations <a class="reference external" href="http://www2.mmm.ucar.edu/wrf/users/workshops/">link</a>.</p></li>
-<li><p>WRFChem tutorials here <a class="reference external" href="https://ruc.noaa.gov/wrf/wrf-chem/tutorialexercises.htm">link</a>.</p></li>
-<li><p>Fire INventory from NCAR (FINN) emission preparation <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/FINN_Emiss_prep_MOZART.pdf">link</a>.</p></li>
-<li><p>Guidance for Model for Ozone and Related Chemical Tracers (MOZART) gas scheme with Model for Simulating Aerosol Interactions and Chemistry (MOSAIC) aerosol scheme <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/MOZART_MOSAIC_V3.6.readme_dec2016.pdf">link</a>.</p></li>
-<li><p>Key papers:</p>
-<ul>
-<li><p>Grell, G.A., et al. (2005). Fully coupled “online” chemistry within the WRF model. Atmos. Environ. 39, 69576975. <a class="reference external" href="https://doi.org/10.1016/j.atmosenv.2005.04.027">link</a>.</p></li>
-<li><p>Fast, J. D., et al. (2006). Evolution of ozone, particulates, and aerosol direct radiative forcing in the vicinity of Houston using a fully coupled meteorology-chemistry-aerosol model. Journal of Geophysical Research: Atmospheres, 111(21), 129. <a class="reference external" href="https://doi.org/10.1029/2005JD006721">link</a>.</p></li>
-<li><p>Skamarock, W. C., &amp; Klemp, J. B. (2008). A time-split nonhydrostatic atmospheric model for weather research and forecasting applications. Journal of Computational Physics, 227(7), 34653485. <a class="reference external" href="https://doi.org/10.1016/j.jcp.2007.01.037">link</a>.</p></li>
-</ul>
-</li>
-<li><p>Information regarding WRF Model citations <a class="reference external" href="http://www2.mmm.ucar.edu/wrf/users/citing_wrf.html">link</a>.</p></li>
-<li><p>WRF public domain notice <a class="reference external" href="http://www2.mmm.ucar.edu/wrf/users/public.html">link</a>.</p></li>
-</ul>
+  <div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p>WRFotron is licensed under the GPLv3 License, free of charge for non-commercial use. If you intend to publish something based on WRFChem simulations made using the WRFotron scripts and think this contributed substantially to you research, please consider offering co-authorship and referencing: <a class="reference external" href="https://zenodo.org/badge/latestdoi/234609545"><img src ="https://zenodo.org/badge/234609545.svg"></a></p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -256,8 +236,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">WRFotron</a>
-    <a class='right-next' id="next-link" href="before_you_start.html" title="next page">Before you start</a>
+    <a class='left-prev' id="prev-link" href="versions.html" title="previous page">Versions</a>
 
         </div>
         

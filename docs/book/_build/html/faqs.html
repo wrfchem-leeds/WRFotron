@@ -321,25 +321,35 @@
 <ul class="simple">
 <li><p>The anthropogenic emission data must meet the following requirements:</p>
 <ul>
-<li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> = all matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
-<li><p>PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = inorganic matter for &lt;2.5 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
+<li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> assigned to all matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
+<li><p>PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> assigned to inorganic matter for &lt;2.5 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
+<li><p>OC assigned to OM.</p></li>
 </ul>
 </li>
 <li><p>To meet this requirement you can either edit the data or the input namelist to <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp"><code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code></a>.</p>
 <ul>
-<li><p>It is recommended to edit the data, as these subtractions can lead to negative values in some grid cells which will break the model.</p></li>
+<li><p><em>It is recommended to edit the data</em>, as these subtractions can lead to negative values in some grid cells which will break the model.</p>
+<ul>
 <li><p>These negative grid cell values can be set to 0 to avoid this.</p></li>
+</ul>
+</li>
+<li><p>The exact changes needed with depend on the emission inventory and the chemical mechanism.</p></li>
 </ul>
 </li>
 <li><p>Example:</p>
 <ul>
-<li><p>For EDGARHTAPv2.2, we were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC.</p></li>
+<li><p>For EDGARHTAPv2.2 (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>), we were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC.</p></li>
 <li><p>Hence, for this inventory, we would need edit the data so that:</p>
 <ul>
-<li><p>Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> - BC - OM</p>
+<li><p>Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> - BC - <em>OM</em></p>
 <ul>
 <li><p>Note that here, this is OM and not OC.</p></li>
 <li><p>OM can either be subtracted directly if available, or converted from OC using a sector-specific scaling factor e.g., 1.4.</p></li>
+</ul>
+</li>
+<li><p>Assign OC to OM rather than OC to account for conversion applied in the data:</p>
+<ul>
+<li><p>e.g., <code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code></p></li>
 </ul>
 </li>
 <li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> = PM<span class="math notranslate nohighlight">\(_{10}\)</span> - PM<span class="math notranslate nohighlight">\(_{2.5}\)</span></p></li>

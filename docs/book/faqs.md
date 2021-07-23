@@ -13,19 +13,23 @@
 ## Anthropogenic emissions
 
 - The anthropogenic emission data must meet the following requirements:  
-  - PM$_{2.5 - 10}$ = all matter for 2.5-10 $\mu m$ only.  
-  - PM$_{2.5}$ = Other PM$_{2.5}$ = inorganic matter for <2.5 $\mu m$ only.  
+  - PM$_{2.5 - 10}$ assigned to all matter for 2.5-10 $\mu m$ only.  
+  - PM$_{2.5}$ = Other PM$_{2.5}$ assigned to inorganic matter for <2.5 $\mu m$ only.  
+  - OC assigned to OM.  
 
 - To meet this requirement you can either edit the data or the input namelist to [`anthro_emis`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp).  
-  - It is recommended to edit the data, as these subtractions can lead to negative values in some grid cells which will break the model.  
-  - These negative grid cell values can be set to 0 to avoid this.  
+  - *It is recommended to edit the data*, as these subtractions can lead to negative values in some grid cells which will break the model.  
+    - These negative grid cell values can be set to 0 to avoid this.  
+  - The exact changes needed with depend on the emission inventory and the chemical mechanism.  
 
 - Example:  
-  - For EDGARHTAPv2.2, we were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
+  - For EDGARHTAPv2.2 (using `chem_opt = 202`), we were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
   - Hence, for this inventory, we would need edit the data so that:  
-    - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - OM  
+    - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - *OM*  
       - Note that here, this is OM and not OC.  
       - OM can either be subtracted directly if available, or converted from OC using a sector-specific scaling factor e.g., 1.4.  
+    - Assign OC to OM rather than OC to account for conversion applied in the data:  
+      - e.g., `'ORGJ(a)->0.9*OM(emis_tot)'`  
     - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
   - These new variables would then be used in the `anthro_emis` namelist e.g.:  
     - The `PM2.5` in [`'PM25I(a)->0.1*PM2.5(emis_tot)'`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp#L94) is Other PM$_{2.5}$.  
