@@ -12,32 +12,36 @@
 
 ## Anthropogenic emissions
 
-- The anthropogenic emission data must meet the following requirements:  
-  - PM$_{2.5 - 10}$ assigned to all matter for 2.5-10 $\mu m$ only.  
-  - PM$_{2.5}$ = Other PM$_{2.5}$ assigned to inorganic matter for <2.5 $\mu m$ only.  
-  - OC assigned to OM.  
-    - OM is sometimes provided directly or can be converted from OC using a (sector-specific) scaling factor (e.g., 1.4 - 1.7).  
+- **Check that**:
+  - The `anthro_emis` input namelist (e.g., `emis_edgarhtap2_mozmos.inp`) has the following mappings (i.e., WRFChem variable assigned to inventory variable):  
+    - `ORGI` and `ORGJ` assigned to `OM` (organic matter).  
+    - `PM25I` and `PM25J` assigned to `OIN_PM2.5` (other inorganic matter under 2.5 $\mu m$).  
+    - `PM_10` assigned to `PM2.5_10` (coarse particulate matter for 2.5-10 $\mu m$).  
+  - These 3 inventory variables (i.e., `OM`, `OIN_PM2.5`, and `PM2.5_10`) have their own NetCDF files:  
+    - Ideally, these are provided directly from the emission inventory.  
+    - If not, then you can calculate them for your data offline.  
 
-- To meet this requirement you can either edit the data or the input namelist to [`anthro_emis`](https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp).  
-  - *It is recommended to edit the data*, as these subtractions can lead to negative values in some grid cells which will break the model.  
-    - These negative grid cell values can be set to 0 to avoid this.  
-  - The exact changes needed with depend on the emission inventory and the chemical mechanism.  
-
-- Example:  
-  - For EDGARHTAPv2.2 (using `chem_opt = 202`):
-    - We were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC.  
-    - Hence, for this inventory, we would need edit the data so that:  
-      - OM = OC * 1.4 (for example)
-      - Other PM$_{2.5}$ = PM$_{2.5}$ - BC - *OM*  
-        - Note that here, this is OM and not OC.  
-      - PM$_{2.5 - 10}$ = PM$_{10}$ - PM$_{2.5}$  
-    - These new variables would then be used in the `anthro_emis` namelist e.g.:  
-      - The `PM2.5` in `'PM25I(a)->0.1*PM2.5(emis_tot)'` is assigned to Other PM$_{2.5}$.  
-      - The `PM10` in `'PM_10(a)->PM10(emis_tot)'` is assigned to PM$_{2.5 - 10}$.  
-      - The `ORGI` and `ORGJ` in `'ORGJ(a)->0.9*OM(emis_tot)'` is assigned to OM.  
-    - For ECLIPSEv6b (using `chem_opt = 202`):  
-      - We were supplied with all PM$_{2.5}$, all PM$_{10}$, BC, and OC, and OM.  
-      - So here we can use OM directly, and otherwise the steps are the same as above.
+- **Example** for EDGARHTAP2.2/MEIC emissions using `chem_opt = 202`:  
+  - This inventory provided `OC`, `PM2.5` (all PM2.5), and `PM10` (all PM10).  
+  - First, create the required variables (save them all as new NetCDF files using the chemical names `OM`, `OIN_PM2.5`, and `PM2.5_10`):
+    - Create `OM` file by multiplying `OC` by a scaling factor.  
+      - The scaling factor is usually in the range of 1.4-1.7 and is ideally sector-specific.  
+    - Create `OIN_PM2.5` as equal to `PM2.5` - `BC` - `OM`.  
+      - Here, you are subtracting `OM`, which you calculated above.  
+      - Set any negative values to 0 (as this can cause errors).  
+    - Create `PM2.5_10` as equal `PM10` - `PM2.5`.  
+      - Take care here to ensure subtacting `PM2.5`, and not just `OIN_PM2.5`.
+      - Set any negative values to 0 (as this can cause errors).  
+  - Then, open the `anthro_emis` input namelist `emis_edgarhtap2-meic2015_mozmos.inp`.  
+    - Check that `src_names` has:
+      - `'OM(12)'`  
+      - `'OIN_PM2.5(1)'`  
+      - `'PM2.5_10(1)'`    
+    - Check that `emis_map` has:
+      - `'ORGJ(a)->0.9*OM(emis_tot)'`  
+      - `'PM25J(a)->0.9*OIN_PM2.5(emis_tot)'`  
+      - `'PM_10(a)->PM2.5_10(emis_tot)'`  
+- These instructions may be different for other emission inventories and chemical mechanisms.  
 
 
 ## Troubleshooting and errors

@@ -319,60 +319,68 @@
 <div class="section" id="anthropogenic-emissions">
 <h2>Anthropogenic emissions<a class="headerlink" href="#anthropogenic-emissions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The anthropogenic emission data must meet the following requirements:</p>
+<li><p><strong>Check that</strong>:</p>
 <ul>
-<li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> assigned to all matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
-<li><p>PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> assigned to inorganic matter for &lt;2.5 <span class="math notranslate nohighlight">\(\mu m\)</span> only.</p></li>
-<li><p>OC assigned to OM.</p>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code> input namelist (e.g., <code class="docutils literal notranslate"><span class="pre">emis_edgarhtap2_mozmos.inp</span></code>) has the following mappings (i.e., WRFChem variable assigned to inventory variable):</p>
 <ul>
-<li><p>OM is sometimes provided directly or can be converted from OC using a (sector-specific) scaling factor (e.g., 1.4 - 1.7).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">OM</span></code> (organic matter).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PM25I</span></code> and <code class="docutils literal notranslate"><span class="pre">PM25J</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code> (other inorganic matter under 2.5 <span class="math notranslate nohighlight">\(\mu m\)</span>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PM_10</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code> (coarse particulate matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span>).</p></li>
+</ul>
+</li>
+<li><p>These 3 inventory variables (i.e., <code class="docutils literal notranslate"><span class="pre">OM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>) have their own NetCDF files:</p>
+<ul>
+<li><p>Ideally, these are provided directly from the emission inventory.</p></li>
+<li><p>If not, then you can calculate them for your data offline.</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>To meet this requirement you can either edit the data or the input namelist to <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/emis_edgarhtap2_mozmos.inp"><code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code></a>.</p>
+<li><p><strong>Example</strong> for EDGARHTAP2.2/MEIC emissions using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>:</p>
 <ul>
-<li><p><em>It is recommended to edit the data</em>, as these subtractions can lead to negative values in some grid cells which will break the model.</p>
+<li><p>This inventory provided <code class="docutils literal notranslate"><span class="pre">OC</span></code>, <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> (all PM2.5), and <code class="docutils literal notranslate"><span class="pre">PM10</span></code> (all PM10).</p></li>
+<li><p>First, create the required variables (save them all as new NetCDF files using the chemical names <code class="docutils literal notranslate"><span class="pre">OM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>):</p>
 <ul>
-<li><p>These negative grid cell values can be set to 0 to avoid this.</p></li>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">OM</span></code> file by multiplying <code class="docutils literal notranslate"><span class="pre">OC</span></code> by a scaling factor.</p>
+<ul>
+<li><p>The scaling factor is usually in the range of 1.4-1.7 and is ideally sector-specific.</p></li>
 </ul>
 </li>
-<li><p>The exact changes needed with depend on the emission inventory and the chemical mechanism.</p></li>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code> as equal to <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> - <code class="docutils literal notranslate"><span class="pre">BC</span></code> - <code class="docutils literal notranslate"><span class="pre">OM</span></code>.</p>
+<ul>
+<li><p>Here, you are subtracting <code class="docutils literal notranslate"><span class="pre">OM</span></code>, which you calculated above.</p></li>
+<li><p>Set any negative values to 0 (as this can cause errors).</p></li>
 </ul>
 </li>
-<li><p>Example:</p>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code> as equal <code class="docutils literal notranslate"><span class="pre">PM10</span></code> - <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code>.</p>
 <ul>
-<li><p>For EDGARHTAPv2.2 (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>):</p>
-<ul>
-<li><p>We were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC.</p></li>
-<li><p>Hence, for this inventory, we would need edit the data so that:</p>
-<ul>
-<li><p>OM = OC * 1.4 (for example)</p></li>
-<li><p>Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> = PM<span class="math notranslate nohighlight">\(_{2.5}\)</span> - BC - <em>OM</em></p>
-<ul>
-<li><p>Note that here, this is OM and not OC.</p></li>
-</ul>
-</li>
-<li><p>PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span> = PM<span class="math notranslate nohighlight">\(_{10}\)</span> - PM<span class="math notranslate nohighlight">\(_{2.5}\)</span></p></li>
-</ul>
-</li>
-<li><p>These new variables would then be used in the <code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code> namelist e.g.:</p>
-<ul>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM25I(a)-&gt;0.1*PM2.5(emis_tot)'</span></code> is assigned to Other PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PM10</span></code> in <code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM10(emis_tot)'</span></code> is assigned to PM<span class="math notranslate nohighlight">\(_{2.5 - 10}\)</span>.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> in <code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code> is assigned to OM.</p></li>
-</ul>
-</li>
-<li><p>For ECLIPSEv6b (using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>):</p>
-<ul>
-<li><p>We were supplied with all PM<span class="math notranslate nohighlight">\(_{2.5}\)</span>, all PM<span class="math notranslate nohighlight">\(_{10}\)</span>, BC, and OC, and OM.</p></li>
-<li><p>So here we can use OM directly, and otherwise the steps are the same as above.</p></li>
+<li><p>Take care here to ensure subtacting <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code>, and not just <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>.</p></li>
+<li><p>Set any negative values to 0 (as this can cause errors).</p></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p>Then, open the <code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code> input namelist <code class="docutils literal notranslate"><span class="pre">emis_edgarhtap2-meic2015_mozmos.inp</span></code>.</p>
+<ul>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">src_names</span></code> has:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'OM(12)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'OIN_PM2.5(1)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'PM2.5_10(1)'</span></code></p></li>
 </ul>
 </li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">emis_map</span></code> has:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'PM25J(a)-&gt;0.9*OIN_PM2.5(emis_tot)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM2.5_10(emis_tot)'</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>These instructions may be different for other emission inventories and chemical mechanisms.</p></li>
 </ul>
 </div>
 <div class="section" id="troubleshooting-and-errors">
