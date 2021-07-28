@@ -14,31 +14,32 @@
 
 - **Check that**:
   - The `anthro_emis` input namelist (e.g., `emis_edgarhtap2_mozmos.inp`) has the following mappings (i.e., WRFChem variable assigned to inventory variable):  
-    - `ORGI` and `ORGJ` assigned to `OM` (organic matter).  
+    - `ORGI` and `ORGJ` assigned to `POM` (particulate organic matter).  
+      - The emissions of Organic Carbon (OC) need to be converted to total particulate organic matter (POM), which includes the associated oxygen, hydrogen and other elements.  
     - `PM25I` and `PM25J` assigned to `OIN_PM2.5` (other inorganic matter under 2.5 $\mu m$).  
     - `PM_10` assigned to `PM2.5_10` (coarse particulate matter for 2.5-10 $\mu m$).  
-  - These 3 inventory variables (i.e., `OM`, `OIN_PM2.5`, and `PM2.5_10`) have their own NetCDF files:  
+  - These 3 inventory variables (i.e., `POM`, `OIN_PM2.5`, and `PM2.5_10`) have their own NetCDF files:  
     - Ideally, these are provided directly from the emission inventory.  
     - If not, then you can calculate them for your data offline.  
 
 - **Example** for EDGARHTAP2.2/MEIC emissions using `chem_opt = 202`:  
-  - This inventory provided `OC`, `PM2.5` (all PM2.5), and `PM10` (all PM10).  
-  - First, create the required variables (save them all as new NetCDF files using the chemical names `OM`, `OIN_PM2.5`, and `PM2.5_10`):
-    - Create `OM` file by multiplying `OC` by a scaling factor.  
+  - This inventory provided `OC` (organic carbon), `PM2.5` (all PM2.5), and `PM10` (all PM10).  
+  - First, create the required variables (save them all as new NetCDF files using the chemical names `POM`, `OIN_PM2.5`, and `PM2.5_10`):
+    - Create `POM` file by multiplying `OC` by a scaling factor.  
       - The scaling factor is usually in the range of 1.4-1.7 and is ideally sector-specific.  
-    - Create `OIN_PM2.5` as equal to `PM2.5` - `BC` - `OM`.  
-      - Here, you are subtracting `OM`, which you calculated above.  
+    - Create `OIN_PM2.5` as equal to `PM2.5` - `BC` - `POM`.  
+      - Here, you are subtracting `POM`, which you calculated above.  
       - Set any negative values to 0 (as this can cause errors).  
     - Create `PM2.5_10` as equal `PM10` - `PM2.5`.  
       - Take care here to ensure subtacting `PM2.5`, and not just `OIN_PM2.5`.
       - Set any negative values to 0 (as this can cause errors).  
   - Then, open the `anthro_emis` input namelist `emis_edgarhtap2-meic2015_mozmos.inp`.  
     - Check that `src_names` has:
-      - `'OM(12)'`  
+      - `'POM(12)'`  
       - `'OIN_PM2.5(1)'`  
       - `'PM2.5_10(1)'`    
     - Check that `emis_map` has:
-      - `'ORGJ(a)->0.9*OM(emis_tot)'`  
+      - `'ORGJ(a)->0.9*POM(emis_tot)'`  
       - `'PM25J(a)->0.9*OIN_PM2.5(emis_tot)'`  
       - `'PM_10(a)->PM2.5_10(emis_tot)'`  
 - These instructions may be different for other emission inventories and chemical mechanisms.  

@@ -323,12 +323,16 @@
 <ul>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">anthro_emis</span></code> input namelist (e.g., <code class="docutils literal notranslate"><span class="pre">emis_edgarhtap2_mozmos.inp</span></code>) has the following mappings (i.e., WRFChem variable assigned to inventory variable):</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">OM</span></code> (organic matter).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ORGI</span></code> and <code class="docutils literal notranslate"><span class="pre">ORGJ</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">POM</span></code> (particulate organic matter).</p>
+<ul>
+<li><p>The emissions of Organic Carbon (OC) need to be converted to total particulate organic matter (POM), which includes the associated oxygen, hydrogen and other elements.</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PM25I</span></code> and <code class="docutils literal notranslate"><span class="pre">PM25J</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code> (other inorganic matter under 2.5 <span class="math notranslate nohighlight">\(\mu m\)</span>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PM_10</span></code> assigned to <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code> (coarse particulate matter for 2.5-10 <span class="math notranslate nohighlight">\(\mu m\)</span>).</p></li>
 </ul>
 </li>
-<li><p>These 3 inventory variables (i.e., <code class="docutils literal notranslate"><span class="pre">OM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>) have their own NetCDF files:</p>
+<li><p>These 3 inventory variables (i.e., <code class="docutils literal notranslate"><span class="pre">POM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>) have their own NetCDF files:</p>
 <ul>
 <li><p>Ideally, these are provided directly from the emission inventory.</p></li>
 <li><p>If not, then you can calculate them for your data offline.</p></li>
@@ -338,17 +342,17 @@
 </li>
 <li><p><strong>Example</strong> for EDGARHTAP2.2/MEIC emissions using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>:</p>
 <ul>
-<li><p>This inventory provided <code class="docutils literal notranslate"><span class="pre">OC</span></code>, <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> (all PM2.5), and <code class="docutils literal notranslate"><span class="pre">PM10</span></code> (all PM10).</p></li>
-<li><p>First, create the required variables (save them all as new NetCDF files using the chemical names <code class="docutils literal notranslate"><span class="pre">OM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>):</p>
+<li><p>This inventory provided <code class="docutils literal notranslate"><span class="pre">OC</span></code> (organic carbon), <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> (all PM2.5), and <code class="docutils literal notranslate"><span class="pre">PM10</span></code> (all PM10).</p></li>
+<li><p>First, create the required variables (save them all as new NetCDF files using the chemical names <code class="docutils literal notranslate"><span class="pre">POM</span></code>, <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code>, and <code class="docutils literal notranslate"><span class="pre">PM2.5_10</span></code>):</p>
 <ul>
-<li><p>Create <code class="docutils literal notranslate"><span class="pre">OM</span></code> file by multiplying <code class="docutils literal notranslate"><span class="pre">OC</span></code> by a scaling factor.</p>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">POM</span></code> file by multiplying <code class="docutils literal notranslate"><span class="pre">OC</span></code> by a scaling factor.</p>
 <ul>
 <li><p>The scaling factor is usually in the range of 1.4-1.7 and is ideally sector-specific.</p></li>
 </ul>
 </li>
-<li><p>Create <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code> as equal to <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> - <code class="docutils literal notranslate"><span class="pre">BC</span></code> - <code class="docutils literal notranslate"><span class="pre">OM</span></code>.</p>
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">OIN_PM2.5</span></code> as equal to <code class="docutils literal notranslate"><span class="pre">PM2.5</span></code> - <code class="docutils literal notranslate"><span class="pre">BC</span></code> - <code class="docutils literal notranslate"><span class="pre">POM</span></code>.</p>
 <ul>
-<li><p>Here, you are subtracting <code class="docutils literal notranslate"><span class="pre">OM</span></code>, which you calculated above.</p></li>
+<li><p>Here, you are subtracting <code class="docutils literal notranslate"><span class="pre">POM</span></code>, which you calculated above.</p></li>
 <li><p>Set any negative values to 0 (as this can cause errors).</p></li>
 </ul>
 </li>
@@ -364,14 +368,14 @@
 <ul>
 <li><p>Check that <code class="docutils literal notranslate"><span class="pre">src_names</span></code> has:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">'OM(12)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'POM(12)'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'OIN_PM2.5(1)'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'PM2.5_10(1)'</span></code></p></li>
 </ul>
 </li>
 <li><p>Check that <code class="docutils literal notranslate"><span class="pre">emis_map</span></code> has:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*OM(emis_tot)'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'ORGJ(a)-&gt;0.9*POM(emis_tot)'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'PM25J(a)-&gt;0.9*OIN_PM2.5(emis_tot)'</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'PM_10(a)-&gt;PM2.5_10(emis_tot)'</span></code></p></li>
 </ul>
