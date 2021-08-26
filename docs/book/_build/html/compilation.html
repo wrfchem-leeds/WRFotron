@@ -320,8 +320,8 @@ cp /nobackup/cemac/software/build/WRFChem/4.2/src/WRFChem4.2.tar.gz ../src/
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span> <span class="c1"># replace ${USER} with your username</span>
 cp -r /nobackup/WRFChem/anthro_emis .
 <span class="nb">cd</span> anthro_emis
-cp /nobackup/WRFChem/build_scripts/fix_makefile.sh .
-./fix_makefile.sh
+cp /nobackup/WRFChem/build_scripts/fix_makefiles.sh .
+. fix_makefiles.sh
 <span class="c1"># make your custom edits</span>
 make_anthro
 <span class="c1"># update WRFotron/config.bash to point to this new processor</span>
