@@ -1,6 +1,4 @@
-format: jb-article
-root: index
-sections:
+- file: index
 - file: background
 - file: before_you_start
 - file: compilation
