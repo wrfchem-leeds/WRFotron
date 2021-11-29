@@ -163,7 +163,7 @@ msg "save output to archive staging area"
 # move all new output to archive directory
 for domain in $(seq -f "0%g" 1 ${max_dom})
 do
-  for hour in $(seq -w 1 __fcstTime__)
+  for hour in $(seq -w 0 __fcstTime__)
   do
     curDate=$(date -u --date="__inpYear__-__inpMonth__-__inpDay__ __inpHour__:00:00 ${hour} hours" "+%Y-%m-%d_%H")
     outFile=wrfout_d${domain}_${curDate}:00:00
