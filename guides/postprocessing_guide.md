@@ -69,9 +69,8 @@ convert_aerosol_units_from_ugkg_to_ugm3 = True
 Now submit the regridding script `qsub pp_concat_regrid.bash`. The script may take around an hour to run. If it finishes quickly, there was probably an error. If this happens, the error will be in the `pp_concat_regrid.bash.eXXXXXX` file. If the script is working, it will create these files:
 
 ```bash
-wrfout_d01_global_0.25deg_2015-10_AOD550_sfc.nc
-wrfout_d01_global_0.25deg_2015-10_o3.nc
-wrfout_d01_global_0.25deg_2015-10_PM2_5_DRY.nc
-wrfout_d01_global_0.25deg_2015-10_bc_2p5.nc
-wrfout_d01_global_0.25deg_2015-10_oc_2p5.nc
+wrfout_d01_global_0.25deg_2015-10_AOD550_sfc.nc  wrfout_d01_global_0.25deg_2015-10_nh4_2p5.nc  wrfout_d01_global_0.25deg_2015-10_oin_2p5.nc
+wrfout_d01_global_0.25deg_2015-10_asoaX_2p5.nc   wrfout_d01_global_0.25deg_2015-10_no3_2p5.nc  wrfout_d01_global_0.25deg_2015-10_PM2_5_DRY.nc
+wrfout_d01_global_0.25deg_2015-10_bc_2p5.nc      wrfout_d01_global_0.25deg_2015-10_o3.nc       wrfout_d01_global_0.25deg_2015-10_so4_2p5.nc
+wrfout_d01_global_0.25deg_2015-10_bsoaX_2p5.nc   wrfout_d01_global_0.25deg_2015-10_oc_2p5.nc
 ```
