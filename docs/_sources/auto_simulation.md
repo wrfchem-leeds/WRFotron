@@ -130,7 +130,7 @@ Crontab script
     - Runs on the login nodes
         ```bash
         cd /nobackup/${USER}  
-        find . -exec touch -ah {} \;
+        find . -exec touch -ah {} +
         ```
 
 Acquire meteorological NCEP GFS files.  

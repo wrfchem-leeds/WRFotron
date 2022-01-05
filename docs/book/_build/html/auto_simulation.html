@@ -435,7 +435,7 @@ qsub post.bash
 <li><p>This has now set a cronjob to run that will automatically touch (and thus reset last accessed time) the files once a month at 0400 on the 4th of the month.</p></li>
 <li><p>Runs on the login nodes</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>  
-find . -exec touch -ah <span class="o">{}</span> <span class="se">\;</span>
+find . -exec touch -ah <span class="o">{}</span> +
 </pre></div>
 </div>
 </li>
