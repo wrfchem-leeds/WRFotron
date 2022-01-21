@@ -431,7 +431,7 @@ qsub post.bash
 <li><p>This script will change the last accessed date for all the specified directories and files underneath that path.</p></li>
 <li><p>Change permissions 755 on .not_expire.sh (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span> <span class="pre">~/.not_expire.sh</span></code>).</p></li>
 <li><p>Use the crontab command to edit the crontab file <code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-e</span></code></p></li>
-<li><p>Then add a line: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">4</span> <span class="pre">4</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">~/.not_expire.sh</span></code></p></li>
+<li><p>Then add a line: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">*/2</span> <span class="pre">*</span> <span class="pre">~/.not_expire.sh</span></code></p></li>
 <li><p>This has now set a cronjob to run that will automatically touch (and thus reset last accessed time) the files once a month at 0400 on the 4th of the month.</p></li>
 <li><p>Runs on the login nodes</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>  

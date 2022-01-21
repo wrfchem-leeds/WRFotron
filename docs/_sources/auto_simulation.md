@@ -125,7 +125,7 @@ Crontab script
     - This script will change the last accessed date for all the specified directories and files underneath that path.  
     - Change permissions 755 on .not_expire.sh (`chmod 755 ~/.not_expire.sh`).  
     - Use the crontab command to edit the crontab file `crontab -e`
-    - Then add a line: `0 4 4 * * ~/.not_expire.sh`
+    - Then add a line: `0 0 1 */2 * ~/.not_expire.sh`
     - This has now set a cronjob to run that will automatically touch (and thus reset last accessed time) the files once a month at 0400 on the 4th of the month.
     - Runs on the login nodes
         ```bash
