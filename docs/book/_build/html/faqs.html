@@ -354,6 +354,11 @@
 <li><p>If not, then you can calculate them for your data offline.</p></li>
 </ul>
 </li>
+<li><p>Ensure that these files have their units attribute set to <code class="docutils literal notranslate"><span class="pre">&quot;kg</span> <span class="pre">m-2</span> <span class="pre">s-1&quot;</span></code> (<a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/issues/48">reference</a>).</p>
+<ul>
+<li><p>This can be done using the following command for all emission variables within the files. For example, for the <code class="docutils literal notranslate"><span class="pre">POM</span></code> file for the variable <code class="docutils literal notranslate"><span class="pre">emis_tot</span></code> use: <code class="docutils literal notranslate"><span class="pre">ncatted</span> <span class="pre">-O</span> <span class="pre">-a</span> <span class="pre">units,emis_tot,a,c,&quot;kg</span> <span class="pre">m-2</span> <span class="pre">s-1&quot;</span> <span class="pre">EDGARHTAP2_MEIC2015_POM_2010.0.1x0.1.nc</span></code></p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><strong>Example</strong> for EDGARHTAP2.2/MEIC emissions using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>:</p>

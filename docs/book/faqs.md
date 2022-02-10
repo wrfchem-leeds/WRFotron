@@ -21,6 +21,8 @@
   - These 3 inventory variables (i.e., `POM`, `OIN_PM2.5`, and `PM2.5_10`) have their own NetCDF files:  
     - Ideally, these are provided directly from the emission inventory.  
     - If not, then you can calculate them for your data offline.  
+  - Ensure that these files have their units attribute set to `"kg m-2 s-1"` ([reference](https://github.com/wrfchem-leeds/WRFotron/issues/48)).
+    - This can be done using the following command for all emission variables within the files. For example, for the `POM` file for the variable `emis_tot` use: `ncatted -O -a units,emis_tot,a,c,"kg m-2 s-1" EDGARHTAP2_MEIC2015_POM_2010.0.1x0.1.nc`
 
 - **Example** for EDGARHTAP2.2/MEIC emissions using `chem_opt = 202`:  
   - This inventory provided `OC` (organic carbon), `PM2.5` (all PM2.5), and `PM10` (all PM10).  
