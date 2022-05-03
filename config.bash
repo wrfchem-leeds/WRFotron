@@ -98,7 +98,7 @@ pyPpScript=${chainDir}/postprocessing.py
 # ------------------------------------------------------------------------------
 # number of cores to run with for each stage
 nprocPre=1
-nprocMain=2
+nprocMain=2  # this is the number of nodes, see https://github.com/wrfchem-leeds/WRFotron/commit/ca279396f6cf606c87dd13bed49a2a90120e0da6
 nprocPost=4
 
 # mpirun for real.exe and wrf.exe
