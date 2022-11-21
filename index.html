@@ -285,7 +285,12 @@ title="Print to PDF"
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quick-start">
-   Quick Start
+   Quick start
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
   </a>
  </li>
 </ul>
@@ -309,7 +314,12 @@ title="Print to PDF"
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#quick-start">
-   Quick Start
+   Quick start
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation">
+   Documentation
   </a>
  </li>
 </ul>
@@ -322,38 +332,54 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="wrfotron">
+  <section id="wrfotron">
 <h1>WRFotron<a class="headerlink" href="#wrfotron" title="Permalink to this headline">#</a></h1>
-<p>WRFotron automatises WRFChem simulations with reinitialised meteorology.</p>
+<p><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/wrfchem-leeds/WRFotron" />
+<img alt="GitHub" src="https://img.shields.io/github/license/wrfchem-leeds/WRFotron?label=License" />
+<a class="reference external" href="https://zenodo.org/badge/latestdoi/234609545"><img alt="DOI" src="https://zenodo.org/badge/234609545.svg" /></a></p>
+<p><img alt="logo" src="https://user-images.githubusercontent.com/19871268/122675619-23ddae00-d1d2-11eb-81ab-f8ca50c7746f.png" /></p>
+<p>Tools to automatise WRF-Chem runs with re-initialised meteorology.</p>
+<p>WRFotron created by Christoph Knote (<a class="reference external" href="mailto:christoph&#46;knote&#37;&#52;&#48;med&#46;uni-augsburg&#46;de">christoph<span>&#46;</span>knote<span>&#64;</span>med<span>&#46;</span>uni-augsburg<span>&#46;</span>de</a>).</p>
+<p><a class="reference external" href="https://wrfchem-leeds.github.io/WRFotron/">User guide</a> created by Luke Conibear (<a class="reference external" href="mailto:l&#46;a&#46;conibear&#37;&#52;&#48;leeds&#46;ac&#46;uk">l<span>&#46;</span>a<span>&#46;</span>conibear<span>&#64;</span>leeds<span>&#46;</span>ac<span>&#46;</span>uk</a>).</p>
+<p>Helpful additions from Helen Burns, Carly Reddington, Ben Silver, Laura Kiely, Thomas Thorp, Ailish Graham, Doug Lowe, Scott Archer-Nicholls, Edward Butt, and Lauren Fleming.</p>
 <section id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">#</a></h2>
-<p>WRFotron loads pre-built CEMAC modules for WRFChem, preprocessors, Python, NCO, NCL, and ncview.</p>
-<ol>
-<li><p>Clone WRFotron:</p>
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">#</a></h2>
+<p>WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds users). Everything required is loaded in <code class="docutils literal notranslate"><span class="pre">config.bash</span></code>, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.</p>
+<ol class="simple">
+<li><p>Log into ARC4, clone the WRFotron repo, and edit the <code class="docutils literal notranslate"><span class="pre">chainDir</span></code> path within <code class="docutils literal notranslate"><span class="pre">config.bash</span></code> if it is not <code class="docutils literal notranslate"><span class="pre">/nobackup/${USER}/WRFotron</span></code>:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/wrfchem-leeds/WRFotron.git
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You will need to do this on your HPC (e.g. ARC4) and then check within <code class="docutils literal notranslate"><span class="pre">config.bash</span></code> that <code class="docutils literal notranslate"><span class="pre">chainDir</span></code> is set correctly.
-For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions <a class="reference external" href="compilation.html#manual-alternative">here</a>.</p>
-</div>
-</li>
-<li><p>Make the CEMAC modules available:</p>
+<ol class="simple">
+<li><p>Load the availability of CEMAC modules. If have other modules loaded then unload them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>), and similarly deactivate conda (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>), as both of these can cause conflits:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. /nobackup/cemac/cemac.sh
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If have other modules loaded then unload them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>), and similarly deactivate conda (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>), as both of these can cause conflicts.</p>
-</div>
-</li>
-<li><p>Submit a simulation:</p>
+<ol class="simple">
+<li><p>From within the WRFotron folder run <code class="docutils literal notranslate"><span class="pre">master.bash</span></code>:</p></li>
+</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. master.bash <span class="m">2015</span> <span class="m">10</span> <span class="m">12</span> <span class="m">00</span> <span class="m">24</span> <span class="m">06</span>
 </pre></div>
 </div>
-</li>
-</ol>
+<p>For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions <a class="reference external" href="https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative">here</a>.</p>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Update the documentation by editing the markdown files in <code class="docutils literal notranslate"><span class="pre">docs/</span></code>.</p></li>
+<li><p>Then build the <a class="reference external" href="https://wrfchem-leeds.github.io/WRFotron/">documentation</a> via:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate wrfotron
+jupyter-book build docs
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>These can be viewed locally by opening <code class="docutils literal notranslate"><span class="pre">docs/_build/html/index.html</span></code> in a browser.</p></li>
+<li><p>Open a PR to include the changes.</p></li>
+</ul>
 </section>
 <div class="toctree-wrapper compound">
 </div>
