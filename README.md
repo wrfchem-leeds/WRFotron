@@ -32,3 +32,17 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
 ```
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).
+
+#### Documentation
+
+- Update the documentation by editing the markdown files in `docs/`.
+- Then build the [documentation](https://wrfchem-leeds.github.io/WRFotron/) via:
+
+```bash
+conda env create -f environment.yml
+conda activate wrfotron
+jupyter-book build docs
+```
+
+- These can be viewed locally by opening `docs/_build/html/index.html` in a browser.
+- Open a PR to include the changes.
