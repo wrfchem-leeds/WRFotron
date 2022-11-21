@@ -367,19 +367,32 @@ title="Print to PDF"
 </section>
 <section id="documentation">
 <h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">#</a></h2>
-<ul class="simple">
-<li><p>Update the documentation by editing the markdown files in <code class="docutils literal notranslate"><span class="pre">docs/</span></code>.</p></li>
-<li><p>Then build the <a class="reference external" href="https://wrfchem-leeds.github.io/WRFotron/">documentation</a> via:</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
-conda activate wrfotron
-jupyter-book build docs
+<ol class="simple">
+<li><p>Clone the repository and create a branch to work on the docs:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/wrfchem-leeds/WRFotron.git
+<span class="nb">cd</span> WRFotron
+git checkout -b update-docs
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>These can be viewed locally by opening <code class="docutils literal notranslate"><span class="pre">docs/_build/html/index.html</span></code> in a browser.</p></li>
-<li><p>Open a PR to include the changes.</p></li>
-</ul>
+<ol class="simple">
+<li><p>Edit the markdown files e.g., <code class="docutils literal notranslate"><span class="pre">docs/faqs.md</span></code>.</p></li>
+<li><p>Create a conda environment with jupyter-book installed e.g.:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+conda activate wrfotron
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Build the docs locally using:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter-book build docs
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>View the docs locally by opening <code class="docutils literal notranslate"><span class="pre">docs/_build/html/index.html</span></code> in a browser.</p></li>
+<li><p>If you’re happy with the changes, open a <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">pull request</a> to merge your branch. Tag <code class="docutils literal notranslate"><span class="pre">lukeconibear</span></code> as a reviewer.</p></li>
+</ol>
 </section>
 <div class="toctree-wrapper compound">
 </div>
