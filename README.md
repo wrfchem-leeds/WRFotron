@@ -33,16 +33,29 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).
 
-#### Documentation
+#### How to build the documentation
 
-- Update the documentation by editing the markdown files in `docs/`.
-- Then build the [documentation](https://wrfchem-leeds.github.io/WRFotron/) via:
+1. Clone the repository and create a branch to work on the docs:
+
+```bash
+git clone https://github.com/wrfchem-leeds/WRFotron.git
+cd WRFotron
+git checkout -b update-docs
+```
+
+2. Edit the markdown files e.g., `docs/faqs.md`. 
+3. Create a conda environment with jupyter-book installed e.g.:
 
 ```bash
 conda env create -f environment.yml
 conda activate wrfotron
+```
+
+4. Build the docs locally using:
+
+```bash
 jupyter-book build docs
 ```
 
-- These can be viewed locally by opening `docs/_build/html/index.html` in a browser.
-- Open a PR to include the changes.
+5. View the docs locally by opening `docs/_build/html/index.html` in a browser.
+6. If you're happy with the changes, open a [pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to merge your branch. Tag `lukeconibear` as a reviewer.  
