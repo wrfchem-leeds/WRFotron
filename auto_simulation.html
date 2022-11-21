@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Automatic simulation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Manual Simulation" href="manual_simulation.html" />
+    <link rel="prev" title="Compilation" href="compilation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    WRFotron
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="background.html">
+   Background
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="before_you_start.html">
+   Before you start
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="compilation.html">
+   Compilation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Automatic simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="manual_simulation.html">
+   Manual Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="faqs.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="versions.html">
+   Versions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/auto_simulation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running">
+   Running
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-it-works">
+   How it works
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#config-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       config.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#master-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       master.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-restart-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       main_restart.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-files-within-wrfotron">
+     Other files within WRFotron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approximate-job-run-times-and-hpc-requirements">
+     Approximate job run times and HPC requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-output-using-python">
+     Analyse output using Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Automatic simulation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#running">
+   Running
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-it-works">
+   How it works
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#config-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       config.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#master-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       master.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#main-restart-bash">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       main_restart.bash
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#other-files-within-wrfotron">
+     Other files within WRFotron
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approximate-job-run-times-and-hpc-requirements">
+     Approximate job run times and HPC requirements
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#analyse-output-using-python">
+     Analyse output using Python
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="automatic-simulation">
+<h1>Automatic simulation<a class="headerlink" href="#automatic-simulation" title="Permalink to this headline">#</a></h1>
+<section id="running">
+<h2>Running<a class="headerlink" href="#running" title="Permalink to this headline">#</a></h2>
+<p>WRFotron uses pre-built executables on ARC4 from CEMAC (for University of Leeds users). Everything required is loaded in <code class="docutils literal notranslate"><span class="pre">config.bash</span></code>, including Python, NCO, NCL, WPS, WRFMeteo, WRFChem, preprocessors, and ncview.</p>
+<ol>
+<li><p>Log into ARC4, clone the WRFotron repo, and edit the <code class="docutils literal notranslate"><span class="pre">chainDir</span></code> path within <code class="docutils literal notranslate"><span class="pre">config.bash</span></code> if it is not <code class="docutils literal notranslate"><span class="pre">/nobackup/${USER}/WRFotron</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/wrfchem-leeds/WRFotron.git
+</pre></div>
+</div>
+</li>
+<li><p>Load the availability of CEMAC modules. If have other modules loaded then unload them (<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">purge</span></code>), and similarly deactivate conda (<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">deactivate</span></code>), as both of these can cause conflits.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. /nobackup/cemac/cemac.sh
+</pre></div>
+</div>
+</li>
+<li><p>From within the WRFotron folder run <code class="docutils literal notranslate"><span class="pre">master.bash</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. master.bash <span class="m">2015</span> <span class="m">10</span> <span class="m">12</span> <span class="m">00</span> <span class="m">24</span> <span class="m">06</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions <a class="reference external" href="compilation.html#manual-alternative">here</a>.</p>
+</section>
+<section id="how-it-works">
+<h2>How it works<a class="headerlink" href="#how-it-works" title="Permalink to this headline">#</a></h2>
+<p>WRFotron runs WRFChem via <code class="docutils literal notranslate"><span class="pre">master.bash</span></code> for a simulation setup in <code class="docutils literal notranslate"><span class="pre">config.bash</span></code>.</p>
+<section id="config-bash">
+<h3><code class="docutils literal notranslate"><span class="pre">config.bash</span></code><a class="headerlink" href="#config-bash" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Check all directories are correct.</p></li>
+<li><p>Change where WRFChem will run.</p></li>
+<li><p>Keep the same name for synchronous runs.</p></li>
+<li><p>Or if a new simulation, change.</p>
+<ul>
+<li><p>workDir / achiveRootDir / restartRootDir.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="master-bash">
+<h3><code class="docutils literal notranslate"><span class="pre">master.bash</span></code><a class="headerlink" href="#master-bash" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">master.bash</span></code> takes a starting date, a run time, a spinup time, and (optionally) a previous run’s job ID on the queuing system as arguments.</p>
+<p>According to the run configuration in <code class="docutils literal notranslate"><span class="pre">config.bash</span></code>, WRFotron then prepares a run directory (typically on scratch or nobackup) with all necessary data, and submits 3 jobs to the queue:</p>
+<ul class="simple">
+<li><p>Preprocessing script (<code class="docutils literal notranslate"><span class="pre">pre.bash</span></code>), containing calls to ungrib.exe, metgrid.exe, real.exe and the preprocessor tools for chemistry.</p></li>
+<li><p>Main execution script (<code class="docutils literal notranslate"><span class="pre">main.bash</span></code>), which does the actual wrf.exe runs (spinup and chemistry run).</p></li>
+<li><p>Postprocessing script (<code class="docutils literal notranslate"><span class="pre">post.bash</span></code>), which can be extended to do any kind of postprocessing on the wrfout files of the WRFChem run.</p></li>
+</ul>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">master.bash</span></code> and giving it the job ID of another WRFotron <code class="docutils literal notranslate"><span class="pre">main.bash</span></code> process in the queue will tell the <code class="docutils literal notranslate"><span class="pre">main.bash</span></code> script to wait for this process to end before starting, thereby allowing you to submit several runs in a row at the same time, each of them restarting using the result of the previous run.</p>
+<p>The re-initialisation of meteorology works as follows:</p>
+<ul class="simple">
+<li><p>After each successful WRFotron WRFChem run, wrfrst restart files are saved in a common directory. When a new run is called using <code class="docutils literal notranslate"><span class="pre">master.bash</span></code>, a meteo-only spinup run is made first, and a restart file is created at its end, now containing only “fresh” meteorology variables. It is then checked whether a restart file (with chemistry) from a previous run exists in the common restart directory. If this is the case, only the chemistry variables are copied from the previous run’s restart file to the meteo spinup restart file. Then, a WRFChem run is started using this combined restart file as initial conditions, thereby using “fresh” meteorology while carrying on chemistry variables across runs. In case no restart file is found, a “cold start” chemistry run is conducted, starting with MOZART global model forecast values as initial conditions.</p></li>
+</ul>
+<p>Creates output, restart, and run directories on <code class="docutils literal notranslate"><span class="pre">/nobackup/${USER}</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">putput/base/</span></code> (NetCDF files for wrfout).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">restart/base/</span></code> (Restart files for simulation runs).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run/base/startdate_enddate</span></code> per simulation run/ (Everything gets created in here, specific to run).</p>
+<ul>
+<li><p>In this folder is all the files copied over with the settings updated in all the bash scripts (master, pre, main, post, config).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run/base/staging</span></code> (wrfout files are stored for post-processing).</p></li>
+</ul>
+<p>Test run for 24 hours.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. master.bash <span class="m">2015</span> <span class="m">10</span> <span class="m">05</span> <span class="m">00</span> <span class="m">24</span> <span class="m">06</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Start year / start month / start day / start hour (UTC time) / simulation length / spin up length.</p></li>
+<li><p>Spin-up runs from 2015-10-04_18:00:00 to 2015-10-05_00:00:00.</p></li>
+<li><p>Simulation runs from 2015-10-05_00:00:00 to 2015-10-06_00:00:00.</p></li>
+<li><p>Check linked files were for this <code class="docutils literal notranslate"><span class="pre">${USER}</span></code>.</p></li>
+<li><p>Now make another run starting when the first one finishes, which will use the output of the previous run for chemistry initial conditions (rather than MOZART chemical boundary conditions), while re-initialising meteorology (from GFS/ECMWF data):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>. master.bash <span class="m">2015</span> <span class="m">10</span> <span class="m">05</span> <span class="m">00</span> <span class="m">24</span> <span class="m">06</span> <span class="m">999999</span>
+</pre></div>
+</div>
+</li>
+<li><p>The 999999 is the job id for the <code class="docutils literal notranslate"><span class="pre">main.bash</span></code> from the previous run. This is used in the syntax to tell the HPC machine to wait until this job has finished before starting the new run. This is because the new run uses the files created from the first run. This allows you to submit several runs in a row at the same time, each of them restarting using the result of the previous run.</p></li>
+</ul>
+<p>Four-dimension data assimilation (FDDA, i.e. re-initialisation of meteorology).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi master.bash
+S/GRIDFDDA/0/g <span class="c1"># to turn it off</span>
+S/GRIDFDDA/1/g <span class="c1"># to turn it on  </span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Nudges horizontal and vertical wind, potential temperature and water vapor mixing ratio to analyses. It doesn’t take the analyses fields for its values like some other models do. It uses them as initial conditions and then uses the primitive atmospheric equations. This is not for chemistry directly, though affects chemicals through transport.</p></li>
+</ul>
+<p>If need to re-submit any parts of the simulation, from within the folder, make changes to the relevant bash script and then:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub pre.bash  
+qsub main.bash  
+qsub post.bash
+</pre></div>
+</div>
+</section>
+<section id="main-restart-bash">
+<h3><code class="docutils literal notranslate"><span class="pre">main_restart.bash</span></code><a class="headerlink" href="#main-restart-bash" title="Permalink to this headline">#</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">main.bash</span></code> breaks in the middle of the simulation, can restart using <code class="docutils literal notranslate"><span class="pre">main_restart.bash</span></code> (edited to not repeat the meteo spin up and carry on from where chem wrf.exe stopped).</p>
+<p>Steps:</p>
+<ul class="simple">
+<li><p>Go to the run folder where <code class="docutils literal notranslate"><span class="pre">main.bash</span></code> stopped</p></li>
+<li><p>Copy the latest restart file with 00 hours over to the restart/base directory</p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">main_restart.bash</span></code>:</p>
+<ul>
+<li><p>Change newRunRstFile to this latest restart file</p></li>
+<li><p>Change submission time length appropriately</p></li>
+<li><p>Change lastRstFile to the final restart file date at the end of run</p></li>
+<li><p>Change curDate to the first wrfout file date</p></li>
+</ul>
+</li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">namelist.input</span></code>:</p>
+<ul>
+<li><p>Ensure <code class="docutils literal notranslate"><span class="pre">restart</span> <span class="pre">=</span> <span class="pre">.true</span></code>.</p></li>
+<li><p>Change start date to match date of newRunRstFile</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">main_restart.bash</span></code></p></li>
+<li><p>When finished:</p>
+<ul>
+<li><p>Manually copy over the final restart file to restart/base</p></li>
+<li><p>Manually move the wrfout files to run/base/staging</p></li>
+<li><p>Manually <code class="docutils literal notranslate"><span class="pre">qsub</span> <span class="pre">post.bash</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="other-files-within-wrfotron">
+<h3>Other files within WRFotron<a class="headerlink" href="#other-files-within-wrfotron" title="Permalink to this headline">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">postprocessing.py</span></code></p>
+<ul class="simple">
+<li><p>Calculates AOD for 550nm through interpolations and just extracting for the surface.</p></li>
+<li><p>Converts units of aerosols at a certain standard temperature and pressure by dividing by the inverse of density: µg/kg of dry air to µg/m<sup>3</sup> by dividing by m<sup>3</sup>/kg.</p></li>
+</ul>
+<p>WRFChem namelists (read <code class="docutils literal notranslate"><span class="pre">/WRFChem/run/README.namelist</span></code> or user guide for detailed information).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">namelist.chem</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">namelist.wrf</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">namelist.wps</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">Vtable.ECMWF/GFS</span></code>.</p>
+<ul class="simple">
+<li><p>Variable table for the intial and boundary meteorological conditions.</p></li>
+</ul>
+<p>Preprocessor input files (<code class="docutils literal notranslate"><span class="pre">emis_edgarhtap2_mozmos.inp</span></code>, <code class="docutils literal notranslate"><span class="pre">exo_coldens.inp</span></code>, <code class="docutils literal notranslate"><span class="pre">fire_emis.mozm.inp</span></code>, <code class="docutils literal notranslate"><span class="pre">mozbc.inp</span></code>, <code class="docutils literal notranslate"><span class="pre">megan_bio_emiss.inp</span></code>, <code class="docutils literal notranslate"><span class="pre">mozbc.inp.blueprint_201_mz4</span></code>, <code class="docutils literal notranslate"><span class="pre">mozbc.inp.blueprint_202_mz4</span></code>).</p>
+<ul class="simple">
+<li><p>For files which depend on the aerosol / chemistry schemes (mozbc.inp, namelist.chem, and namelist.wrf), there are blueprints of each of these files for both the mozart_mosaic_4bin (<code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">201</span></code>) and the mozart_mosaic_4bin_aq (<code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>). See <a class="reference external" href="https://github.com/wrfchem-leeds/WRFotron/blob/master/guides/MOZART_MOSAIC_V3.6.readme_dec2016.pdf">document</a>.</p></li>
+<li><p>Replace the contents of the namelist with the blueprint_201 / 202 version.</p></li>
+</ul>
+<p>Crontab script</p>
+<ul>
+<li><p>Not normally allowed, check with HPC staff first.</p></li>
+<li><p>Touches all files in <code class="docutils literal notranslate"><span class="pre">/nobackup/${USER}</span></code> to update their date and stop them getting deleted.</p></li>
+<li><p>Create a hidden file in home directory (<code class="docutils literal notranslate"><span class="pre">vi</span> <span class="pre">~/.not_expire.sh</span></code>) and add to it triples of lines such as:</p>
+<ul>
+<li><p>Touch -h makes sure symlinks don’t expire too.</p></li>
+<li><p>This script will change the last accessed date for all the specified directories and files underneath that path.</p></li>
+<li><p>Change permissions 755 on .not_expire.sh (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">755</span> <span class="pre">~/.not_expire.sh</span></code>).</p></li>
+<li><p>Use the crontab command to edit the crontab file <code class="docutils literal notranslate"><span class="pre">crontab</span> <span class="pre">-e</span></code></p></li>
+<li><p>Then add a line: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">*/2</span> <span class="pre">*</span> <span class="pre">~/.not_expire.sh</span></code></p></li>
+<li><p>This has now set a cronjob to run that will automatically touch (and thus reset last accessed time) the files once a month at 0400 on the 4th of the month.</p></li>
+<li><p>Runs on the login nodes</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>  
+find . -exec touch -ah <span class="o">{}</span> +
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+<p>Acquire meteorological NCEP GFS files.</p>
+<ul class="simple">
+<li><p>Will have to change all scripts with dataDir locations to the correct <code class="docutils literal notranslate"><span class="pre">${USER}</span></code>.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/download_and_find_gfs_mz4
+get_GFS_analysis_2004-current.bash
+get_GFS_analysis_parallel.bash
+</pre></div>
+</div>
+<ul>
+<li><p>If these have a size of 0, use <a class="reference external" href="https://rda.ucar.edu/datasets/ds083.2/index.html#%21description">FNL analysis files at lower resolution</a>.</p>
+<ul class="simple">
+<li><p>The Globus Transfer Service (GridFTP) option to transfer the FNL files from the RDA.</p></li>
+<li><p>The other option is to go to that link, click data access, click web file listing for either GRIB1 (pre 2007.12.06) or GRIB2 (post 2007.12.06), click complete file list, click on the year of interest within the group ID column and checkbox the timeframe you’re interested in. Now either click csh download script and follow the instructions in the comments of the script (remembering to change your linux shell to csh), or click get as a tar file (though this is limited to 2GB), or again there is the option for globus.</p></li>
+<li><p>To download for more than 1 day at a time. First changing the script to the time frame required, ensuring download for the spin-up timeframe too.</p></li>
+</ul>
+</li>
+<li><p>Go over GFS folder to check have 8 files per day for each day of simulation.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.find_missing_GFS.bash
+qsub find_missing_GFS_parallel.bash
+</pre></div>
+</div>
+</li>
+<li><p>Rename FNL files to original GFS naming convention and copy for 3 hourly interval midpoints.</p></li>
+</ul>
+<p>Acquire MOZART (MZ4) files for chemical initial and boundary conditions.</p>
+<ul class="simple">
+<li><p>Pre-2018:</p></li>
+<li><p>Download <a class="reference external" href="http://www.acom.ucar.edu/wrf-chem/mozart.shtml">MZ4</a>.</p></li>
+<li><p>Download <a class="reference external" href="https://www.acom.ucar.edu/cam-chem/cam-chem.shtml">CAM-Chem</a>.</p></li>
+<li><p>Post-2018:</p></li>
+<li><p>Download <a class="reference external" href="https://www.acom.ucar.edu/waccm/download.shtml">WACCM</a>.</p></li>
+<li><p>Ensure for a month have day either side of time frame of interest, and go for global domain.</p></li>
+</ul>
+<p>Anthropogenic emissions</p>
+<ul class="simple">
+<li><p>Choose anthropogenic input namelist setting in config.bash.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/WRFotron
+vi emis_edgarhtap2_mozmos.inp
+</pre></div>
+</div>
+<p>Fire emissions (FINN)</p>
+<ul class="simple">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">fire_emis.mozm.inp</span></code> to have to correct filename for the year of simulation  careful to update file for the correct chemical mechanism.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">pre.bash</span></code></p>
+<ul class="simple">
+<li><p>Check the linked MZ4 files are for timeframe required e.g. 2015.</p></li>
+<li><p>If using daily files, use this portion of code and comment out the monthly section.</p></li>
+<li><p>Vice versa for if using monthly files.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">namelist.wps.blueprint</span></code>.</p>
+<ul class="simple">
+<li><p>Change domain, resolution, map projection, and map area.</p></li>
+<li><p>Edit <code class="docutils literal notranslate"><span class="pre">namelist.wps.domain_test</span></code> to try out different domain settings.</p></li>
+<li><p>Create domain plot <code class="docutils literal notranslate"><span class="pre">ncl</span> <span class="pre">plotgrids.ncl</span></code>.</p></li>
+<li><p>View the PDF of the domain <code class="docutils literal notranslate"><span class="pre">evince</span> <span class="pre">wps_show_dom.pdf</span></code>.</p></li>
+<li><p>When decided update setting in <code class="docutils literal notranslate"><span class="pre">namelist.wps.blueprint</span></code>.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">namelist.wrf.blueprint</span></code>.</p>
+<ul class="simple">
+<li><p>Change domain, resolution, and number of levels.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">namelist.chem.blueprint</span></code>.</p>
+<ul class="simple">
+<li><p>Change chemistry options.</p></li>
+<li><p>See WRFChem User Guide.</p></li>
+</ul>
+</section>
+<section id="approximate-job-run-times-and-hpc-requirements">
+<h3>Approximate job run times and HPC requirements<a class="headerlink" href="#approximate-job-run-times-and-hpc-requirements" title="Permalink to this headline">#</a></h3>
+<p>For a 30 km domain at 1.5 minute timestep over China using <code class="docutils literal notranslate"><span class="pre">chem_opt</span> <span class="pre">=</span> <span class="pre">202</span></code>. For a different setup, you can scale this accordingly.:</p>
+<ul class="simple">
+<li><p>1 day simulation takes 1-2 hour wall clock time approximately.</p></li>
+<li><p>1 month simulation takes 2-4 days wall clock time approximately.</p></li>
+<li><p>1 year simulations takes 1-2 month wall clock time approximately.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre.bash</span></code> = 2 hours, 1 core, 12GB/process (run in serial).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">main.bash</span></code> = 48 hours, 128 cores, 1GB/process (run in parallel).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">post.bash</span></code> = 48 hours, 4 cores, 12GB/process (run in parallel).</p></li>
+</ul>
+</section>
+<section id="analyse-output-using-python">
+<h3>Analyse output using Python<a class="headerlink" href="#analyse-output-using-python" title="Permalink to this headline">#</a></h3>
+<p>For those new to Python, see this <a class="reference external" href="https://www.lukeconibear.com/introduction_to_scientific_computing/index.html">introductory course</a>.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="compilation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Compilation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="manual_simulation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Manual Simulation</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Luke Conibear<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

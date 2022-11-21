@@ -1,0 +1,771 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Manual Simulation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="faqs.html" />
+    <link rel="prev" title="Automatic simulation" href="auto_simulation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    WRFotron
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="background.html">
+   Background
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="before_you_start.html">
+   Before you start
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="compilation.html">
+   Compilation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="auto_simulation.html">
+   Automatic simulation
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Manual Simulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="faqs.html">
+   Frequently Asked Questions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="versions.html">
+   Versions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="license.html">
+   License
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/manual_simulation.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing">
+   Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main">
+   Main
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#postprocessing">
+   Postprocessing
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Manual Simulation</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setup">
+   Setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preprocessing">
+   Preprocessing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main">
+   Main
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#postprocessing">
+   Postprocessing
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="manual-simulation">
+<h1>Manual Simulation<a class="headerlink" href="#manual-simulation" title="Permalink to this headline">#</a></h1>
+<p>Independently run a 24 hour simulation for India from 2016 10 05.</p>
+<section id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">#</a></h2>
+<p>Check you have the GFS data you need for the dates required to initialise and force meteorological conditions (1 file per 3 hours, 8 files per day, none are too small):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+mkdir initial_boundary_meteo_gfs 
+<span class="nb">cd</span> initial_boundary_meteo_gfs
+cp /nobackup/WRFChem/initial_boundary_meteo_gfs/GF201610<span class="o">{</span><span class="m">04</span>..07<span class="o">}</span>* .
+</pre></div>
+</div>
+<p>If require more GFS data, can copy more over from <code class="docutils literal notranslate"><span class="pre">/nobackup/WRFChem/initial_boundary_meteo_gfs</span></code> or can use the download scripts <code class="docutils literal notranslate"><span class="pre">get_GFS_analysis_2004-current.bash</span></code> and <code class="docutils literal notranslate"><span class="pre">get_GFS_analysis_parallel.bash</span></code> within <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/nobackup/WRFChem/download_and_find_gfs_mz4</span></code>.</p>
+<p>Create a test run folder for the manual run of WRF:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/
+mkdir testrun
+</pre></div>
+</div>
+<p>Copy <code class="docutils literal notranslate"><span class="pre">link_grib.csh</span></code> to the new folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/testrun
+cp /nobackup/WRFChem/testrun_files/link_grib.csh .
+</pre></div>
+</div>
+<p>Link the required GFS data via <code class="docutils literal notranslate"><span class="pre">link_grib.csh</span></code> in to the new simulation folder.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./link_grib.csh /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/initial_boundary_meteo_gfs/GF201610*
+</pre></div>
+</div>
+<p>Copy over the ungrib, geogrid and metgrid folders.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -r /nobackup/WRFChem/testrun_files/ungrib .
+cp -r /nobackup/WRFChem/testrun_files/geogrid .
+cp -r /nobackup/WRFChem/testrun_files/metgrid .
+</pre></div>
+</div>
+<p>Link the ungrib, geogrid and metgrid executables from the folders that are now copied over.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -sf metgrid/src/metgrid.exe
+ln -sf geogrid/src/geogrid.exe
+ln -sf ungrib/src/ungrib.exe
+</pre></div>
+</div>
+<p>Copy over the WPS and input namelists.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/testrun_files/namelist.wps .
+cp /nobackup/WRFChem/testrun_files/namelist.input .
+</pre></div>
+</div>
+<p>Link to the variables table.</p>
+<ul>
+<li><p>If post-2015 simulation, use new variable table:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -sf /nobackup/WRFChem/Vtable.GFS_new Vtable
+</pre></div>
+</div>
+</li>
+<li><p>If pre-2015 simulation, use old variable table:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ln -sf /nobackup/WRFChem/Vtable.GFS Vtable
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Copy over the WRF and real executables, and the WRF and real bash scripts for job submission.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/testrun_files/real.exe .
+cp /nobackup/WRFChem/testrun_files/real.bash .
+cp /nobackup/WRFChem/testrun_files/wrf.exe .
+cp /nobackup/WRFChem/testrun_files/wrf.bash .
+</pre></div>
+</div>
+<p>Edit the time for the run on the WPS namelist according to the new requirements for the simulation. Be careful for leap years, and any changes made in the WPS namelist have to mirrored if the same variables are present in the input namelist.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">start_date</span> <span class="pre">=</span> <span class="pre">'2016-10-05_00:00:00'</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">end_date</span>&#160;&#160; <span class="pre">=</span> <span class="pre">'2016-10-06_00:00:00'</span></code>.</p></li>
+<li><p>number of domains (use 1).</p></li>
+<li><p>spatial resolution (dx and dy).</p></li>
+<li><p>map projection (i.e. Lambert conformal, Mercator, polar stereographic, or Regular latitude-longitude also known as cylindrical equidistant).</p></li>
+<li><p>If lambert, dx and dy are in metres.</p></li>
+<li><p>Uses projection parameters: truelat1, truelat2, stand_lon.</p></li>
+<li><p>See page 37 of WRF User Guide.</p></li>
+<li><p>Update and edit the namelist.input.</p></li>
+<li><p>make sure the run_hours, start date, end date, timestep, e_we, e_sn, dx, dy are the same here as they are in the namelist.wps.</p></li>
+<li><p>time step for integration seconds (recommended 6*dx in km for a typical case).</p></li>
+</ul>
+<p>Load the netCDF module.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module load netcdf
+<span class="nb">export</span> <span class="nv">NETCDF</span><span class="o">=</span><span class="k">$(</span>nc-config --prefix<span class="k">)</span>
+<span class="nb">export</span> <span class="nv">NETCDF_DIR</span><span class="o">=</span><span class="nv">$NETCDF</span>
+</pre></div>
+</div>
+</section>
+<section id="preprocessing">
+<h2>Preprocessing<a class="headerlink" href="#preprocessing" title="Permalink to this headline">#</a></h2>
+<p>Run geogrid</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./geogrid.exe
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Configures the horizontal domain, interpolating static geographical data.</p>
+<ul>
+<li><p>Creates geography (<code class="docutils literal notranslate"><span class="pre">geo_em.d01.nc</span></code>) for each domain.</p></li>
+<li><p>Progress logged in geogrid.log.</p></li>
+</ul>
+</li>
+</ul>
+<p>Run ungrib</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./ungrib.exe
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Reads, reformats, and extracts meteo input data.</p>
+<ul>
+<li><p>Creates meteorology by ungribbing the GFS grb2 files.</p></li>
+<li><p>Intermediate files for every time step.</p></li>
+<li><p>Progress logged in ungrib.log.</p></li>
+</ul>
+</li>
+</ul>
+<p>Run metgrid</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./metgrid.exe   
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Ingests and interpolates input data creating initial and boundary meteorological conditions.</p>
+<ul>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">met_em.d01.2016-02-25_00:00:00.nc</span></code> for every 6 hour time step, for both domains.</p></li>
+<li><p>Also metgrid.log.</p></li>
+</ul>
+</li>
+</ul>
+<p>Copy the anthro_emiss, wesely, exo_coldens, megan_bio_emiss, mozbc executables.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/testrun_files/anthro_emis .
+cp /nobackup/WRFChem/testrun_files/wesely .
+cp /nobackup/WRFChem/testrun_files/exo_coldens .
+cp /nobackup/WRFChem/testrun_files/megan_bio_emiss .
+cp /nobackup/WRFChem/testrun_files/mozbc .
+</pre></div>
+</div>
+<p>Copy the input files for these executables.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/testrun_files/emis_edgarhtap2_mozmos.inp .
+cp /nobackup/WRFChem/testrun_files/wesely.inp .
+cp /nobackup/WRFChem/testrun_files/exo_coldens.inp .
+cp /nobackup/WRFChem/testrun_files/megan_bio_emiss.inp .
+cp /nobackup/WRFChem/testrun_files/mozbc.inp .
+</pre></div>
+</div>
+<p>Copy over the run subdirectory from WRF.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp -r /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/WRFChem/run/* .
+</pre></div>
+</div>
+<p>Remove the testrun version of real.exe and wrf.exe and copy the freshly compiled versions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>rm real.exe
+rm wrf.exe
+cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/WRFChem/main/real.exe .
+cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/WRFChem/main/wrf.exe .
+</pre></div>
+</div>
+<p>Link the required MOZART chemical boundary condition files (need previous day too for spin up).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/
+
+<span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+mkdir initial_boundary_chem_mz4
+<span class="nb">cd</span> initial_boundary_chem_mz4
+cp /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/initial_boundary_chem_mz4/MZ2016oct .
+<span class="nb">cd</span> /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/testrun
+ln -sf /nobackup/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/initial_boundary_chem_mz4/MZ2016oct moz0000.nc
+</pre></div>
+</div>
+<ul>
+<li><p>Pre-2018:</p>
+<ul class="simple">
+<li><p>Download <a class="reference external" href="http://www.acom.ucar.edu/wrf-chem/mozart.shtml">MZ4</a>.</p></li>
+<li><p>Download <a class="reference external" href="https://www.acom.ucar.edu/cam-chem/cam-chem.shtml">CAM-Chem</a>.</p></li>
+</ul>
+</li>
+<li><p>Post-2018:</p>
+<ul class="simple">
+<li><p>Download <a class="reference external" href="https://www.acom.ucar.edu/waccm/download.shtml">WACCM</a>.</p></li>
+<li><p>Note the directory needs to change in config.bash (<code class="docutils literal notranslate"><span class="pre">MOZARTdir</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Can access individual days using the script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /nobackup/WRFChem/download_and_find_gfs_mz4
+. get_MZ4_fcst.bash YYYY MM DD
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Run real.exe</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi real.bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>This has all the requirements for time, nodes, cores, processors.</p>
+<ul>
+<li><p>1 core required, with h_vmem 6GB.</p></li>
+<li><p>May need to change/remove the project code.</p></li>
+<li><p>Before running real.exe, may need to comment out (with a ! in Fortran) in namelist.input aux_input_6 for megan_bio_emiss (3 lines which relates to this).</p></li>
+</ul>
+</li>
+</ul>
+<p>Check namelists, run real, and check progress.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub real.bash
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Interpolates between the intermediate files to create the time domain data at the prescribed time intervals.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qstat
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>When complete, creates:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">real.bash.o3502300</span></code>.</p>
+<ul>
+<li><p>Output from the job submission script (MPI output from job id 3502300).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real.bash.e3502300</span></code>.</p>
+<ul>
+<li><p>Error from the job submission script (MPI output from job id 3502300).</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">namelist.output</span></code>.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrfinput_d01</span></code> (for initial conditions).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrfinput_d02</span></code> (for initial conditions).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wrfbdy_d01</span></code> (for boundary conditions).</p></li>
+</ul>
+</li>
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">rsl.error*</span></code> that the run was successful.</p>
+<ul>
+<li><p>If it fails, the wrfinput and wrfbdy won’t be created.</p></li>
+</ul>
+</li>
+<li><p>Check in <code class="docutils literal notranslate"><span class="pre">rsl.error*</span></code> and <code class="docutils literal notranslate"><span class="pre">rsl.out*</span></code> files for each core.</p></li>
+</ul>
+</li>
+</ul>
+<p>Edit namelist for biogenic emissions.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi megan_bio_emiss.inp
+</pre></div>
+</div>
+<p>Run MEGAN.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./megan_bio_emiss &lt; megan_bio_emiss.inp
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Creates for both domains (<code class="docutils literal notranslate"><span class="pre">wrfbiochemi_d*</span></code>).</p></li>
+</ul>
+<p>Edit and run mozbc.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi mozbc.inp
+</pre></div>
+</div>
+<ul>
+<li><p>Domain 1, <code class="docutils literal notranslate"><span class="pre">do_ic</span> <span class="pre">=</span> <span class="pre">.true</span></code>.</p>
+<ul class="simple">
+<li><p>Updates <code class="docutils literal notranslate"><span class="pre">wrfinput_d01</span></code> (NetCDF) with initial conditions.</p></li>
+</ul>
+</li>
+<li><p>Domain 1, <code class="docutils literal notranslate"><span class="pre">do_bc</span> <span class="pre">=</span> <span class="pre">.true</span></code>.</p>
+<ul class="simple">
+<li><p>Updates <code class="docutils literal notranslate"><span class="pre">wrfbdy_d01</span></code> (NetCDF) with boundary conditions.</p></li>
+</ul>
+</li>
+<li><p>If ncview wrfbdy_d01, then can see the 2D curtains in space of the boundary conditions (think of box walls), i.e. T is transect or not, X or Y domain, E east or S south.</p>
+<ul class="simple">
+<li><p>Domain 2, <code class="docutils literal notranslate"><span class="pre">do_ic</span> <span class="pre">=</span> <span class="pre">.true</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Updates <code class="docutils literal notranslate"><span class="pre">wrfinput_d02</span></code> (netCDF) with initial conditions for the nested domain, as gets its boundary conditions from the outer domain.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./mozbc &lt; mozbc.inp
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Run wesely.</p>
+<ul>
+<li><p>Reads, reformats, and extracts input data for dry deposition.</p></li>
+<li><p>Copy over the <code class="docutils literal notranslate"><span class="pre">season_wes_usgs.nc</span></code> file.</p></li>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">wrf_season_wes_usgs_d01.nc</span></code> and <code class="docutils literal notranslate"><span class="pre">wrf_season_wes_usgs_d02.nc</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/wes-coldens/season_wes_usgs.nc .
+./wesely &lt; wesely.inp
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Run exo coldens.</p>
+<ul>
+<li><p>Reads, reformats, and extracts input data.</p></li>
+<li><p>Copy over the <code class="docutils literal notranslate"><span class="pre">exo_coldens.nc</span></code> file.</p></li>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">exo_coldens_d01</span></code> and <code class="docutils literal notranslate"><span class="pre">exo_coldens_d02</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cp /nobackup/WRFChem/wes-coldens/exo_coldens.nc .
+./exo_coldens &lt; exo_coldens.inp
+</pre></div>
+</div>
+</li>
+</ul>
+<p>Edit anthropogenic namelist (check the NO/NO2 ratio from NOX is correct for your domain).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi emis_edgarhtap2_mozmos.inp
+</pre></div>
+</div>
+<p>Run anthro_emis.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./anthro_emis &lt; emis_edgarhtap2_mozmos.inp
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run for both domain 1 and 2 separately.</p>
+<ul>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">start_output_time</span></code> and <code class="docutils literal notranslate"><span class="pre">stop_output_time</span></code>.</p></li>
+<li><p>Creates <code class="docutils literal notranslate"><span class="pre">wrfchemi</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="main">
+<h2>Main<a class="headerlink" href="#main" title="Permalink to this headline">#</a></h2>
+<p>Before running <code class="docutils literal notranslate"><span class="pre">wrf.exe</span></code>, may need to comment back in (removing the !) in namelist.input aux_input_6 for megan_bio_emiss (3 lines which relates to this).</p>
+<p>Create bash script for wrf.exe.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vi wrf.bash
+</pre></div>
+</div>
+<p>This has all the requirements for time, nodes, cores, processors. 32 cores required.<br />
+Run wrf.exe.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qsub wrf.bash
+</pre></div>
+</div>
+<p>Can follow the progress by tailing the <code class="docutils literal notranslate"><span class="pre">rsl.error.0000</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tail rsl.error.0000
+</pre></div>
+</div>
+<p>Can also check jobs running on HPC through.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>qstat
+</pre></div>
+</div>
+<p>Creates:</p>
+<ul class="simple">
+<li><p>wrfout files per hour.</p></li>
+<li><p>rsl.out.* (for each core).</p></li>
+<li><p>rsl.error.* (for each core).</p></li>
+</ul>
+<p>Check linked files were for this ${USER}.</p>
+</section>
+<section id="postprocessing">
+<h2>Postprocessing<a class="headerlink" href="#postprocessing" title="Permalink to this headline">#</a></h2>
+<p>Not doing in the test run.</p>
+<p>To view wrfout files (without the post-processing).</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate ncview <span class="c1"># or module load ncview</span>
+ncview wrfout*
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="auto_simulation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Automatic simulation</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="faqs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Frequently Asked Questions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Luke Conibear<br/>
+  
+      &copy; Copyright 2021.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
