@@ -33,7 +33,7 @@ git clone https://github.com/wrfchem-leeds/WRFotron.git
 
 For users that require their own executables or that are from outside of the University of Leeds, you can manually compile them using the instructions [here](https://wrfotron.readthedocs.io/en/latest/compilation.html#manual-alternative).
 
-#### Documentation
+#### How to build the documentation
 
 1. Clone the repository and create a branch to work on the docs:
 
